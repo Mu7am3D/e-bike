@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "563126584857",
+    "project_id": "e-bike-da7e8",
+    "storage_bucket": "e-bike-da7e8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:563126584857:android:7c083d1bd3719960458c88",
+        "android_client_info": {
+          "package_name": "com.eBike.e_bike"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "563126584857-i1avla8vblamt9o43ur32210cqqbd92t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBdS1wqUfkGUbQjXZ3odcvlcfIBRpUZ6e4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "563126584857-i1avla8vblamt9o43ur32210cqqbd92t.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
