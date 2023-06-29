@@ -1,4 +1,3 @@
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -7,6 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../Nav Bar/Nav_bar.dart';
 import '../Screens/login.dart';
+import '../Screens/login2.dart';
 
 class AuthController extends GetxController {
   final TextEditingController Emailcontroller = TextEditingController();
@@ -24,43 +24,42 @@ class AuthController extends GetxController {
     isvisible = !isvisible;
     update();
   }
+
   void remeber() {
     isremebered = !isremebered;
     update();
   }
 
-  Future<void> createAccount() async {
+  Future<void> createAccount(BuildContext context) async {
     try {
       final user = await _auth.createUserWithEmailAndPassword(
           email: Emailcontroller.text, password: Passwordcontroller.text);
       final firestore = FirebaseFirestore.instance;
-      firestore.collection('users').doc(user.user!.uid).set(
-          {
-            "Email": Emailcontroller.text,
-            "First Name": fNamecontroller.text,
-            "Last Name": lNamecontroller.text,
-            "profpic": " "
-          });
+      firestore.collection('users').doc(user.user!.uid).set({
+        "Email": Emailcontroller.text,
+        "First Name": fNamecontroller.text,
+        "Last Name": lNamecontroller.text,
+        "profpic": " "
+      });
       if (user != null) {
         Get.to(() => Nav());
         print(_auth.currentUser!.uid);
       } else {
         print('error');
       }
-    }
-    on FirebaseAuthException catch (e) {
+    } on FirebaseAuthException catch (e) {
       if (e.code == 'email-already-in-use') {
-        print('The account already exists for that email.');
+        showSnackBar(context, "The user already exists");
       }
     } catch (e) {
       print(e);
     }
   }
-  Future<void> loginUser() async {
+
+  Future<void> loginUser(BuildContext context) async {
     try {
       final user = await _auth.signInWithEmailAndPassword(
-          email: EmailController.text,
-          password: PasswordController.text);
+          email: EmailController.text, password: PasswordController.text);
       if (user != null) {
         // lets save user with shared prefrences
 
@@ -72,24 +71,31 @@ class AuthController extends GetxController {
       } else {
         print('error');
       }
-    }on FirebaseAuthException catch (e) {
+    } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
-        print('No user found for that email.');
+        showSnackBar(context, "wrong email or password");
       } else if (e.code == 'wrong-password') {
-        print('Wrong password provided for that user.');
+        showSnackBar(context, "wrong email or password");
       }
     }
   }
+
   Future<void> logoutUser() async {
     await _auth.signOut();
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.clear();
     _storeOnboardInfo();
-    Get.offAll(() => LoginApp1());
+    Get.offAll(() => LoginApp());
   }
-  _storeOnboardInfo() async{
+
+  _storeOnboardInfo() async {
     int isViewed = 0;
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setInt('onBoard', isViewed);
+  }
+
+  void showSnackBar(BuildContext context, String message) {
+    ScaffoldMessenger.of(context)
+        .showSnackBar(SnackBar(content: Text(message)));
   }
 }
