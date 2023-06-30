@@ -125,12 +125,18 @@ class _LoginAppState extends State<LoginApp> {
                     )),
                 Row(
                   children: [
-                    Checkbox(checkColor: Colors.white,value: remember, onChanged: (val) {
-                      setState(() {
-                        remember=val!;
-                      });
-                    }),
-                    Text('Remeber Me',style: TextStyle(color: Colors.white),),
+                    Checkbox(
+                        checkColor: Colors.white,
+                        value: remember,
+                        onChanged: (val) {
+                          setState(() {
+                            remember = val!;
+                          });
+                        }),
+                    Text(
+                      'Remeber Me',
+                      style: TextStyle(color: Colors.white),
+                    ),
                     SizedBox(
                       width: 120,
                     ),
@@ -142,8 +148,7 @@ class _LoginAppState extends State<LoginApp> {
                                   builder: (context) => forgot()));
                         },
                         child: const Text("Forgot Password ?",
-                            style: TextStyle(
-                                color: Colors.red, fontSize: 15))),
+                            style: TextStyle(color: Colors.red, fontSize: 15))),
                   ],
                 ),
                 Center(
@@ -164,7 +169,7 @@ class _LoginAppState extends State<LoginApp> {
                               child: TextButton(
                                 onPressed: () async {
                                   if (formkey.currentState!.validate()) {
-                                    authController.loginUser();
+                                    authController.loginUser(context);
                                   }
                                 },
                                 child: const Text(

@@ -18,7 +18,9 @@ class SignUp extends StatelessWidget {
     return Scaffold(
       backgroundColor: ColorConstant.blueGray900,
       resizeToAvoidBottomInset: false,
-      appBar: AppBar(backgroundColor: Colors.transparent,elevation: 0,
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
         leading: IconButton(
             onPressed: () => Navigator.pop(context),
             icon: const Icon(
@@ -31,10 +33,12 @@ class SignUp extends StatelessWidget {
           key: formkey,
           child: Column(
             children: <Widget>[
-
               const Text(
                 "Create an account",
-                style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold,color: Colors.white),
+                style: TextStyle(
+                    fontSize: 30,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white),
               ),
               const SizedBox(
                 height: 30,
@@ -49,7 +53,10 @@ class SignUp extends StatelessWidget {
                   ),
                   keyboardType: TextInputType.name,
                   decoration: InputDecoration(
-                      prefixIcon: const Icon(Icons.person,color: Colors.white,),
+                      prefixIcon: const Icon(
+                        Icons.person,
+                        color: Colors.white,
+                      ),
                       labelText: 'First Name',
                       labelStyle: TextStyle(color: Colors.white),
                       border: OutlineInputBorder(
@@ -67,7 +74,10 @@ class SignUp extends StatelessWidget {
                   ),
                   keyboardType: TextInputType.name,
                   decoration: InputDecoration(
-                      prefixIcon: const Icon(Icons.person,color: Colors.white,),
+                      prefixIcon: const Icon(
+                        Icons.person,
+                        color: Colors.white,
+                      ),
                       labelText: 'Last Name',
                       labelStyle: TextStyle(color: Colors.white),
                       border: OutlineInputBorder(
@@ -108,20 +118,23 @@ class SignUp extends StatelessWidget {
                       ),
                       keyboardType: TextInputType.visiblePassword,
                       decoration: InputDecoration(
-                          prefixIcon: const Icon(Icons.lock,color: Colors.white,),
+                          prefixIcon: const Icon(
+                            Icons.lock,
+                            color: Colors.white,
+                          ),
                           suffixIcon: IconButton(
                               onPressed: () {
                                 controller.visible();
                               },
                               icon: controller.isvisible
                                   ? const Icon(
-                                Icons.visibility,
-                                color: Colors.white,
-                              )
+                                      Icons.visibility,
+                                      color: Colors.white,
+                                    )
                                   : const Icon(
-                                Icons.visibility_off,
-                                color: Colors.white,
-                              )),
+                                      Icons.visibility_off,
+                                      color: Colors.white,
+                                    )),
                           labelText: 'Password',
                           labelStyle: TextStyle(color: Colors.white),
                           border: OutlineInputBorder(
@@ -131,10 +144,10 @@ class SignUp extends StatelessWidget {
                   )),
               Center(
                   child: Column(
-                    children: [
-                      _isProgress
-                          ? const CircularProgressIndicator()
-                          : SizedBox(
+                children: [
+                  _isProgress
+                      ? const CircularProgressIndicator()
+                      : SizedBox(
                           width: double.maxFinite,
                           child: Container(
                               decoration: BoxDecoration(
@@ -147,7 +160,7 @@ class SignUp extends StatelessWidget {
                               child: TextButton(
                                 onPressed: () async {
                                   if (formkey.currentState!.validate()) {
-                                    authController.createAccount();
+                                    authController.createAccount(context);
                                   }
                                 },
                                 child: const Text(
@@ -159,28 +172,28 @@ class SignUp extends StatelessWidget {
                                   textAlign: TextAlign.center,
                                 ),
                               ))),
-                      const SizedBox(height: 20),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          const Text(
-                            "Already have an account ?",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 20,
-                            ),
-                          ),
-                          TextButton(
-                              onPressed: () {
-                                Get.to(() => LoginApp());
-                              },
-                              child: const Text("Login",
-                                  style:
-                                  TextStyle(color: Colors.blue, fontSize: 20))),
-                        ],
+                  const SizedBox(height: 20),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      const Text(
+                        "Already have an account ?",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 20,
+                        ),
                       ),
+                      TextButton(
+                          onPressed: () {
+                            Get.to(() => LoginApp());
+                          },
+                          child: const Text("Login",
+                              style:
+                                  TextStyle(color: Colors.blue, fontSize: 20))),
                     ],
-                  )),
+                  ),
+                ],
+              )),
             ],
           ),
         ),

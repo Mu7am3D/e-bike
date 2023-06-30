@@ -9,7 +9,6 @@ import '../utils/validator.dart';
 class LoginApp1 extends StatelessWidget {
   LoginApp1({Key? key}) : super(key: key);
 
-
   bool isvisible = false;
   var EmailController = TextEditingController();
   var PasswordController = TextEditingController();
@@ -18,8 +17,6 @@ class LoginApp1 extends StatelessWidget {
   late String password;
   bool _isProgress = false;
   @override
-
-
   @override
   Widget build(BuildContext context) {
     AuthController authController = AuthController();
@@ -30,7 +27,9 @@ class LoginApp1 extends StatelessWidget {
           Form(
               key: formkey,
               child: Column(children: [
-                const SizedBox(height: 75,),
+                const SizedBox(
+                  height: 75,
+                ),
                 const Image(
                   image: AssetImage(
                     'images/rider.png',
@@ -42,7 +41,10 @@ class LoginApp1 extends StatelessWidget {
                 ),
                 const Text(
                   "Login to your account",
-                  style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold,color: Colors.white),
+                  style: TextStyle(
+                      fontSize: 30,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white),
                 ),
                 const SizedBox(
                   height: 30,
@@ -58,7 +60,6 @@ class LoginApp1 extends StatelessWidget {
                     keyboardType: TextInputType.emailAddress,
                     decoration: InputDecoration(
                         prefixIcon: const Icon(
-
                           Icons.email,
                           color: Colors.white,
                         ),
@@ -94,13 +95,13 @@ class LoginApp1 extends StatelessWidget {
                                 },
                                 icon: controller.isvisible
                                     ? const Icon(
-                                  Icons.visibility,
-                                  color: Colors.white,
-                                )
+                                        Icons.visibility,
+                                        color: Colors.white,
+                                      )
                                     : const Icon(
-                                  Icons.visibility_off,
-                                  color: Colors.white,
-                                )),
+                                        Icons.visibility_off,
+                                        color: Colors.white,
+                                      )),
                             border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(30.0))),
                         validator: Validator.password,
@@ -108,66 +109,60 @@ class LoginApp1 extends StatelessWidget {
                     )),
                 Center(
                     child: Column(
-                      children: [
-                        _isProgress
-                            ? const CircularProgressIndicator()
-                            :
-                        SizedBox(
-                          width: double.maxFinite,
-                          child: Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(30),
-                              color: Colors.red,
-                            ),
-                            height: 50,
-                            margin: const EdgeInsets.symmetric(
-                                horizontal: 10, vertical: 10),
-                            child: TextButton(
-                              onPressed: ()
-                              async {
-                                if (formkey.currentState!.validate()) {
-                                  authController.loginUser();
-
-                                }
-                              }
-                              ,
-                              child: const Text(
-                                "Login",
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 25,
-                                    fontWeight: FontWeight.bold),
+                  children: [
+                    _isProgress
+                        ? const CircularProgressIndicator()
+                        : SizedBox(
+                            width: double.maxFinite,
+                            child: Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(30),
+                                color: Colors.red,
+                              ),
+                              height: 50,
+                              margin: const EdgeInsets.symmetric(
+                                  horizontal: 10, vertical: 10),
+                              child: TextButton(
+                                onPressed: () async {
+                                  if (formkey.currentState!.validate()) {
+                                    authController.loginUser(context);
+                                  }
+                                },
+                                child: const Text(
+                                  "Login",
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 25,
+                                      fontWeight: FontWeight.bold),
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                        const SizedBox(height: 20),
-                        Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              const Text(
-                                "You do not have an account ?",
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 20,
-                                ),
-                              ),
-                              TextButton(
-                                  onPressed: () {
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) => SignUp1()));
-                                  },
-                                  child: const Text("Sign up",
-                                      style: TextStyle(
-                                          color: Colors.red, fontSize: 20))),
-                            ])
-                      ],
-                    )),
+                    const SizedBox(height: 20),
+                    Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          const Text(
+                            "You do not have an account ?",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 20,
+                            ),
+                          ),
+                          TextButton(
+                              onPressed: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => SignUp1()));
+                              },
+                              child: const Text("Sign up",
+                                  style: TextStyle(
+                                      color: Colors.red, fontSize: 20))),
+                        ])
+                  ],
+                )),
               ]))
-        ])
-    );
+        ]));
   }
-
 }

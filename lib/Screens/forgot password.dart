@@ -5,7 +5,7 @@ import '../utils/Color_constant.dart';
 import '../utils/validator.dart';
 
 class forgot extends StatelessWidget {
-   forgot({Key? key}) : super(key: key);
+  forgot({Key? key}) : super(key: key);
   var EmailController = TextEditingController();
   @override
   Widget build(BuildContext context) {
@@ -53,24 +53,29 @@ class forgot extends StatelessWidget {
                 'Reset Your Password',
                 style: TextStyle(color: Colors.white, fontSize: 20),
               )),
-          SizedBox(height: 20,),
-          Container(padding: EdgeInsets.only(left: 35),
+          SizedBox(
+            height: 20,
+          ),
+          Container(
+              padding: EdgeInsets.only(left: 35),
               child: Text(
-            'Enter your email address associated with your account',
-            style: TextStyle(color: Colors.white, fontSize: 17),
-          )),
-          SizedBox(height: 20,),
+                'Enter your email address associated with your account',
+                style: TextStyle(color: Colors.white, fontSize: 17),
+              )),
+          SizedBox(
+            height: 20,
+          ),
           Container(
             width: 330,
             child: TextFormField(
-              controller: authController.Emailcontroller,style: const TextStyle(
-              fontSize: 20,
-              color: Colors.white,
-            ),
+              controller: authController.Emailcontroller,
+              style: const TextStyle(
+                fontSize: 20,
+                color: Colors.white,
+              ),
               keyboardType: TextInputType.emailAddress,
               decoration: InputDecoration(
                   prefixIcon: const Icon(
-
                     Icons.email,
                     color: Colors.white,
                   ),
@@ -83,12 +88,17 @@ class forgot extends StatelessWidget {
               validator: Validator.email,
             ),
           ),
-          SizedBox(height: 20,),
-          Container(width: 330,
-            child: TextButton(style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.blue)),
+          SizedBox(
+            height: 20,
+          ),
+          Container(
+            width: 330,
+            child: TextButton(
+              style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all(Colors.blue)),
               onPressed: () {
-                  authController.loginUser();
-                },
+                authController.loginUser(context);
+              },
               child: const Text(
                 "Send",
                 style: TextStyle(
