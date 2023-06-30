@@ -19,7 +19,7 @@ class _WeatherState extends State<Weather> {
   static String API_KEY =
       '75d0e61e6f0a4089a5231157230902'; //Paste Your API Here
 
-  String location = 'Alexandria'; //Default location
+  String location = 'Cairo'; //Default location
   String weatherIcon = 'heavycloud.png';
   String statusicon = '';
   int temperature = 0;
