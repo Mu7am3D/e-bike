@@ -19,9 +19,9 @@ class _WeatherState extends State<Weather> {
   static String API_KEY =
       '75d0e61e6f0a4089a5231157230902'; //Paste Your API Here
 
-  String location = 'Cairo'; //Default location
+  String location = 'Alexandria'; //Default location
   String weatherIcon = 'heavycloud.png';
-  String statusicon= '';
+  String statusicon = '';
   int temperature = 0;
   int windSpeed = 0;
   int humidity = 0;
@@ -62,11 +62,16 @@ class _WeatherState extends State<Weather> {
         var newDate = DateFormat('MMMMEEEEd').format(parsedDate);
         currentDate = newDate;
 
+        // Sunrise and Sunset times
+        var astroData = forecastWeather["forecastday"][0]["astro"];
+        sunrise = astroData["sunrise"];
+        sunset = astroData["sunset"];
+
         //updateWeather
         currentWeatherStatus = currentWeather["condition"]["text"];
         weatherIcon =
             currentWeatherStatus.replaceAll(' ', '').toLowerCase() + ".png";
-        statusicon =  currentWeather["condition"]["icon"];
+        statusicon = currentWeather["condition"]["icon"];
         temperature = currentWeather["temp_c"].toInt();
         windSpeed = currentWeather["wind_kph"].toInt();
         humidity = currentWeather["humidity"].toInt();
@@ -321,7 +326,8 @@ class _WeatherState extends State<Weather> {
                                 child: Text(
                                   'TODAY',
                                   style: GoogleFonts.inter(
-                                      fontSize: 23.41, fontWeight: FontWeight.w700),
+                                      fontSize: 23.41,
+                                      fontWeight: FontWeight.w700),
                                 ),
                               )),
                         ],
@@ -400,7 +406,8 @@ class _WeatherState extends State<Weather> {
                                       fontSize: 17.55),
                                 ),
                               ),
-                              Container(padding: EdgeInsets.only(left: 5),
+                              Container(
+                                padding: EdgeInsets.only(left: 5),
                                 child: Text(
                                   '$cloud' + ' %',
                                   style: GoogleFonts.inter(
@@ -412,7 +419,8 @@ class _WeatherState extends State<Weather> {
                           ))
                     ],
                   ),
-                  Container(padding: EdgeInsets.only(top: 100),
+                  Container(
+                    padding: EdgeInsets.only(top: 100),
                     child: Row(
                       children: [
                         Container(
@@ -430,15 +438,15 @@ class _WeatherState extends State<Weather> {
                               ),
                               Container(
                                 child: Text(
-                                  '6:40' + ' am',
+                                  sunrise,
                                   style: GoogleFonts.inter(
-                                      fontSize: 15, fontWeight: FontWeight.w600),
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.w600),
                                 ),
                               ),
                             ],
                           ),
                         ),
-
                         Container(
                           padding: EdgeInsets.only(left: 50, top: 70),
                           child: Column(
@@ -456,7 +464,8 @@ class _WeatherState extends State<Weather> {
                                 child: Text(
                                   temperature.toString(),
                                   style: GoogleFonts.inter(
-                                      fontSize: 15, fontWeight: FontWeight.w600),
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.w600),
                                 ),
                               ),
                             ],
@@ -478,9 +487,10 @@ class _WeatherState extends State<Weather> {
                                         fontSize: 17.55),
                                   ),
                                 ),
-                                Container(padding: EdgeInsets.only(left: 5),
+                                Container(
+                                  padding: EdgeInsets.only(left: 5),
                                   child: Text(
-                                    '5:39' + ' pm',
+                                    sunset,
                                     style: GoogleFonts.inter(
                                         fontSize: 15,
                                         fontWeight: FontWeight.w600),
@@ -491,7 +501,6 @@ class _WeatherState extends State<Weather> {
                       ],
                     ),
                   ),
-
                 ],
               ),
             ])));
