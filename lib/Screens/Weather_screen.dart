@@ -1,91 +1,40 @@
 import 'package:flutter/material.dart';
-import 'dart:convert';
-import 'package:flutter_svg/svg.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
-import 'package:http/http.dart' as http;
-
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:google_fonts/google_fonts.dart';
+import '../Services/weather_api.dart';
+import '../Models/Weather_model.dart';
 import '../utils/Color_constant.dart';
 import 'Account.dart';
 
-class Weather extends StatefulWidget {
+class WeatherScreen extends StatefulWidget {
   @override
-  State<Weather> createState() => _WeatherState();
+  State<WeatherScreen> createState() => _WeatherScreenState();
 }
 
-class _WeatherState extends State<Weather> {
+class _WeatherScreenState extends State<WeatherScreen> {
   GlobalKey<ScaffoldState> drawerkey = new GlobalKey<ScaffoldState>();
   bool isOn = false;
-  static String API_KEY =
-      '75d0e61e6f0a4089a5231157230902'; //Paste Your API Here
-
-  String location = 'sharqia'; //Default location
-  String weatherIcon = 'heavycloud.png';
-  String statusicon = '';
-  int temperature = 0;
-  int windSpeed = 0;
-  int humidity = 0;
-  int cloud = 0;
-  String currentDate = '';
-  String sunset = '';
-  String sunrise = '';
-
-  List hourlyWeatherForecast = [];
-  List dailyWeatherForecast = [];
-  List hourlyWeather = [];
-  String sun = '';
-
-  String currentWeatherStatus = '';
-
-  //API Call
-  String searchWeatherAPI = "https://api.weatherapi.com/v1/forecast.json?key=" +
-      API_KEY +
-      "&days=7&q=";
+  String location = 'Cairo'; //Default location
+  WeatherModel weatherModel = WeatherModel(
+    location: '',
+    weatherIcon: '',
+    statusIcon: '',
+    temperature: 0,
+    windSpeed: 0,
+    humidity: 0,
+    cloud: 0,
+    currentDate: '',
+    sunset: '',
+    sunrise: '',
+    currentWeatherStatus: '',
+  );
 
   void fetchWeatherData(String searchText) async {
-    try {
-      var searchResult =
-          await http.get(Uri.parse(searchWeatherAPI + searchText));
-
-      final weatherData = Map<String, dynamic>.from(
-          json.decode(searchResult.body) ?? 'No data');
-
-      var locationData = weatherData["location"];
-
-      var currentWeather = weatherData["current"];
-
-      var forecastWeather = weatherData["forecast"];
-
-      setState(() {
-        var parsedDate =
-            DateTime.parse(locationData["localtime"].substring(0, 10));
-        var newDate = DateFormat('MMMMEEEEd').format(parsedDate);
-        currentDate = newDate;
-
-        // Sunrise and Sunset times
-        var astroData = forecastWeather["forecastday"][0]["astro"];
-        sunrise = astroData["sunrise"];
-        sunset = astroData["sunset"];
-
-        //updateWeather
-        currentWeatherStatus = currentWeather["condition"]["text"];
-        weatherIcon =
-            currentWeatherStatus.replaceAll(' ', '').toLowerCase() + ".png";
-        statusicon = currentWeather["condition"]["icon"];
-        temperature = currentWeather["temp_c"].toInt();
-        windSpeed = currentWeather["wind_kph"].toInt();
-        humidity = currentWeather["humidity"].toInt();
-        cloud = currentWeather["cloud"].toInt();
-
-        //Forecast data
-        dailyWeatherForecast = weatherData["forecast"]["forecastday"];
-        hourlyWeatherForecast = dailyWeatherForecast[0]['hour'];
-
-        print(hourlyWeatherForecast);
-      });
-    } catch (e) {
-      //debugPrint(e);
-    }
+    var weatherData = await WeatherApi.fetchWeatherData(searchText);
+    setState(() {
+      weatherModel = WeatherModel.fromJson(weatherData);
+    });
   }
 
   @override
@@ -266,7 +215,7 @@ class _WeatherState extends State<Weather> {
                     width: 366,
                     child: Center(
                         child: Text(
-                      currentDate,
+                      weatherModel.currentDate,
                       style: GoogleFonts.montserrat(
                           fontWeight: FontWeight.w400, fontSize: 18),
                     )),
@@ -276,14 +225,14 @@ class _WeatherState extends State<Weather> {
                   ),
                   Container(
                     padding: EdgeInsets.only(left: 35, top: 40),
-                    child: Image.asset('images/cloudly.png'),
+                    child: Image.asset("images/cloudly.png"),
                   ),
                   Row(
                     children: [
                       Container(
                           margin: EdgeInsets.only(left: 180, top: 65),
                           child: Text(
-                            temperature.toString(),
+                            '${weatherModel.temperature}',
                             style: GoogleFonts.montserrat(
                                 fontSize: 32, fontWeight: FontWeight.w400),
                           )),
@@ -293,7 +242,7 @@ class _WeatherState extends State<Weather> {
                       Container(
                         margin: EdgeInsets.only(top: 75),
                         child: Text(
-                          currentWeatherStatus,
+                          weatherModel.currentWeatherStatus,
                           style: GoogleFonts.montserrat(
                               fontWeight: FontWeight.w400, fontSize: 18),
                         ),
@@ -356,7 +305,7 @@ class _WeatherState extends State<Weather> {
                             ),
                             Container(
                               child: Text(
-                                '$windSpeed' + ' km/h',
+                                '${weatherModel.windSpeed} km/h',
                                 style: GoogleFonts.inter(
                                     fontSize: 15, fontWeight: FontWeight.w600),
                               ),
@@ -382,7 +331,7 @@ class _WeatherState extends State<Weather> {
                             ),
                             Container(
                               child: Text(
-                                '$humidity' + ' %',
+                                '${weatherModel.humidity}%',
                                 style: GoogleFonts.inter(
                                     fontSize: 15, fontWeight: FontWeight.w600),
                               ),
@@ -409,7 +358,7 @@ class _WeatherState extends State<Weather> {
                               Container(
                                 padding: EdgeInsets.only(left: 5),
                                 child: Text(
-                                  '$cloud' + ' %',
+                                  '${weatherModel.cloud}%',
                                   style: GoogleFonts.inter(
                                       fontSize: 15,
                                       fontWeight: FontWeight.w600),
@@ -438,7 +387,7 @@ class _WeatherState extends State<Weather> {
                               ),
                               Container(
                                 child: Text(
-                                  sunrise,
+                                  '${weatherModel.sunrise}',
                                   style: GoogleFonts.inter(
                                       fontSize: 15,
                                       fontWeight: FontWeight.w600),
@@ -462,7 +411,7 @@ class _WeatherState extends State<Weather> {
                               ),
                               Container(
                                 child: Text(
-                                  temperature.toString(),
+                                  '${weatherModel.temperature}°C',
                                   style: GoogleFonts.inter(
                                       fontSize: 15,
                                       fontWeight: FontWeight.w600),
@@ -490,7 +439,7 @@ class _WeatherState extends State<Weather> {
                                 Container(
                                   padding: EdgeInsets.only(left: 5),
                                   child: Text(
-                                    sunset,
+                                    '${weatherModel.sunset}',
                                     style: GoogleFonts.inter(
                                         fontSize: 15,
                                         fontWeight: FontWeight.w600),
