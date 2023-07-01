@@ -19,12 +19,11 @@ class _HomeState extends State<Home> {
   AuthController authController = AuthController();
   GlobalKey<ScaffoldState> drawerkey = new GlobalKey<ScaffoldState>();
   bool isOn = false;
-  int _pedal = 5;
+  bool switchControl = false;
   @override
   void initState() {
     super.initState();
     _dbref = FirebaseDatabase.instance.ref();
-
   }
 
   @override
@@ -45,11 +44,14 @@ class _HomeState extends State<Home> {
                 color: Colors.white,
                 size: 30,
               )),
-          title: Center(child: Text("E-Bike",style: GoogleFonts.inter(
-            fontSize: 20,
+          title: Center(
+              child: Text(
+            "E-Bike",
+            style: GoogleFonts.inter(
+                fontSize: 20,
                 fontWeight: FontWeight.w900,
-                fontStyle: FontStyle.italic
-          ),)),
+                fontStyle: FontStyle.italic),
+          )),
           actions: [
             IconButton(
                 onPressed: () {},
@@ -67,10 +69,9 @@ class _HomeState extends State<Home> {
                 child: Text(
                   'Settings',
                   style: GoogleFonts.inter(
-                    fontWeight: FontWeight.w800,
-                    fontSize: 24,
-                      color:Colors.white
-                  ),
+                      fontWeight: FontWeight.w800,
+                      fontSize: 24,
+                      color: Colors.white),
                 ),
               ),
               SizedBox(
@@ -82,17 +83,16 @@ class _HomeState extends State<Home> {
                   title: Text(
                     'Account',
                     style: GoogleFonts.inter(
-                      fontSize: 20,
-                      fontWeight: FontWeight.w400,
-                        color:Colors.white
-                    ),
+                        fontSize: 20,
+                        fontWeight: FontWeight.w400,
+                        color: Colors.white),
                   ),
                   trailing: Icon(
                     Icons.arrow_forward_ios,
                     color: ColorConstant.gray00,
                   ),
-                  onTap: () => Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => Account())),
+                  onTap: () => Navigator.of(context)
+                      .push(MaterialPageRoute(builder: (context) => Account())),
                 ),
               ),
               Divider(
@@ -105,10 +105,9 @@ class _HomeState extends State<Home> {
                   title: Text(
                     'Ride History',
                     style: GoogleFonts.inter(
-                      fontWeight: FontWeight.w400,
-                      fontSize: 20,
-                      color: Colors.white
-                    ),
+                        fontWeight: FontWeight.w400,
+                        fontSize: 20,
+                        color: Colors.white),
                   ),
                   trailing: Icon(
                     Icons.arrow_forward_ios,
@@ -121,23 +120,26 @@ class _HomeState extends State<Home> {
                 color: ColorConstant.graydiv,
                 height: 1,
               ),
-              SizedBox(height: 10,),
+              SizedBox(
+                height: 10,
+              ),
               Container(
-                padding: EdgeInsets.only(left: 10,bottom: 15),
+                padding: EdgeInsets.only(left: 10, bottom: 15),
                 child: ListTile(
                   title: Text(
                     'Language',
                     style: GoogleFonts.inter(
                         fontWeight: FontWeight.w400,
                         fontSize: 20,
-                        color: Colors.white
-                    ),
+                        color: Colors.white),
                   ),
-                  trailing: Text('English',style: GoogleFonts.inter(
-                      fontWeight: FontWeight.w400,
-                      fontSize: 20,
-                      color: Colors.white
-                  ),),
+                  trailing: Text(
+                    'English',
+                    style: GoogleFonts.inter(
+                        fontWeight: FontWeight.w400,
+                        fontSize: 20,
+                        color: Colors.white),
+                  ),
                   onTap: () {},
                 ),
               ),
@@ -145,27 +147,30 @@ class _HomeState extends State<Home> {
                 color: ColorConstant.graydiv,
                 height: 0.5,
               ),
-              SizedBox(height: 10,),
+              SizedBox(
+                height: 10,
+              ),
               Container(
-                padding: EdgeInsets.only(left: 10,bottom: 15),
+                padding: EdgeInsets.only(left: 10, bottom: 15),
                 child: ListTile(
                   title: Text(
                     'Notification',
                     style: GoogleFonts.inter(
                         fontWeight: FontWeight.w400,
                         fontSize: 20,
-                        color: Colors.white
-                    ),
+                        color: Colors.white),
                   ),
-                  trailing: Switch(value: isOn, onChanged: (_isOn){
-                    setState(() {
-                      isOn = _isOn;
-                    });
-                  }),
+                  trailing: Switch(
+                      value: isOn,
+                      onChanged: (_isOn) {
+                        setState(() {
+                          isOn = _isOn;
+                        });
+                      }),
                   onTap: () {
                     _updatevalue();
                     setState(() {
-                      isOn =! isOn;
+                      isOn = !isOn;
                     });
                     print(isOn);
                   },
@@ -183,8 +188,7 @@ class _HomeState extends State<Home> {
                     style: GoogleFonts.inter(
                         fontWeight: FontWeight.w400,
                         fontSize: 20,
-                        color: Colors.white
-                    ),
+                        color: Colors.white),
                   ),
                   trailing: Icon(
                     Icons.arrow_forward_ios,
@@ -228,9 +232,7 @@ class _HomeState extends State<Home> {
                         child: Text(
                           'Distance',
                           style: GoogleFonts.montserrat(
-                            fontSize: 18,
-                            fontWeight: FontWeight.w400
-                          ),
+                              fontSize: 18, fontWeight: FontWeight.w400),
                         ),
                       ),
                       SizedBox(
@@ -242,9 +244,7 @@ class _HomeState extends State<Home> {
                               child: Text(
                                 '3752',
                                 style: GoogleFonts.montserrat(
-                                  fontSize: 32,
-                                  fontWeight: FontWeight.w600
-                                ),
+                                    fontSize: 32, fontWeight: FontWeight.w600),
                               ),
                               padding: EdgeInsets.only(
                                 left: 90,
@@ -252,10 +252,9 @@ class _HomeState extends State<Home> {
                           SizedBox(
                             width: 10,
                           ),
-                          Text('m', style: GoogleFonts.montserrat(
-                            fontSize: 18,
-                            fontWeight: FontWeight.w600
-                          ))
+                          Text('m',
+                              style: GoogleFonts.montserrat(
+                                  fontSize: 18, fontWeight: FontWeight.w600))
                         ],
                       )
                     ],
@@ -292,11 +291,9 @@ class _HomeState extends State<Home> {
                       Container(
                         padding: EdgeInsets.only(left: 92, top: 15),
                         child: Text(
-                          'Charge',
+                          'Temperature of Battery',
                           style: GoogleFonts.montserrat(
-                            fontWeight: FontWeight.w400,
-                            fontSize: 18
-                          ),
+                              fontWeight: FontWeight.w400, fontSize: 18),
                         ),
                       ),
                       SizedBox(
@@ -306,11 +303,9 @@ class _HomeState extends State<Home> {
                         children: [
                           Container(
                               child: Text(
-                                '87',
+                                '25',
                                 style: GoogleFonts.montserrat(
-                                  fontSize: 32,
-                                  fontWeight: FontWeight.w600
-                                ),
+                                    fontSize: 32, fontWeight: FontWeight.w600),
                               ),
                               padding: EdgeInsets.only(
                                 left: 100,
@@ -318,20 +313,28 @@ class _HomeState extends State<Home> {
                           SizedBox(
                             width: 40,
                           ),
-                          Text('%', style: GoogleFonts.montserrat(
-                            fontWeight: FontWeight.w600,
-                            fontSize: 18
-                          ))
+                          Text('°C',
+                              style: GoogleFonts.montserrat(
+                                  fontWeight: FontWeight.w600, fontSize: 18))
                         ],
                       )
                     ],
                   ),
                   Column(
                     children: [
-                      Container(
-                        margin:
-                            const EdgeInsets.only(left: 40, right: 10, top: 35),
-                        child: Image.asset('images/batt.png'),
+                      Stack(
+                        children: [
+                          Container(
+                            margin: const EdgeInsets.only(
+                                left: 20, right: 0, top: 20),
+                            child: Image.asset('images/tempp.png'),
+                          ),
+                          Container(
+                            margin: const EdgeInsets.only(
+                                left: 50, right: 0, top: 17),
+                            child: Image.asset('images/fullb.png'),
+                          ),
+                        ],
                       ),
                     ],
                   )
@@ -358,11 +361,9 @@ class _HomeState extends State<Home> {
                       Container(
                         padding: EdgeInsets.only(left: 92, top: 15),
                         child: Text(
-                          'Speed',
+                          'Smoke Around Bike',
                           style: GoogleFonts.montserrat(
-                            fontWeight: FontWeight.w400,
-                            fontSize: 18
-                          ),
+                              fontWeight: FontWeight.w400, fontSize: 18),
                         ),
                       ),
                       SizedBox(
@@ -372,95 +373,19 @@ class _HomeState extends State<Home> {
                         children: [
                           Container(
                               child: Text(
-                                '30',
+                                '120.0',
                                 style: GoogleFonts.montserrat(
-                                  fontSize: 32,
-                                  fontWeight: FontWeight.w600
-                                ),
+                                    fontSize: 32, fontWeight: FontWeight.w600),
                               ),
                               padding: EdgeInsets.only(
                                 left: 100,
                               )),
-                          SizedBox(
-                            width: 45,
-                          ),
-                          Text('km/h', style: GoogleFonts.montserrat(
-                            fontWeight: FontWeight.w600,
-                            fontSize: 18
-                          ))
-                        ],
-                      )
-                    ],
-                  ),
-                  Column(
-                    children: [
-                      Container(
-                        margin:
-                            const EdgeInsets.only(left: 35, right: 10, top: 35),
-                        child: Image.asset('images/sp.png'),
-                      ),
-                    ],
-                  )
-                ],
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Stack(
-                children: [
-                  Container(
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(24)),
-                      margin: const EdgeInsets.only(
-                        left: 10,
-                      ),
-                      height: 94,
-                      width: 366),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        padding: EdgeInsets.only(left: 92, top: 15),
-                        child: Text(
-                          'Pedal Assist',
-                          style: GoogleFonts.montserrat(
-                            fontSize: 18,
-                            fontWeight: FontWeight.w400
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      Row(
-                        children: [
-                          Container(
-                              child: Text(
-                                '$_pedal',
-                                style: GoogleFonts.montserrat(
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 32
-                                ),
-                              ),
-                              padding: EdgeInsets.only(
-                                left: 100,
-                              )),
-                          SizedBox(
-                            width: 130,
-                          ),
-                          IconButton(onPressed: (){setState(() {
-                            _pedal++;
-                          });}, icon: SvgPicture.asset('images/up.svg')),
-
                           SizedBox(
                             width: 20,
                           ),
-                          IconButton(onPressed: (){setState(() {
-                            _pedal--;
-                          });}, icon: SvgPicture.asset('images/down.svg'))
-
+                          Text('smoke detected',
+                              style: GoogleFonts.montserrat(
+                                  fontWeight: FontWeight.w600, fontSize: 18))
                         ],
                       )
                     ],
@@ -469,8 +394,8 @@ class _HomeState extends State<Home> {
                     children: [
                       Container(
                         margin:
-                            const EdgeInsets.only(left: 35, right: 10, top: 35),
-                        child: Image.asset('images/bic.png'),
+                            const EdgeInsets.only(left: 30, right: 20, top: 18),
+                        child: Image.asset('images/smoke.png'),
                       ),
                     ],
                   )
@@ -497,11 +422,9 @@ class _HomeState extends State<Home> {
                       Container(
                         padding: EdgeInsets.only(left: 92, top: 15),
                         child: Text(
-                          'Power',
+                          'Fire Around Bike',
                           style: GoogleFonts.montserrat(
-                            fontSize: 18,
-                            fontWeight: FontWeight.w400
-                          ),
+                              fontSize: 18, fontWeight: FontWeight.w400),
                         ),
                       ),
                       SizedBox(
@@ -511,22 +434,13 @@ class _HomeState extends State<Home> {
                         children: [
                           Container(
                               child: Text(
-                                '550',
+                                'no fire',
                                 style: GoogleFonts.montserrat(
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 32
-                                ),
+                                    fontWeight: FontWeight.w600, fontSize: 32),
                               ),
                               padding: EdgeInsets.only(
                                 left: 100,
                               )),
-                          SizedBox(
-                            width: 30,
-                          ),
-                          Text('watt', style: GoogleFonts.montserrat(
-                            fontSize: 18,
-                            fontWeight: FontWeight.w600
-                          ))
                         ],
                       )
                     ],
@@ -535,8 +449,66 @@ class _HomeState extends State<Home> {
                     children: [
                       Container(
                         margin:
-                            const EdgeInsets.only(left: 40, right: 10, top: 35),
-                        child: SvgPicture.asset('images/power.svg'),
+                            const EdgeInsets.only(left: 35, right: 10, top: 30),
+                        child: Image.asset('images/fire.png'),
+                      ),
+                    ],
+                  )
+                ],
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Stack(
+                children: [
+                  Container(
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(24)),
+                      margin: const EdgeInsets.only(
+                        left: 10,
+                      ),
+                      height: 94,
+                      width: 366),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                        padding: EdgeInsets.only(left: 92, top: 15),
+                        child: Text(
+                          'Flash Light Front & Back',
+                          style: GoogleFonts.montserrat(
+                              fontSize: 18, fontWeight: FontWeight.w400),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      Row(
+                        children: [
+                          Container(
+                              child: Switch(
+                                  value: switchControl,
+                                  onChanged: (value) {
+                                    setState(() {
+                                      switchControl = value;
+                                      print(switchControl);
+                                    });
+                                  }),
+                              padding: EdgeInsets.only(
+                                left: 140,
+                              )),
+                        ],
+                      )
+                    ],
+                  ),
+                  Column(
+                    children: [
+                      Container(
+                        margin:
+                            const EdgeInsets.only(left: 35, right: 10, top: 30),
+                        child: Image.asset('images/Light.png'),
                       ),
                     ],
                   )
@@ -548,6 +520,7 @@ class _HomeState extends State<Home> {
       ),
     );
   }
+
   _updatevalue() {
     _dbref.child("LED").update({"digital": !isOn});
   }
