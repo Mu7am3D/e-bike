@@ -17,8 +17,8 @@ class Health extends StatefulWidget {
 
 class _HealthState extends State<Health> {
   late DatabaseReference _dbref;
+  var newTemp;
   String databasejson = '';
-  var newAge;
   AuthController authController = AuthController();
   GlobalKey<ScaffoldState> drawerkey = new GlobalKey<ScaffoldState>();
   bool isOn = false;
@@ -27,8 +27,8 @@ class _HealthState extends State<Health> {
     super.initState();
     _dbref = FirebaseDatabase.instance.ref();
     tamperatureChange();
-
   }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -39,17 +39,22 @@ class _HealthState extends State<Health> {
               backgroundColor: Colors.transparent,
               elevation: 0,
               leading: IconButton(
-                  onPressed: () {drawerkey.currentState!.openDrawer();},
+                  onPressed: () {
+                    drawerkey.currentState!.openDrawer();
+                  },
                   icon: Icon(
                     Icons.settings,
                     color: Colors.white,
                     size: 30,
                   )),
-              title: Center(child: Text("E-Bike",style: GoogleFonts.inter(
-                  fontSize: 20,
-                  fontWeight: FontWeight.w900,
-                  fontStyle: FontStyle.italic
-              ),)),
+              title: Center(
+                  child: Text(
+                "E-Bike",
+                style: GoogleFonts.inter(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w900,
+                    fontStyle: FontStyle.italic),
+              )),
               actions: [
                 IconButton(
                     onPressed: () {},
@@ -69,8 +74,7 @@ class _HealthState extends State<Health> {
                       style: GoogleFonts.inter(
                           fontWeight: FontWeight.w800,
                           fontSize: 24,
-                          color:Colors.white
-                      ),
+                          color: Colors.white),
                     ),
                   ),
                   SizedBox(
@@ -84,8 +88,7 @@ class _HealthState extends State<Health> {
                         style: GoogleFonts.inter(
                             fontSize: 20,
                             fontWeight: FontWeight.w400,
-                            color:Colors.white
-                        ),
+                            color: Colors.white),
                       ),
                       trailing: Icon(
                         Icons.arrow_forward_ios,
@@ -107,8 +110,7 @@ class _HealthState extends State<Health> {
                         style: GoogleFonts.inter(
                             fontWeight: FontWeight.w400,
                             fontSize: 20,
-                            color: Colors.white
-                        ),
+                            color: Colors.white),
                       ),
                       trailing: Icon(
                         Icons.arrow_forward_ios,
@@ -121,23 +123,26 @@ class _HealthState extends State<Health> {
                     color: ColorConstant.graydiv,
                     height: 1,
                   ),
-                  SizedBox(height: 10,),
+                  SizedBox(
+                    height: 10,
+                  ),
                   Container(
-                    padding: EdgeInsets.only(left: 10,bottom: 15),
+                    padding: EdgeInsets.only(left: 10, bottom: 15),
                     child: ListTile(
                       title: Text(
                         'Language',
                         style: GoogleFonts.inter(
                             fontWeight: FontWeight.w400,
                             fontSize: 20,
-                            color: Colors.white
-                        ),
+                            color: Colors.white),
                       ),
-                      trailing: Text('English',style: GoogleFonts.inter(
-                          fontWeight: FontWeight.w400,
-                          fontSize: 20,
-                          color: Colors.white
-                      ),),
+                      trailing: Text(
+                        'English',
+                        style: GoogleFonts.inter(
+                            fontWeight: FontWeight.w400,
+                            fontSize: 20,
+                            color: Colors.white),
+                      ),
                       onTap: () {},
                     ),
                   ),
@@ -145,26 +150,29 @@ class _HealthState extends State<Health> {
                     color: ColorConstant.graydiv,
                     height: 1,
                   ),
-                  SizedBox(height: 10,),
+                  SizedBox(
+                    height: 10,
+                  ),
                   Container(
-                    padding: EdgeInsets.only(left: 10,bottom: 15),
+                    padding: EdgeInsets.only(left: 10, bottom: 15),
                     child: ListTile(
                       title: Text(
                         'Notification',
                         style: GoogleFonts.inter(
                             fontWeight: FontWeight.w400,
                             fontSize: 20,
-                            color: Colors.white
-                        ),
+                            color: Colors.white),
                       ),
-                      trailing: Switch(value: isOn, onChanged: (_isOn){
-                        setState(() {
-                          isOn = _isOn;
-                        });
-                      }),
+                      trailing: Switch(
+                          value: isOn,
+                          onChanged: (_isOn) {
+                            setState(() {
+                              isOn = _isOn;
+                            });
+                          }),
                       onTap: () {
                         setState(() {
-                          isOn =! isOn;
+                          isOn = !isOn;
                         });
                       },
                     ),
@@ -181,8 +189,7 @@ class _HealthState extends State<Health> {
                         style: GoogleFonts.inter(
                             fontWeight: FontWeight.w400,
                             fontSize: 20,
-                            color: Colors.white
-                        ),
+                            color: Colors.white),
                       ),
                       trailing: Icon(
                         Icons.arrow_forward_ios,
@@ -224,9 +231,7 @@ class _HealthState extends State<Health> {
                         child: Text(
                           'Heart Rate',
                           style: GoogleFonts.montserrat(
-                            fontSize: 18,
-                            fontWeight: FontWeight.w400
-                          ),
+                              fontSize: 18, fontWeight: FontWeight.w400),
                         ),
                       ),
                       SizedBox(
@@ -238,20 +243,17 @@ class _HealthState extends State<Health> {
                               child: Text(
                                 '98',
                                 style: GoogleFonts.montserrat(
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 32
-                                ),
+                                    fontWeight: FontWeight.w600, fontSize: 32),
                               ),
                               padding: EdgeInsets.only(
                                 left: 110,
                               )),
                           SizedBox(
-                            width:35,
+                            width: 35,
                           ),
-                          Text('bpm', style: GoogleFonts.montserrat(
-                            fontSize: 18,
-                            fontWeight: FontWeight.w600
-                          ))
+                          Text('bpm',
+                              style: GoogleFonts.montserrat(
+                                  fontSize: 18, fontWeight: FontWeight.w600))
                         ],
                       )
                     ],
@@ -267,7 +269,9 @@ class _HealthState extends State<Health> {
                   )
                 ],
               ),
-              SizedBox(height: 25,),
+              SizedBox(
+                height: 25,
+              ),
               Stack(
                 children: [
                   Container(
@@ -288,9 +292,7 @@ class _HealthState extends State<Health> {
                         child: Text(
                           'Blood Pressure',
                           style: GoogleFonts.montserrat(
-                            fontWeight: FontWeight.w400,
-                            fontSize: 18
-                          ),
+                              fontWeight: FontWeight.w400, fontSize: 18),
                         ),
                       ),
                       SizedBox(
@@ -302,20 +304,17 @@ class _HealthState extends State<Health> {
                               child: Text(
                                 '102/72',
                                 style: GoogleFonts.montserrat(
-                                  fontSize: 32,
-                                  fontWeight: FontWeight.w600
-                                ),
+                                    fontSize: 32, fontWeight: FontWeight.w600),
                               ),
                               padding: EdgeInsets.only(
                                 left: 110,
                               )),
                           SizedBox(
-                            width:15,
+                            width: 15,
                           ),
-                          Text('mmhg', style: GoogleFonts.montserrat(
-                            fontWeight: FontWeight.w600,
-                            fontSize: 18
-                          ))
+                          Text('mmhg',
+                              style: GoogleFonts.montserrat(
+                                  fontWeight: FontWeight.w600, fontSize: 18))
                         ],
                       )
                     ],
@@ -324,14 +323,16 @@ class _HealthState extends State<Health> {
                     children: [
                       Container(
                         margin:
-                        const EdgeInsets.only(left: 40, right: 10, top: 35),
+                            const EdgeInsets.only(left: 40, right: 10, top: 35),
                         child: SvgPicture.asset('images/bp.svg'),
                       ),
                     ],
                   )
                 ],
               ),
-              SizedBox(height: 25,),
+              SizedBox(
+                height: 25,
+              ),
               Stack(
                 children: [
                   Container(
@@ -352,9 +353,7 @@ class _HealthState extends State<Health> {
                         child: Text(
                           'Body Temperature',
                           style: GoogleFonts.montserrat(
-                            fontSize: 18,
-                            fontWeight: FontWeight.w400
-                          ),
+                              fontSize: 18, fontWeight: FontWeight.w400),
                         ),
                       ),
                       SizedBox(
@@ -364,22 +363,19 @@ class _HealthState extends State<Health> {
                         children: [
                           Container(
                               child: Text(
-                                '$newAge',
+                                '$newTemp',
                                 style: GoogleFonts.montserrat(
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 32
-                                ),
+                                    fontWeight: FontWeight.w600, fontSize: 32),
                               ),
                               padding: EdgeInsets.only(
                                 left: 110,
                               )),
                           SizedBox(
-                            width:35,
+                            width: 35,
                           ),
-                          Text('°C', style: GoogleFonts.montserrat(
-                            fontSize: 18,
-                            fontWeight: FontWeight.w600
-                          ))
+                          Text('°C',
+                              style: GoogleFonts.montserrat(
+                                  fontSize: 18, fontWeight: FontWeight.w600))
                         ],
                       )
                     ],
@@ -388,14 +384,16 @@ class _HealthState extends State<Health> {
                     children: [
                       Container(
                         margin:
-                        const EdgeInsets.only(left: 40, right: 10, top: 20),
+                            const EdgeInsets.only(left: 40, right: 10, top: 20),
                         child: SvgPicture.asset('images/temp.svg'),
                       ),
                     ],
                   )
                 ],
               ),
-              SizedBox(height: 25,),
+              SizedBox(
+                height: 25,
+              ),
               Stack(
                 children: [
                   Container(
@@ -416,9 +414,7 @@ class _HealthState extends State<Health> {
                         child: Text(
                           'Percent Oxygen in Blood',
                           style: GoogleFonts.montserrat(
-                            fontWeight: FontWeight.w400,
-                            fontSize: 18
-                          ),
+                              fontWeight: FontWeight.w400, fontSize: 18),
                         ),
                       ),
                       SizedBox(
@@ -430,20 +426,17 @@ class _HealthState extends State<Health> {
                               child: Text(
                                 '96',
                                 style: GoogleFonts.montserrat(
-                                  fontSize: 32,
-                                  fontWeight: FontWeight.w600
-                                ),
+                                    fontSize: 32, fontWeight: FontWeight.w600),
                               ),
                               padding: EdgeInsets.only(
                                 left: 110,
                               )),
                           SizedBox(
-                            width:35,
+                            width: 35,
                           ),
-                          Text('%', style: GoogleFonts.montserrat(
-                            fontWeight: FontWeight.w600,
-                            fontSize: 18
-                          ))
+                          Text('%',
+                              style: GoogleFonts.montserrat(
+                                  fontWeight: FontWeight.w600, fontSize: 18))
                         ],
                       )
                     ],
@@ -452,12 +445,13 @@ class _HealthState extends State<Health> {
                     children: [
                       Container(
                         margin:
-                        const EdgeInsets.only(left: 40, right: 10, top: 35),
+                            const EdgeInsets.only(left: 40, right: 10, top: 35),
                         child: Stack(
                           children: [
                             SvgPicture.asset('images/drop.svg'),
-                            Container(margin:
-                            const EdgeInsets.only( top: 17,left: 2),child: Image.asset('images/O2.png'))
+                            Container(
+                                margin: const EdgeInsets.only(top: 17, left: 2),
+                                child: Image.asset('images/O2.png'))
                           ],
                         ),
                       ),
@@ -467,15 +461,21 @@ class _HealthState extends State<Health> {
               ),
             ])));
   }
+
   void tamperatureChange() {
-    _dbref.child('Test').child('Temperature').onValue.listen((DatabaseEvent event) {
+    _dbref
+        .child('Body')
+        .child('Temperature')
+        .onValue
+        .listen((DatabaseEvent event) {
       final data = event.snapshot.value;
       print('Tempearature: $data');
       setState(() {
-        newAge = data;
+        newTemp = data;
       });
     });
   }
+
   /*
   readdb_onechild() {
     _dbref
@@ -491,5 +491,4 @@ class _HealthState extends State<Health> {
     });
   }
 */
-
 }

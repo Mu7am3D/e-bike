@@ -16,6 +16,9 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   late DatabaseReference _dbref;
+  var newTemp;
+  var _Smoke;
+  var _Status;
   AuthController authController = AuthController();
   GlobalKey<ScaffoldState> drawerkey = new GlobalKey<ScaffoldState>();
   bool isOn = false;
@@ -24,6 +27,9 @@ class _HomeState extends State<Home> {
   void initState() {
     super.initState();
     _dbref = FirebaseDatabase.instance.ref();
+    tamperatureChange();
+    SmokeChange();
+    FlameSens();
   }
 
   @override
@@ -161,19 +167,13 @@ class _HomeState extends State<Home> {
                         color: Colors.white),
                   ),
                   trailing: Switch(
-                      value: isOn,
-                      onChanged: (_isOn) {
+                      value: switchControl,
+                      onChanged: (value) {
                         setState(() {
-                          isOn = _isOn;
+                          switchControl = value;
+                          print(switchControl);
                         });
                       }),
-                  onTap: () {
-                    _updatevalue();
-                    setState(() {
-                      isOn = !isOn;
-                    });
-                    print(isOn);
-                  },
                 ),
               ),
               Divider(
@@ -303,7 +303,7 @@ class _HomeState extends State<Home> {
                         children: [
                           Container(
                               child: Text(
-                                '25',
+                                '$newTemp',
                                 style: GoogleFonts.montserrat(
                                     fontSize: 32, fontWeight: FontWeight.w600),
                               ),
@@ -373,7 +373,7 @@ class _HomeState extends State<Home> {
                         children: [
                           Container(
                               child: Text(
-                                '120.0',
+                                '$_Smoke',
                                 style: GoogleFonts.montserrat(
                                     fontSize: 32, fontWeight: FontWeight.w600),
                               ),
@@ -383,7 +383,10 @@ class _HomeState extends State<Home> {
                           SizedBox(
                             width: 20,
                           ),
-                          Text('smoke detected',
+                          Text(
+                              _Smoke != null && _Smoke > 200
+                                  ? 'smoke detected'
+                                  : 'No smoke',
                               style: GoogleFonts.montserrat(
                                   fontWeight: FontWeight.w600, fontSize: 18))
                         ],
@@ -434,7 +437,7 @@ class _HomeState extends State<Home> {
                         children: [
                           Container(
                               child: Text(
-                                'no fire',
+                                '$_Status',
                                 style: GoogleFonts.montserrat(
                                     fontWeight: FontWeight.w600, fontSize: 32),
                               ),
@@ -489,11 +492,11 @@ class _HomeState extends State<Home> {
                         children: [
                           Container(
                               child: Switch(
-                                  value: switchControl,
-                                  onChanged: (value) {
+                                  value: isOn,
+                                  onChanged: (_isOn) {
+                                    _updatevalue();
                                     setState(() {
-                                      switchControl = value;
-                                      print(switchControl);
+                                      isOn = _isOn;
                                     });
                                   }),
                               padding: EdgeInsets.only(
@@ -522,6 +525,44 @@ class _HomeState extends State<Home> {
   }
 
   _updatevalue() {
-    _dbref.child("LED").update({"digital": !isOn});
+    _dbref.child("Flash").update({"Status": !isOn});
+  }
+
+  void tamperatureChange() {
+    _dbref
+        .child('Battery')
+        .child('Temperature')
+        .onValue
+        .listen((DatabaseEvent event) {
+      final data = event.snapshot.value;
+      print('Tempearature: $data');
+      setState(() {
+        newTemp = data;
+      });
+    });
+  }
+
+  void SmokeChange() {
+    _dbref.child('Smoke').child('Value').onValue.listen((DatabaseEvent event) {
+      final data = event.snapshot.value;
+      print('Value: $data');
+      setState(() {
+        _Smoke = data;
+      });
+    });
+  }
+
+  void FlameSens() {
+    _dbref
+        .child('Flame sensor')
+        .child('Status')
+        .onValue
+        .listen((DatabaseEvent event) {
+      final data = event.snapshot.value;
+      print('Status: $data');
+      setState(() {
+        _Status = data;
+      });
+    });
   }
 }
