@@ -2,7 +2,7 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
-
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../utils/AuthController.dart';
 import '../utils/Color_constant.dart';
 import 'Account.dart';
@@ -45,16 +45,16 @@ class _HomeState extends State<Home> {
               onPressed: () {
                 drawerkey.currentState!.openDrawer();
               },
-              icon: const Icon(
+              icon: Icon(
                 Icons.settings,
                 color: Colors.white,
-                size: 30,
+                size: 30.sp,
               )),
           title: Center(
               child: Text(
             "E-Bike",
             style: GoogleFonts.inter(
-                fontSize: 20,
+                fontSize: 20.sp,
                 fontWeight: FontWeight.w900,
                 fontStyle: FontStyle.italic),
           )),
@@ -65,31 +65,31 @@ class _HomeState extends State<Home> {
           ],
         ),
         drawer: Drawer(
-          width: 290,
+          width: 290.w,
           backgroundColor: ColorConstant.blueGray900,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
-                padding: const EdgeInsets.only(left: 40, top: 50),
+                padding: EdgeInsets.only(left: 40.w, top: 50.h),
                 child: Text(
                   'Settings',
                   style: GoogleFonts.inter(
                       fontWeight: FontWeight.w800,
-                      fontSize: 24,
+                      fontSize: 24.sp,
                       color: Colors.white),
                 ),
               ),
-              const SizedBox(
-                height: 20,
+              SizedBox(
+                height: 20.h,
               ),
               Container(
-                padding: const EdgeInsets.only(left: 10),
+                padding: EdgeInsets.only(left: 10.w),
                 child: ListTile(
                   title: Text(
                     'Account',
                     style: GoogleFonts.inter(
-                        fontSize: 20,
+                        fontSize: 20.sp,
                         fontWeight: FontWeight.w400,
                         color: Colors.white),
                   ),
@@ -97,13 +97,13 @@ class _HomeState extends State<Home> {
                     Icons.arrow_forward_ios,
                     color: ColorConstant.gray00,
                   ),
-                  onTap: () => Navigator.of(context)
-                      .push(MaterialPageRoute(builder: (context) => const Account())),
+                  onTap: () => Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => const Account())),
                 ),
               ),
               Divider(
                 color: ColorConstant.graydiv,
-                height: 1,
+                height: 1.h,
               ),
               Container(
                 padding: const EdgeInsets.only(left: 10, top: 15, bottom: 15),
@@ -112,7 +112,7 @@ class _HomeState extends State<Home> {
                     'Ride History',
                     style: GoogleFonts.inter(
                         fontWeight: FontWeight.w400,
-                        fontSize: 20,
+                        fontSize: 20.sp,
                         color: Colors.white),
                   ),
                   trailing: Icon(
@@ -124,7 +124,7 @@ class _HomeState extends State<Home> {
               ),
               Divider(
                 color: ColorConstant.graydiv,
-                height: 1,
+                height: 1.h,
               ),
               const SizedBox(
                 height: 10,
@@ -136,14 +136,14 @@ class _HomeState extends State<Home> {
                     'Language',
                     style: GoogleFonts.inter(
                         fontWeight: FontWeight.w400,
-                        fontSize: 20,
+                        fontSize: 20.sp,
                         color: Colors.white),
                   ),
                   trailing: Text(
                     'English',
                     style: GoogleFonts.inter(
                         fontWeight: FontWeight.w400,
-                        fontSize: 20,
+                        fontSize: 20.sp,
                         color: Colors.white),
                   ),
                   onTap: () {},
@@ -153,17 +153,17 @@ class _HomeState extends State<Home> {
                 color: ColorConstant.graydiv,
                 height: 0.5,
               ),
-              const SizedBox(
-                height: 10,
+              SizedBox(
+                height: 10.h,
               ),
               Container(
-                padding: const EdgeInsets.only(left: 10, bottom: 15),
+                padding: EdgeInsets.only(left: 10.w, bottom: 15.h),
                 child: ListTile(
                   title: Text(
                     'Notification',
                     style: GoogleFonts.inter(
                         fontWeight: FontWeight.w400,
-                        fontSize: 20,
+                        fontSize: 20.sp,
                         color: Colors.white),
                   ),
                   trailing: Switch(
@@ -178,16 +178,16 @@ class _HomeState extends State<Home> {
               ),
               Divider(
                 color: ColorConstant.graydiv,
-                height: 2,
+                height: 2.h,
               ),
               Container(
-                padding: const EdgeInsets.only(left: 10, top: 15, bottom: 15),
+                padding: EdgeInsets.only(left: 10.w, top: 15.h, bottom: 15.h),
                 child: ListTile(
                   title: Text(
                     'Logout',
                     style: GoogleFonts.inter(
                         fontWeight: FontWeight.w400,
-                        fontSize: 20,
+                        fontSize: 20.sp,
                         color: Colors.white),
                   ),
                   trailing: Icon(
@@ -201,7 +201,7 @@ class _HomeState extends State<Home> {
               ),
               Divider(
                 color: ColorConstant.graydiv,
-                height: 1.5,
+                height: 1.5.h,
               ),
             ],
           ),
@@ -209,8 +209,8 @@ class _HomeState extends State<Home> {
         body: SingleChildScrollView(
           child: Column(
             children: [
-              const SizedBox(
-                height: 10,
+              SizedBox(
+                height: 10.h,
               ),
               Stack(
                 children: [
@@ -218,43 +218,44 @@ class _HomeState extends State<Home> {
                       decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(24)),
-                      margin: const EdgeInsets.only(
-                        left: 10,
+                      margin: EdgeInsets.only(
+                        left: 10.w,
                       ),
-                      height: 94,
-                      width: 366),
+                      height: 94.h,
+                      width: 366.w),
                   Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Container(
-                        padding: const EdgeInsets.only(left: 92, top: 15),
+                        padding: EdgeInsets.only(left: 92.w, top: 15.h),
                         child: Text(
                           'Distance',
                           style: GoogleFonts.montserrat(
-                              fontSize: 18, fontWeight: FontWeight.w400),
+                              fontSize: 18.sp, fontWeight: FontWeight.w400),
                         ),
                       ),
-                      const SizedBox(
-                        height: 5,
+                      SizedBox(
+                        height: 5.h,
                       ),
                       Row(
                         children: [
                           Container(
-                              padding: const EdgeInsets.only(
-                                left: 90,
+                              padding: EdgeInsets.only(
+                                left: 90.w,
                               ),
                               child: Text(
                                 '3752',
                                 style: GoogleFonts.montserrat(
-                                    fontSize: 32, fontWeight: FontWeight.w600),
+                                    fontSize: 32.sp,
+                                    fontWeight: FontWeight.w600),
                               )),
                           const SizedBox(
                             width: 10,
                           ),
                           Text('m',
                               style: GoogleFonts.montserrat(
-                                  fontSize: 18, fontWeight: FontWeight.w600))
+                                  fontSize: 18.sp, fontWeight: FontWeight.w600))
                         ],
                       )
                     ],
@@ -263,15 +264,15 @@ class _HomeState extends State<Home> {
                     children: [
                       Container(
                         margin:
-                            const EdgeInsets.only(left: 40, right: 10, top: 35),
+                            EdgeInsets.only(left: 40.w, right: 10.w, top: 35.h),
                         child: SvgPicture.asset('images/dis.svg'),
                       ),
                     ],
                   )
                 ],
               ),
-              const SizedBox(
-                height: 10,
+              SizedBox(
+                height: 10.h,
               ),
               Stack(
                 children: [
@@ -279,43 +280,44 @@ class _HomeState extends State<Home> {
                       decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(24)),
-                      margin: const EdgeInsets.only(
-                        left: 10,
+                      margin: EdgeInsets.only(
+                        left: 10.w,
                       ),
-                      height: 94,
-                      width: 366),
+                      height: 94.h,
+                      width: 366.w),
                   Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Container(
-                        padding: const EdgeInsets.only(left: 92, top: 15),
+                        padding: EdgeInsets.only(left: 92.w, top: 15.h),
                         child: Text(
                           'Temperature of Battery',
                           style: GoogleFonts.montserrat(
-                              fontWeight: FontWeight.w400, fontSize: 18),
+                              fontWeight: FontWeight.w400, fontSize: 18.sp),
                         ),
                       ),
-                      const SizedBox(
-                        height: 5,
+                      SizedBox(
+                        height: 5.h,
                       ),
                       Row(
                         children: [
                           Container(
-                              padding: const EdgeInsets.only(
-                                left: 100,
+                              padding: EdgeInsets.only(
+                                left: 100.w,
                               ),
                               child: Text(
                                 '$newTemp',
                                 style: GoogleFonts.montserrat(
-                                    fontSize: 32, fontWeight: FontWeight.w600),
+                                    fontSize: 32.sp,
+                                    fontWeight: FontWeight.w600),
                               )),
-                          const SizedBox(
-                            width: 40,
+                          SizedBox(
+                            width: 40.w,
                           ),
                           Text('°C',
                               style: GoogleFonts.montserrat(
-                                  fontWeight: FontWeight.w600, fontSize: 18))
+                                  fontWeight: FontWeight.w600, fontSize: 18.sp))
                         ],
                       )
                     ],
@@ -325,13 +327,11 @@ class _HomeState extends State<Home> {
                       Stack(
                         children: [
                           Container(
-                            margin: const EdgeInsets.only(
-                                left: 20, right: 0, top: 20),
+                            margin: EdgeInsets.only(left: 20.w, top: 20.h),
                             child: Image.asset('images/tempp.png'),
                           ),
                           Container(
-                            margin: const EdgeInsets.only(
-                                left: 50, right: 0, top: 17),
+                            margin: EdgeInsets.only(left: 50.w, top: 17.h),
                             child: Image.asset('images/fullb.png'),
                           ),
                         ],
@@ -340,55 +340,56 @@ class _HomeState extends State<Home> {
                   )
                 ],
               ),
-              const SizedBox(
-                height: 10,
+              SizedBox(
+                height: 10.h,
               ),
               Stack(
                 children: [
                   Container(
                       decoration: BoxDecoration(
                           color: Colors.white,
-                          borderRadius: BorderRadius.circular(24)),
-                      margin: const EdgeInsets.only(
-                        left: 10,
+                          borderRadius: BorderRadius.circular(24.sp)),
+                      margin: EdgeInsets.only(
+                        left: 10.w,
                       ),
-                      height: 94,
-                      width: 366),
+                      height: 94.h,
+                      width: 366.w),
                   Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Container(
-                        padding: const EdgeInsets.only(left: 92, top: 15),
+                        padding: EdgeInsets.only(left: 92.w, top: 15.h),
                         child: Text(
                           'Smoke Around Bike',
                           style: GoogleFonts.montserrat(
-                              fontWeight: FontWeight.w400, fontSize: 18),
+                              fontWeight: FontWeight.w400, fontSize: 18.sp),
                         ),
                       ),
-                      const SizedBox(
-                        height: 5,
+                      SizedBox(
+                        height: 5.h,
                       ),
                       Row(
                         children: [
                           Container(
-                              padding: const EdgeInsets.only(
-                                left: 100,
+                              padding: EdgeInsets.only(
+                                left: 100.w,
                               ),
                               child: Text(
                                 '$_Smoke',
                                 style: GoogleFonts.montserrat(
-                                    fontSize: 32, fontWeight: FontWeight.w600),
+                                    fontSize: 32.sp,
+                                    fontWeight: FontWeight.w600),
                               )),
-                          const SizedBox(
-                            width: 20,
+                          SizedBox(
+                            width: 20.w,
                           ),
                           Text(
                               _Smoke != null && _Smoke > 200
                                   ? 'smoke detected'
                                   : 'No smoke',
                               style: GoogleFonts.montserrat(
-                                  fontWeight: FontWeight.w600, fontSize: 18))
+                                  fontWeight: FontWeight.w600, fontSize: 18.sp))
                         ],
                       )
                     ],
@@ -397,27 +398,27 @@ class _HomeState extends State<Home> {
                     children: [
                       Container(
                         margin:
-                            const EdgeInsets.only(left: 30, right: 20, top: 18),
+                            EdgeInsets.only(left: 30.w, right: 20.w, top: 18.h),
                         child: Image.asset('images/smoke.png'),
                       ),
                     ],
                   )
                 ],
               ),
-              const SizedBox(
-                height: 10,
+              SizedBox(
+                height: 10.h,
               ),
               Stack(
                 children: [
                   Container(
                       decoration: BoxDecoration(
                           color: Colors.white,
-                          borderRadius: BorderRadius.circular(24)),
-                      margin: const EdgeInsets.only(
-                        left: 10,
+                          borderRadius: BorderRadius.circular(24.sp)),
+                      margin: EdgeInsets.only(
+                        left: 10.w,
                       ),
-                      height: 94,
-                      width: 366),
+                      height: 94.h,
+                      width: 366.w),
                   Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -427,22 +428,23 @@ class _HomeState extends State<Home> {
                         child: Text(
                           'Fire Around Bike',
                           style: GoogleFonts.montserrat(
-                              fontSize: 18, fontWeight: FontWeight.w400),
+                              fontSize: 18.sp, fontWeight: FontWeight.w400),
                         ),
                       ),
-                      const SizedBox(
-                        height: 5,
+                      SizedBox(
+                        height: 5.h,
                       ),
                       Row(
                         children: [
                           Container(
-                              padding: const EdgeInsets.only(
-                                left: 100,
+                              padding: EdgeInsets.only(
+                                left: 100.w,
                               ),
                               child: Text(
                                 '$_Status',
                                 style: GoogleFonts.montserrat(
-                                    fontWeight: FontWeight.w600, fontSize: 32),
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 32.sp),
                               )),
                         ],
                       )
@@ -452,47 +454,47 @@ class _HomeState extends State<Home> {
                     children: [
                       Container(
                         margin:
-                            const EdgeInsets.only(left: 35, right: 10, top: 30),
+                            EdgeInsets.only(left: 35.w, right: 10.w, top: 30.h),
                         child: Image.asset('images/fire.png'),
                       ),
                     ],
                   )
                 ],
               ),
-              const SizedBox(
-                height: 10,
+              SizedBox(
+                height: 10.h,
               ),
               Stack(
                 children: [
                   Container(
                       decoration: BoxDecoration(
                           color: Colors.white,
-                          borderRadius: BorderRadius.circular(24)),
-                      margin: const EdgeInsets.only(
-                        left: 10,
+                          borderRadius: BorderRadius.circular(24.sp)),
+                      margin: EdgeInsets.only(
+                        left: 10.sp,
                       ),
-                      height: 94,
-                      width: 366),
+                      height: 94.h,
+                      width: 366.w),
                   Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Container(
-                        padding: const EdgeInsets.only(left: 92, top: 15),
+                        padding: EdgeInsets.only(left: 92.w, top: 15.h),
                         child: Text(
                           'Flash Light Front & Back',
                           style: GoogleFonts.montserrat(
-                              fontSize: 18, fontWeight: FontWeight.w400),
+                              fontSize: 18.sp, fontWeight: FontWeight.w400),
                         ),
                       ),
-                      const SizedBox(
-                        height: 5,
+                      SizedBox(
+                        height: 5.h,
                       ),
                       Row(
                         children: [
                           Container(
-                              padding: const EdgeInsets.only(
-                                left: 140,
+                              padding: EdgeInsets.only(
+                                left: 140.w,
                               ),
                               child: Switch(
                                   value: isOn,
@@ -510,7 +512,7 @@ class _HomeState extends State<Home> {
                     children: [
                       Container(
                         margin:
-                            const EdgeInsets.only(left: 35, right: 10, top: 30),
+                            EdgeInsets.only(left: 35.w, right: 10.w, top: 30.h),
                         child: Image.asset('images/Light.png'),
                       ),
                     ],

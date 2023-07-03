@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../utils/AuthController.dart';
 import '../utils/Color_constant.dart';
 import '../utils/validator.dart';
@@ -25,52 +25,58 @@ class forgot extends StatelessWidget {
       ),
       body: Column(
         children: [
-          const Center(
+          Center(
             child: Text(
               'Forgot Password ?',
-              style: TextStyle(color: Colors.white, fontSize: 20),
+              style: TextStyle(color: Colors.white, fontSize: 20.sp),
             ),
           ),
-          const SizedBox(
-            height: 20,
+          SizedBox(
+            height: 20.h,
           ),
-          const Icon(
+          Icon(
             Icons.lock,
-            size: 75,
+            size: 75.sp,
             color: Colors.white,
           ),
-          const Icon(
+          Icon(
             Icons.password,
-            size: 75,
+            size: 75.sp,
             color: Colors.white,
           ),
-          const SizedBox(
-            height: 15,
+          SizedBox(
+            height: 15.h,
           ),
-          Container(
-              padding: const EdgeInsets.only(right: 130),
-              child: const Text(
-                'Reset Your Password',
-                style: TextStyle(color: Colors.white, fontSize: 20),
-              )),
-          const SizedBox(
-            height: 20,
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                padding: EdgeInsets.only(left: 35.sp),
+                child: Text(
+                  'Reset Your Password',
+                  style: TextStyle(color: Colors.white, fontSize: 25.sp),
+                ),
+              ),
+              SizedBox(
+                height: 20.h,
+              ),
+              Container(
+                  padding: EdgeInsets.only(left: 35.sp),
+                  child: Text(
+                    'Enter your email address associated with your account',
+                    style: TextStyle(color: Colors.white, fontSize: 20.sp),
+                  )),
+            ],
           ),
-          Container(
-              padding: const EdgeInsets.only(left: 35),
-              child: const Text(
-                'Enter your email address associated with your account',
-                style: TextStyle(color: Colors.white, fontSize: 17),
-              )),
           const SizedBox(
             height: 20,
           ),
           SizedBox(
-            width: 330,
+            width: 330.w,
             child: TextFormField(
               controller: authController.Emailcontroller,
-              style: const TextStyle(
-                fontSize: 20,
+              style: TextStyle(
+                fontSize: 20.sp,
                 color: Colors.white,
               ),
               keyboardType: TextInputType.emailAddress,
@@ -84,26 +90,26 @@ class forgot extends StatelessWidget {
                   hintStyle: const TextStyle(color: Colors.grey),
                   labelStyle: const TextStyle(color: Colors.white),
                   border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(30.0))),
+                      borderRadius: BorderRadius.circular(10.sp))),
               validator: Validator.email,
             ),
           ),
-          const SizedBox(
-            height: 20,
+          SizedBox(
+            height: 20.h,
           ),
           SizedBox(
-            width: 330,
+            width: 370.sp,
             child: TextButton(
               style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all(Colors.blue)),
               onPressed: () {
                 authController.loginUser(context);
               },
-              child: const Text(
+              child: Text(
                 "Send",
                 style: TextStyle(
                     color: Colors.white,
-                    fontSize: 25,
+                    fontSize: 25.sp,
                     fontWeight: FontWeight.bold),
               ),
             ),

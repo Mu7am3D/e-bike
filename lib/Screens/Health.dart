@@ -2,7 +2,7 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
-
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../utils/AuthController.dart';
 import '../utils/Color_constant.dart';
 import 'Account.dart';
@@ -41,16 +41,16 @@ class _HealthState extends State<Health> {
                   onPressed: () {
                     drawerkey.currentState!.openDrawer();
                   },
-                  icon: const Icon(
+                  icon: Icon(
                     Icons.settings,
                     color: Colors.white,
-                    size: 30,
+                    size: 30.sp,
                   )),
               title: Center(
                   child: Text(
                 "E-Bike",
                 style: GoogleFonts.inter(
-                    fontSize: 20,
+                    fontSize: 20.sp,
                     fontWeight: FontWeight.w900,
                     fontStyle: FontStyle.italic),
               )),
@@ -61,31 +61,31 @@ class _HealthState extends State<Health> {
               ],
             ),
             drawer: Drawer(
-              width: 290,
+              width: 290.w,
               backgroundColor: ColorConstant.blueGray900,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
-                    padding: const EdgeInsets.only(left: 40, top: 50),
+                    padding: EdgeInsets.only(left: 40.w, top: 50.h),
                     child: Text(
                       'Settings',
                       style: GoogleFonts.inter(
                           fontWeight: FontWeight.w800,
-                          fontSize: 24,
+                          fontSize: 24.sp,
                           color: Colors.white),
                     ),
                   ),
-                  const SizedBox(
-                    height: 20,
+                  SizedBox(
+                    height: 20.h,
                   ),
                   Container(
-                    padding: const EdgeInsets.only(left: 10),
+                    padding: EdgeInsets.only(left: 10.w),
                     child: ListTile(
                       title: Text(
                         'Account',
                         style: GoogleFonts.inter(
-                            fontSize: 20,
+                            fontSize: 20.sp,
                             fontWeight: FontWeight.w400,
                             color: Colors.white),
                       ),
@@ -93,22 +93,23 @@ class _HealthState extends State<Health> {
                         Icons.arrow_forward_ios,
                         color: ColorConstant.gray00,
                       ),
-                      onTap: () => Navigator.of(context).push(
-                          MaterialPageRoute(builder: (context) => const Account())),
+                      onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => const Account())),
                     ),
                   ),
                   Divider(
                     color: ColorConstant.graydiv,
-                    height: 1,
+                    height: 1.h,
                   ),
                   Container(
-                    padding: const EdgeInsets.only(left: 10, top: 15, bottom: 15),
+                    padding:
+                        EdgeInsets.only(left: 10.w, top: 15.h, bottom: 15.h),
                     child: ListTile(
                       title: Text(
                         'Ride History',
                         style: GoogleFonts.inter(
                             fontWeight: FontWeight.w400,
-                            fontSize: 20,
+                            fontSize: 20.sp,
                             color: Colors.white),
                       ),
                       trailing: Icon(
@@ -120,26 +121,26 @@ class _HealthState extends State<Health> {
                   ),
                   Divider(
                     color: ColorConstant.graydiv,
-                    height: 1,
+                    height: 1.h,
                   ),
-                  const SizedBox(
-                    height: 10,
+                  SizedBox(
+                    height: 10.h,
                   ),
                   Container(
-                    padding: const EdgeInsets.only(left: 10, bottom: 15),
+                    padding: EdgeInsets.only(left: 10.w, bottom: 15.h),
                     child: ListTile(
                       title: Text(
                         'Language',
                         style: GoogleFonts.inter(
                             fontWeight: FontWeight.w400,
-                            fontSize: 20,
+                            fontSize: 20.sp,
                             color: Colors.white),
                       ),
                       trailing: Text(
                         'English',
                         style: GoogleFonts.inter(
                             fontWeight: FontWeight.w400,
-                            fontSize: 20,
+                            fontSize: 20.sp,
                             color: Colors.white),
                       ),
                       onTap: () {},
@@ -147,19 +148,19 @@ class _HealthState extends State<Health> {
                   ),
                   Divider(
                     color: ColorConstant.graydiv,
-                    height: 1,
+                    height: 1.h,
                   ),
-                  const SizedBox(
-                    height: 10,
+                  SizedBox(
+                    height: 10.h,
                   ),
                   Container(
-                    padding: const EdgeInsets.only(left: 10, bottom: 15),
+                    padding: EdgeInsets.only(left: 10.w, bottom: 15.h),
                     child: ListTile(
                       title: Text(
                         'Notification',
                         style: GoogleFonts.inter(
                             fontWeight: FontWeight.w400,
-                            fontSize: 20,
+                            fontSize: 20.sp,
                             color: Colors.white),
                       ),
                       trailing: Switch(
@@ -178,16 +179,17 @@ class _HealthState extends State<Health> {
                   ),
                   Divider(
                     color: ColorConstant.graydiv,
-                    height: 2,
+                    height: 2.h,
                   ),
                   Container(
-                    padding: const EdgeInsets.only(left: 10, top: 15, bottom: 15),
+                    padding:
+                        EdgeInsets.only(left: 10.w, top: 15.h, bottom: 15.h),
                     child: ListTile(
                       title: Text(
                         'Logout',
                         style: GoogleFonts.inter(
                             fontWeight: FontWeight.w400,
-                            fontSize: 20,
+                            fontSize: 20.sp,
                             color: Colors.white),
                       ),
                       trailing: Icon(
@@ -201,58 +203,59 @@ class _HealthState extends State<Health> {
                   ),
                   Divider(
                     color: ColorConstant.graydiv,
-                    height: 1.5,
+                    height: 1.5.h,
                   ),
                 ],
               ),
             ),
             body: Column(children: [
-              const SizedBox(
-                height: 10,
+              SizedBox(
+                height: 10.h,
               ),
               Stack(
                 children: [
                   Container(
                       decoration: BoxDecoration(
                           color: Colors.white,
-                          borderRadius: BorderRadius.circular(24)),
-                      margin: const EdgeInsets.only(
-                        left: 10,
+                          borderRadius: BorderRadius.circular(24.sp)),
+                      margin: EdgeInsets.only(
+                        left: 10.w,
                       ),
-                      height: 94,
-                      width: 366),
+                      height: 94.h,
+                      width: 366.w),
                   Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Container(
-                        padding: const EdgeInsets.only(left: 92, top: 15),
+                        padding: EdgeInsets.only(left: 92.w, top: 15.h),
                         child: Text(
                           'Heart Rate',
                           style: GoogleFonts.montserrat(
-                              fontSize: 18, fontWeight: FontWeight.w400),
+                              fontSize: 18.sp, fontWeight: FontWeight.w400),
                         ),
                       ),
-                      const SizedBox(
-                        height: 5,
+                      SizedBox(
+                        height: 5.h,
                       ),
                       Row(
                         children: [
                           Container(
-                              padding: const EdgeInsets.only(
-                                left: 110,
+                              padding: EdgeInsets.only(
+                                left: 110.w,
                               ),
                               child: Text(
                                 '98',
                                 style: GoogleFonts.montserrat(
-                                    fontWeight: FontWeight.w600, fontSize: 32),
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 32.sp),
                               )),
-                          const SizedBox(
-                            width: 35,
+                          SizedBox(
+                            width: 35.w,
                           ),
                           Text('bpm',
                               style: GoogleFonts.montserrat(
-                                  fontSize: 18, fontWeight: FontWeight.w600))
+                                  fontSize: 18.sp, fontWeight: FontWeight.w600))
                         ],
                       )
                     ],
@@ -261,59 +264,60 @@ class _HealthState extends State<Health> {
                     children: [
                       Container(
                         margin:
-                            const EdgeInsets.only(left: 35, right: 10, top: 35),
+                            EdgeInsets.only(left: 35.w, right: 10.w, top: 35.h),
                         child: SvgPicture.asset('images/heart.svg'),
                       ),
                     ],
                   )
                 ],
               ),
-              const SizedBox(
-                height: 25,
+              SizedBox(
+                height: 25.h,
               ),
               Stack(
                 children: [
                   Container(
                       decoration: BoxDecoration(
                           color: Colors.white,
-                          borderRadius: BorderRadius.circular(24)),
-                      margin: const EdgeInsets.only(
-                        left: 10,
+                          borderRadius: BorderRadius.circular(24.sp)),
+                      margin: EdgeInsets.only(
+                        left: 10.w,
                       ),
-                      height: 94,
-                      width: 366),
+                      height: 94.h,
+                      width: 366.w),
                   Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Container(
-                        padding: const EdgeInsets.only(left: 92, top: 15),
+                        padding: EdgeInsets.only(left: 92.w, top: 15.h),
                         child: Text(
                           'Blood Pressure',
                           style: GoogleFonts.montserrat(
-                              fontWeight: FontWeight.w400, fontSize: 18),
+                              fontWeight: FontWeight.w400, fontSize: 18.sp),
                         ),
                       ),
-                      const SizedBox(
-                        height: 5,
+                      SizedBox(
+                        height: 5.h,
                       ),
                       Row(
                         children: [
                           Container(
-                              padding: const EdgeInsets.only(
-                                left: 110,
+                              padding: EdgeInsets.only(
+                                left: 110.w,
                               ),
                               child: Text(
                                 '102/72',
                                 style: GoogleFonts.montserrat(
-                                    fontSize: 32, fontWeight: FontWeight.w600),
+                                    fontSize: 32.sp,
+                                    fontWeight: FontWeight.w600),
                               )),
                           const SizedBox(
                             width: 15,
                           ),
                           Text('mmhg',
                               style: GoogleFonts.montserrat(
-                                  fontWeight: FontWeight.w600, fontSize: 18))
+                                  fontWeight: FontWeight.w600, fontSize: 18.sp))
                         ],
                       )
                     ],
@@ -322,59 +326,60 @@ class _HealthState extends State<Health> {
                     children: [
                       Container(
                         margin:
-                            const EdgeInsets.only(left: 40, right: 10, top: 35),
+                            EdgeInsets.only(left: 40.w, right: 10.w, top: 35.h),
                         child: SvgPicture.asset('images/bp.svg'),
                       ),
                     ],
                   )
                 ],
               ),
-              const SizedBox(
-                height: 25,
+              SizedBox(
+                height: 25.w,
               ),
               Stack(
                 children: [
                   Container(
                       decoration: BoxDecoration(
                           color: Colors.white,
-                          borderRadius: BorderRadius.circular(24)),
-                      margin: const EdgeInsets.only(
-                        left: 10,
+                          borderRadius: BorderRadius.circular(24.sp)),
+                      margin: EdgeInsets.only(
+                        left: 10.w,
                       ),
-                      height: 94,
-                      width: 366),
+                      height: 94.h,
+                      width: 366.w),
                   Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Container(
-                        padding: const EdgeInsets.only(left: 92, top: 15),
+                        padding: EdgeInsets.only(left: 92.w, top: 15.h),
                         child: Text(
                           'Body Temperature',
                           style: GoogleFonts.montserrat(
-                              fontSize: 18, fontWeight: FontWeight.w400),
+                              fontSize: 18.sp, fontWeight: FontWeight.w400),
                         ),
                       ),
-                      const SizedBox(
-                        height: 5,
+                      SizedBox(
+                        height: 5.h,
                       ),
                       Row(
                         children: [
                           Container(
-                              padding: const EdgeInsets.only(
-                                left: 110,
+                              padding: EdgeInsets.only(
+                                left: 110.w,
                               ),
                               child: Text(
                                 '$newTemp',
                                 style: GoogleFonts.montserrat(
-                                    fontWeight: FontWeight.w600, fontSize: 32),
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 32.sp),
                               )),
-                          const SizedBox(
-                            width: 35,
+                          SizedBox(
+                            width: 35.w,
                           ),
                           Text('°C',
                               style: GoogleFonts.montserrat(
-                                  fontSize: 18, fontWeight: FontWeight.w600))
+                                  fontSize: 18.sp, fontWeight: FontWeight.w600))
                         ],
                       )
                     ],
@@ -383,59 +388,60 @@ class _HealthState extends State<Health> {
                     children: [
                       Container(
                         margin:
-                            const EdgeInsets.only(left: 40, right: 10, top: 20),
+                            EdgeInsets.only(left: 40.w, right: 10.w, top: 20.h),
                         child: SvgPicture.asset('images/temp.svg'),
                       ),
                     ],
                   )
                 ],
               ),
-              const SizedBox(
-                height: 25,
+              SizedBox(
+                height: 25.h,
               ),
               Stack(
                 children: [
                   Container(
                       decoration: BoxDecoration(
                           color: Colors.white,
-                          borderRadius: BorderRadius.circular(24)),
-                      margin: const EdgeInsets.only(
-                        left: 10,
+                          borderRadius: BorderRadius.circular(24.sp)),
+                      margin: EdgeInsets.only(
+                        left: 10.w,
                       ),
-                      height: 94,
-                      width: 366),
+                      height: 94.h,
+                      width: 366.w),
                   Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Container(
-                        padding: const EdgeInsets.only(left: 92, top: 15),
+                        padding: EdgeInsets.only(left: 92.w, top: 15.h),
                         child: Text(
                           'Percent Oxygen in Blood',
                           style: GoogleFonts.montserrat(
-                              fontWeight: FontWeight.w400, fontSize: 18),
+                              fontWeight: FontWeight.w400, fontSize: 18.sp),
                         ),
                       ),
-                      const SizedBox(
-                        height: 5,
+                      SizedBox(
+                        height: 5.h,
                       ),
                       Row(
                         children: [
                           Container(
-                              padding: const EdgeInsets.only(
-                                left: 110,
+                              padding: EdgeInsets.only(
+                                left: 110.w,
                               ),
                               child: Text(
                                 '96',
                                 style: GoogleFonts.montserrat(
-                                    fontSize: 32, fontWeight: FontWeight.w600),
+                                    fontSize: 32.sp,
+                                    fontWeight: FontWeight.w600),
                               )),
-                          const SizedBox(
-                            width: 35,
+                          SizedBox(
+                            width: 35.w,
                           ),
                           Text('%',
                               style: GoogleFonts.montserrat(
-                                  fontWeight: FontWeight.w600, fontSize: 18))
+                                  fontWeight: FontWeight.w600, fontSize: 18.sp))
                         ],
                       )
                     ],
@@ -444,12 +450,12 @@ class _HealthState extends State<Health> {
                     children: [
                       Container(
                         margin:
-                            const EdgeInsets.only(left: 40, right: 10, top: 35),
+                            EdgeInsets.only(left: 40.w, right: 10.w, top: 35.h),
                         child: Stack(
                           children: [
                             SvgPicture.asset('images/drop.svg'),
                             Container(
-                                margin: const EdgeInsets.only(top: 17, left: 2),
+                                margin: EdgeInsets.only(top: 17.h, left: 2.w),
                                 child: Image.asset('images/O2.png'))
                           ],
                         ),
