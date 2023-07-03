@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../utils/Color_constant.dart';
@@ -24,12 +23,12 @@ class _PaymentState extends State<Payment> {
                   onPressed: () {
                     Navigator.pop(context);
                   },
-                  icon: Icon(Icons.arrow_back)),
+                  icon: const Icon(Icons.arrow_back)),
             ),
             body:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               Container(
-                padding: EdgeInsets.only(left: 40, top: 5),
+                padding: const EdgeInsets.only(left: 40, top: 5),
                 child: Text(
                   'Payment',
                   style: GoogleFonts.inter(
@@ -39,25 +38,25 @@ class _PaymentState extends State<Payment> {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 25,
               ),
               Stack(
                 children: [
                   Container(
-                      padding: EdgeInsets.only(top: 10),
+                      padding: const EdgeInsets.only(top: 10),
                       child: Image.asset('images/card.png')),
                   Container(
-                      padding: EdgeInsets.only(left: 265, top: 50),
+                      padding: const EdgeInsets.only(left: 265, top: 50),
                       child: Image.asset('images/logo1.png')),
                   Container(
-                      padding: EdgeInsets.only(left: 270, top: 105),
+                      padding: const EdgeInsets.only(left: 270, top: 105),
                       child: Image.asset(
                         'images/master.png',
                         color: Colors.black,
                       )),
                   Container(
-                    padding: EdgeInsets.only(left: 45, top: 165),
+                    padding: const EdgeInsets.only(left: 45, top: 165),
                     child: Text(
                       'Balance',
                       style: GoogleFonts.montserrat(
@@ -67,7 +66,7 @@ class _PaymentState extends State<Payment> {
                     ),
                   ),
                   Container(
-                    padding: EdgeInsets.only(left: 45, top: 190),
+                    padding: const EdgeInsets.only(left: 45, top: 190),
                     child: Text(
                       '\$ 10.50',
                       style: GoogleFonts.montserrat(
@@ -79,7 +78,7 @@ class _PaymentState extends State<Payment> {
               ),
                   
                   Container(
-                    padding: EdgeInsets.only(left: 25,bottom: 10),
+                    padding: const EdgeInsets.only(left: 25,bottom: 10),
                     child: ListTile(
                       title: Text(
                         'MasterCard',
@@ -89,7 +88,7 @@ class _PaymentState extends State<Payment> {
                           color: Colors.white
                         ),
                       ),
-                      trailing: Container(padding:EdgeInsets.only(bottom: 10) ,child: Image.asset('images/cardd.png')),
+                      trailing: Container(padding:const EdgeInsets.only(bottom: 10) ,child: Image.asset('images/cardd.png')),
                       onTap: () {}
                     ),
                   ),
@@ -98,7 +97,7 @@ class _PaymentState extends State<Payment> {
                     height: 1,
                   ),
                   Container(
-                    padding: EdgeInsets.only(left: 25,bottom: 10, top: 10),
+                    padding: const EdgeInsets.only(left: 25,bottom: 10, top: 10),
                     child: ListTile(
                         title: Text(
                           'Payment Options',

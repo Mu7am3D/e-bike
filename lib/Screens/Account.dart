@@ -24,12 +24,12 @@ class _AccountState extends State<Account> {
         elevation: 0,
         leading: IconButton(onPressed: () {
           Navigator.pop(context);
-        }, icon: Icon(Icons.arrow_back)),
+        }, icon: const Icon(Icons.arrow_back)),
       ),
           body: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-            Container(padding: EdgeInsets.only(left: 40, top: 10),
+            Container(padding: const EdgeInsets.only(left: 40, top: 10),
               child: Text(
                 'Account',
                 style: GoogleFonts.inter(
@@ -39,10 +39,10 @@ class _AccountState extends State<Account> {
                 ),
               ),
             ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),Container(
-                padding: EdgeInsets.only(left: 30,bottom: 10),
+                padding: const EdgeInsets.only(left: 30,bottom: 10),
                 child: ListTile(
                   title: Text(
                     'Profile',
@@ -57,7 +57,7 @@ class _AccountState extends State<Account> {
                     color: ColorConstant.gray00,
                   ),
                   onTap: () => Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => Profile())),
+                      MaterialPageRoute(builder: (context) => const Profile())),
                 ),
               ),
               Divider(
@@ -65,7 +65,7 @@ class _AccountState extends State<Account> {
                 height: 1,
               ),
               Container(
-                padding: EdgeInsets.only(left: 30,bottom: 20,top: 25),
+                padding: const EdgeInsets.only(left: 30,bottom: 20,top: 25),
                 child: ListTile(
                   title: Text(
                     'Payment',
@@ -80,7 +80,7 @@ class _AccountState extends State<Account> {
                     color: ColorConstant.gray00,
                   ),
                   onTap: () => Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => Payment())),
+                      MaterialPageRoute(builder: (context) => const Payment())),
                 ),
               ),
               Divider(
@@ -88,7 +88,7 @@ class _AccountState extends State<Account> {
                 height: 1,
               ),
               Container(
-                padding: EdgeInsets.only(left: 30,bottom: 20,top: 25),
+                padding: const EdgeInsets.only(left: 30,bottom: 20,top: 25),
                 child: ListTile(
                   title: Text(
                     'Wallet',
@@ -103,7 +103,7 @@ class _AccountState extends State<Account> {
                     color: ColorConstant.gray00,
                   ),
                   onTap: () => Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => Wallet())),
+                      MaterialPageRoute(builder: (context) => const Wallet())),
                 ),
               ),
               Divider(

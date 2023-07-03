@@ -1,4 +1,3 @@
-import 'package:e_bike/Screens/Weather.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -6,7 +5,6 @@ import '../Screens/Health.dart';
 import '../Screens/Home.dart';
 import '../Screens/Lock.dart';
 import '../Screens/Navigation.dart';
-import '../Screens/Weather.dart';
 import '../Screens/Weather_screen.dart';
 import '../utils/Color_constant.dart';
 
@@ -53,15 +51,15 @@ class _NavState extends State<Nav> {
   Widget pages() {
     switch (_item) {
       case 0:
-        return Home();
+        return const Home();
       case 1:
-        return Navigation();
+        return const Navigation();
       case 2:
-        return WeatherScreen();
+        return const WeatherScreen();
       case 3:
-        return Health();
+        return const Health();
       case 4:
-        return Lock();
+        return const Lock();
       default:
         return Container();
     }

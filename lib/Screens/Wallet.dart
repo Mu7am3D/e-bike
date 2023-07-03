@@ -23,13 +23,13 @@ class _WalletState extends State<Wallet> {
             onPressed: () {
               Navigator.pop(context);
             },
-            icon: Icon(Icons.arrow_back)),
+            icon: const Icon(Icons.arrow_back)),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            padding: EdgeInsets.only(left: 40, top: 5),
+            padding: const EdgeInsets.only(left: 40, top: 5),
             child: Text(
               'Wallet',
               style: GoogleFonts.inter(
@@ -39,21 +39,21 @@ class _WalletState extends State<Wallet> {
               ),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 25,
           ),
           Stack(
             children: [
               Container(
-                padding: EdgeInsets.only(top: 10),
+                padding: const EdgeInsets.only(top: 10),
                 child: Image.asset('images/carddd.png'),
               ),
               Container(
-                padding: EdgeInsets.only(top: 27, left: 20),
+                padding: const EdgeInsets.only(top: 27, left: 20),
                 child: Image.asset('images/tst.png'),
               ),
               Container(
-                  padding: EdgeInsets.only(top: 48, left: 210),
+                  padding: const EdgeInsets.only(top: 48, left: 210),
                   child: Text(
                     'Weekly Points',
                     style: GoogleFonts.montserrat(
@@ -63,7 +63,7 @@ class _WalletState extends State<Wallet> {
                     ),
                   )),
               Container(
-                padding: EdgeInsets.only(top: 85, left: 315),
+                padding: const EdgeInsets.only(top: 85, left: 315),
                 child: Text(
                   '200',
                   style: GoogleFonts.montserrat(
@@ -73,7 +73,7 @@ class _WalletState extends State<Wallet> {
                   ),
                 ),
               ),
-              Container(margin: EdgeInsets.only(left: 220,top: 190),
+              Container(margin: const EdgeInsets.only(left: 220,top: 190),
                 width: 131,
                 height: 40,
                 decoration: BoxDecoration(
@@ -97,7 +97,7 @@ class _WalletState extends State<Wallet> {
             ],
           ),
           Container(
-            padding: EdgeInsets.only(left: 25,bottom: 10),
+            padding: const EdgeInsets.only(left: 25,bottom: 10),
             child: ListTile(
                 title: Text(
                   'Points :',
@@ -107,7 +107,7 @@ class _WalletState extends State<Wallet> {
                     color: Colors.white
                   ),
                 ),
-                trailing: Container(padding:EdgeInsets.only(bottom: 10,right: 95) ,child: Text('241',style: GoogleFonts.montserrat(
+                trailing: Container(padding:const EdgeInsets.only(bottom: 10,right: 95) ,child: Text('241',style: GoogleFonts.montserrat(
                   fontSize: 32,
                   fontWeight: FontWeight.w600,
                   color: Colors.white
@@ -122,7 +122,7 @@ class _WalletState extends State<Wallet> {
             height: 1,
           ),
           Container(
-            padding: EdgeInsets.only(left: 25,bottom: 10,top: 10),
+            padding: const EdgeInsets.only(left: 25,bottom: 10,top: 10),
             child: ListTile(
                 title: Text(
                   'Balance :',
@@ -132,7 +132,7 @@ class _WalletState extends State<Wallet> {
                       color: Colors.white
                   ),
                 ),
-                trailing: Container(padding:EdgeInsets.only(bottom: 10,right: 40) ,child: Text('\$ 10.50',style: GoogleFonts.montserrat(
+                trailing: Container(padding:const EdgeInsets.only(bottom: 10,right: 40) ,child: Text('\$ 10.50',style: GoogleFonts.montserrat(
                     fontSize: 32,
                     fontWeight: FontWeight.w600,
                     color: Colors.white

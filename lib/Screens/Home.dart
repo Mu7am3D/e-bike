@@ -20,7 +20,7 @@ class _HomeState extends State<Home> {
   var _Smoke;
   var _Status;
   AuthController authController = AuthController();
-  GlobalKey<ScaffoldState> drawerkey = new GlobalKey<ScaffoldState>();
+  GlobalKey<ScaffoldState> drawerkey = GlobalKey<ScaffoldState>();
   bool isOn = false;
   bool switchControl = false;
   @override
@@ -45,7 +45,7 @@ class _HomeState extends State<Home> {
               onPressed: () {
                 drawerkey.currentState!.openDrawer();
               },
-              icon: Icon(
+              icon: const Icon(
                 Icons.settings,
                 color: Colors.white,
                 size: 30,
@@ -71,7 +71,7 @@ class _HomeState extends State<Home> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
-                padding: EdgeInsets.only(left: 40, top: 50),
+                padding: const EdgeInsets.only(left: 40, top: 50),
                 child: Text(
                   'Settings',
                   style: GoogleFonts.inter(
@@ -80,11 +80,11 @@ class _HomeState extends State<Home> {
                       color: Colors.white),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Container(
-                padding: EdgeInsets.only(left: 10),
+                padding: const EdgeInsets.only(left: 10),
                 child: ListTile(
                   title: Text(
                     'Account',
@@ -98,7 +98,7 @@ class _HomeState extends State<Home> {
                     color: ColorConstant.gray00,
                   ),
                   onTap: () => Navigator.of(context)
-                      .push(MaterialPageRoute(builder: (context) => Account())),
+                      .push(MaterialPageRoute(builder: (context) => const Account())),
                 ),
               ),
               Divider(
@@ -106,7 +106,7 @@ class _HomeState extends State<Home> {
                 height: 1,
               ),
               Container(
-                padding: EdgeInsets.only(left: 10, top: 15, bottom: 15),
+                padding: const EdgeInsets.only(left: 10, top: 15, bottom: 15),
                 child: ListTile(
                   title: Text(
                     'Ride History',
@@ -126,11 +126,11 @@ class _HomeState extends State<Home> {
                 color: ColorConstant.graydiv,
                 height: 1,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               Container(
-                padding: EdgeInsets.only(left: 10, bottom: 15),
+                padding: const EdgeInsets.only(left: 10, bottom: 15),
                 child: ListTile(
                   title: Text(
                     'Language',
@@ -153,11 +153,11 @@ class _HomeState extends State<Home> {
                 color: ColorConstant.graydiv,
                 height: 0.5,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               Container(
-                padding: EdgeInsets.only(left: 10, bottom: 15),
+                padding: const EdgeInsets.only(left: 10, bottom: 15),
                 child: ListTile(
                   title: Text(
                     'Notification',
@@ -181,7 +181,7 @@ class _HomeState extends State<Home> {
                 height: 2,
               ),
               Container(
-                padding: EdgeInsets.only(left: 10, top: 15, bottom: 15),
+                padding: const EdgeInsets.only(left: 10, top: 15, bottom: 15),
                 child: ListTile(
                   title: Text(
                     'Logout',
@@ -209,7 +209,7 @@ class _HomeState extends State<Home> {
         body: SingleChildScrollView(
           child: Column(
             children: [
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               Stack(
@@ -228,28 +228,28 @@ class _HomeState extends State<Home> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Container(
-                        padding: EdgeInsets.only(left: 92, top: 15),
+                        padding: const EdgeInsets.only(left: 92, top: 15),
                         child: Text(
                           'Distance',
                           style: GoogleFonts.montserrat(
                               fontSize: 18, fontWeight: FontWeight.w400),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 5,
                       ),
                       Row(
                         children: [
                           Container(
+                              padding: const EdgeInsets.only(
+                                left: 90,
+                              ),
                               child: Text(
                                 '3752',
                                 style: GoogleFonts.montserrat(
                                     fontSize: 32, fontWeight: FontWeight.w600),
-                              ),
-                              padding: EdgeInsets.only(
-                                left: 90,
                               )),
-                          SizedBox(
+                          const SizedBox(
                             width: 10,
                           ),
                           Text('m',
@@ -270,7 +270,7 @@ class _HomeState extends State<Home> {
                   )
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               Stack(
@@ -289,28 +289,28 @@ class _HomeState extends State<Home> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Container(
-                        padding: EdgeInsets.only(left: 92, top: 15),
+                        padding: const EdgeInsets.only(left: 92, top: 15),
                         child: Text(
                           'Temperature of Battery',
                           style: GoogleFonts.montserrat(
                               fontWeight: FontWeight.w400, fontSize: 18),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 5,
                       ),
                       Row(
                         children: [
                           Container(
+                              padding: const EdgeInsets.only(
+                                left: 100,
+                              ),
                               child: Text(
                                 '$newTemp',
                                 style: GoogleFonts.montserrat(
                                     fontSize: 32, fontWeight: FontWeight.w600),
-                              ),
-                              padding: EdgeInsets.only(
-                                left: 100,
                               )),
-                          SizedBox(
+                          const SizedBox(
                             width: 40,
                           ),
                           Text('°C',
@@ -340,7 +340,7 @@ class _HomeState extends State<Home> {
                   )
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               Stack(
@@ -359,28 +359,28 @@ class _HomeState extends State<Home> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Container(
-                        padding: EdgeInsets.only(left: 92, top: 15),
+                        padding: const EdgeInsets.only(left: 92, top: 15),
                         child: Text(
                           'Smoke Around Bike',
                           style: GoogleFonts.montserrat(
                               fontWeight: FontWeight.w400, fontSize: 18),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 5,
                       ),
                       Row(
                         children: [
                           Container(
+                              padding: const EdgeInsets.only(
+                                left: 100,
+                              ),
                               child: Text(
                                 '$_Smoke',
                                 style: GoogleFonts.montserrat(
                                     fontSize: 32, fontWeight: FontWeight.w600),
-                              ),
-                              padding: EdgeInsets.only(
-                                left: 100,
                               )),
-                          SizedBox(
+                          const SizedBox(
                             width: 20,
                           ),
                           Text(
@@ -404,7 +404,7 @@ class _HomeState extends State<Home> {
                   )
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               Stack(
@@ -423,26 +423,26 @@ class _HomeState extends State<Home> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Container(
-                        padding: EdgeInsets.only(left: 92, top: 15),
+                        padding: const EdgeInsets.only(left: 92, top: 15),
                         child: Text(
                           'Fire Around Bike',
                           style: GoogleFonts.montserrat(
                               fontSize: 18, fontWeight: FontWeight.w400),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 5,
                       ),
                       Row(
                         children: [
                           Container(
+                              padding: const EdgeInsets.only(
+                                left: 100,
+                              ),
                               child: Text(
                                 '$_Status',
                                 style: GoogleFonts.montserrat(
                                     fontWeight: FontWeight.w600, fontSize: 32),
-                              ),
-                              padding: EdgeInsets.only(
-                                left: 100,
                               )),
                         ],
                       )
@@ -459,7 +459,7 @@ class _HomeState extends State<Home> {
                   )
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               Stack(
@@ -478,30 +478,30 @@ class _HomeState extends State<Home> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Container(
-                        padding: EdgeInsets.only(left: 92, top: 15),
+                        padding: const EdgeInsets.only(left: 92, top: 15),
                         child: Text(
                           'Flash Light Front & Back',
                           style: GoogleFonts.montserrat(
                               fontSize: 18, fontWeight: FontWeight.w400),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 5,
                       ),
                       Row(
                         children: [
                           Container(
+                              padding: const EdgeInsets.only(
+                                left: 140,
+                              ),
                               child: Switch(
                                   value: isOn,
-                                  onChanged: (_isOn) {
+                                  onChanged: (isOn) {
                                     _updatevalue();
                                     setState(() {
-                                      isOn = _isOn;
+                                      isOn = isOn;
                                     });
-                                  }),
-                              padding: EdgeInsets.only(
-                                left: 140,
-                              )),
+                                  })),
                         ],
                       )
                     ],

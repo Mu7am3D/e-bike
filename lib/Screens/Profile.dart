@@ -2,7 +2,6 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../utils/AuthController.dart';
@@ -54,13 +53,13 @@ class _ProfileState extends State<Profile> {
             onPressed: () {
               Navigator.pop(context);
             },
-            icon: Icon(Icons.arrow_back)),
+            icon: const Icon(Icons.arrow_back)),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            padding: EdgeInsets.only(left: 40, top: 10),
+            padding: const EdgeInsets.only(left: 40, top: 10),
             child: Text(
               'Profile',
               style: GoogleFonts.inter(
@@ -69,20 +68,20 @@ class _ProfileState extends State<Profile> {
                   color: Colors.white),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           Center(
             child: Container(
               child: CircleAvatar(
                 backgroundColor: ColorConstant.blueGray900,
-                backgroundImage: AssetImage('images/ppic.png'),
+                backgroundImage: const AssetImage('images/ppic.png'),
                 radius: 50,
               ),
             ),
           ),
           Container(
-            padding: EdgeInsets.only(top: 15, bottom: 10, left: 30),
+            padding: const EdgeInsets.only(top: 15, bottom: 10, left: 30),
             child: ListTile(
               title: Text(
                 'Name :',
@@ -92,9 +91,9 @@ class _ProfileState extends State<Profile> {
                     color: Colors.white),
               ),
               trailing: Container(
-                  padding: EdgeInsets.only(right: 40),
+                  padding: const EdgeInsets.only(right: 40),
                   child: Text(
-                    '${name}',
+                    name,
                     style: GoogleFonts.montserrat(
                         fontSize: 21,
                         fontWeight: FontWeight.w400,
@@ -108,7 +107,7 @@ class _ProfileState extends State<Profile> {
             height: 1,
           ),
           Container(
-            padding: EdgeInsets.only(top: 15, bottom: 10, left: 30),
+            padding: const EdgeInsets.only(top: 15, bottom: 10, left: 30),
             child: ListTile(
               title: Text(
                 'E-mail :',
@@ -118,12 +117,12 @@ class _ProfileState extends State<Profile> {
                     color: Colors.white),
               ),
               trailing: Container(
-                  padding: EdgeInsets.only(right: 35),
+                  padding: const EdgeInsets.only(right: 35),
                   child: Flexible(
                     child: FittedBox(
                       fit: BoxFit.contain,
                       child: AutoSizeText(
-                        '${email}',
+                        email,
                         maxLines: 1,
                         style: GoogleFonts.montserrat(
                             fontSize: 16,
@@ -141,7 +140,7 @@ class _ProfileState extends State<Profile> {
             height: 2,
           ),
           Container(
-            padding: EdgeInsets.only(left: 30, bottom: 10, top: 15),
+            padding: const EdgeInsets.only(left: 30, bottom: 10, top: 15),
             child: ListTile(
               title: Text(
                 'Change Password',

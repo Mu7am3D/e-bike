@@ -1,5 +1,4 @@
 import 'package:firebase_database/firebase_database.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -20,7 +19,7 @@ class _HealthState extends State<Health> {
   var newTemp;
   String databasejson = '';
   AuthController authController = AuthController();
-  GlobalKey<ScaffoldState> drawerkey = new GlobalKey<ScaffoldState>();
+  GlobalKey<ScaffoldState> drawerkey = GlobalKey<ScaffoldState>();
   bool isOn = false;
   @override
   void initState() {
@@ -42,7 +41,7 @@ class _HealthState extends State<Health> {
                   onPressed: () {
                     drawerkey.currentState!.openDrawer();
                   },
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.settings,
                     color: Colors.white,
                     size: 30,
@@ -68,7 +67,7 @@ class _HealthState extends State<Health> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
-                    padding: EdgeInsets.only(left: 40, top: 50),
+                    padding: const EdgeInsets.only(left: 40, top: 50),
                     child: Text(
                       'Settings',
                       style: GoogleFonts.inter(
@@ -77,11 +76,11 @@ class _HealthState extends State<Health> {
                           color: Colors.white),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   Container(
-                    padding: EdgeInsets.only(left: 10),
+                    padding: const EdgeInsets.only(left: 10),
                     child: ListTile(
                       title: Text(
                         'Account',
@@ -95,7 +94,7 @@ class _HealthState extends State<Health> {
                         color: ColorConstant.gray00,
                       ),
                       onTap: () => Navigator.of(context).push(
-                          MaterialPageRoute(builder: (context) => Account())),
+                          MaterialPageRoute(builder: (context) => const Account())),
                     ),
                   ),
                   Divider(
@@ -103,7 +102,7 @@ class _HealthState extends State<Health> {
                     height: 1,
                   ),
                   Container(
-                    padding: EdgeInsets.only(left: 10, top: 15, bottom: 15),
+                    padding: const EdgeInsets.only(left: 10, top: 15, bottom: 15),
                     child: ListTile(
                       title: Text(
                         'Ride History',
@@ -123,11 +122,11 @@ class _HealthState extends State<Health> {
                     color: ColorConstant.graydiv,
                     height: 1,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   Container(
-                    padding: EdgeInsets.only(left: 10, bottom: 15),
+                    padding: const EdgeInsets.only(left: 10, bottom: 15),
                     child: ListTile(
                       title: Text(
                         'Language',
@@ -150,11 +149,11 @@ class _HealthState extends State<Health> {
                     color: ColorConstant.graydiv,
                     height: 1,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   Container(
-                    padding: EdgeInsets.only(left: 10, bottom: 15),
+                    padding: const EdgeInsets.only(left: 10, bottom: 15),
                     child: ListTile(
                       title: Text(
                         'Notification',
@@ -165,9 +164,9 @@ class _HealthState extends State<Health> {
                       ),
                       trailing: Switch(
                           value: isOn,
-                          onChanged: (_isOn) {
+                          onChanged: (isOn) {
                             setState(() {
-                              isOn = _isOn;
+                              isOn = isOn;
                             });
                           }),
                       onTap: () {
@@ -182,7 +181,7 @@ class _HealthState extends State<Health> {
                     height: 2,
                   ),
                   Container(
-                    padding: EdgeInsets.only(left: 10, top: 15, bottom: 15),
+                    padding: const EdgeInsets.only(left: 10, top: 15, bottom: 15),
                     child: ListTile(
                       title: Text(
                         'Logout',
@@ -208,7 +207,7 @@ class _HealthState extends State<Health> {
               ),
             ),
             body: Column(children: [
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               Stack(
@@ -227,28 +226,28 @@ class _HealthState extends State<Health> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Container(
-                        padding: EdgeInsets.only(left: 92, top: 15),
+                        padding: const EdgeInsets.only(left: 92, top: 15),
                         child: Text(
                           'Heart Rate',
                           style: GoogleFonts.montserrat(
                               fontSize: 18, fontWeight: FontWeight.w400),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 5,
                       ),
                       Row(
                         children: [
                           Container(
+                              padding: const EdgeInsets.only(
+                                left: 110,
+                              ),
                               child: Text(
                                 '98',
                                 style: GoogleFonts.montserrat(
                                     fontWeight: FontWeight.w600, fontSize: 32),
-                              ),
-                              padding: EdgeInsets.only(
-                                left: 110,
                               )),
-                          SizedBox(
+                          const SizedBox(
                             width: 35,
                           ),
                           Text('bpm',
@@ -269,7 +268,7 @@ class _HealthState extends State<Health> {
                   )
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 25,
               ),
               Stack(
@@ -288,28 +287,28 @@ class _HealthState extends State<Health> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Container(
-                        padding: EdgeInsets.only(left: 92, top: 15),
+                        padding: const EdgeInsets.only(left: 92, top: 15),
                         child: Text(
                           'Blood Pressure',
                           style: GoogleFonts.montserrat(
                               fontWeight: FontWeight.w400, fontSize: 18),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 5,
                       ),
                       Row(
                         children: [
                           Container(
+                              padding: const EdgeInsets.only(
+                                left: 110,
+                              ),
                               child: Text(
                                 '102/72',
                                 style: GoogleFonts.montserrat(
                                     fontSize: 32, fontWeight: FontWeight.w600),
-                              ),
-                              padding: EdgeInsets.only(
-                                left: 110,
                               )),
-                          SizedBox(
+                          const SizedBox(
                             width: 15,
                           ),
                           Text('mmhg',
@@ -330,7 +329,7 @@ class _HealthState extends State<Health> {
                   )
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 25,
               ),
               Stack(
@@ -349,28 +348,28 @@ class _HealthState extends State<Health> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Container(
-                        padding: EdgeInsets.only(left: 92, top: 15),
+                        padding: const EdgeInsets.only(left: 92, top: 15),
                         child: Text(
                           'Body Temperature',
                           style: GoogleFonts.montserrat(
                               fontSize: 18, fontWeight: FontWeight.w400),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 5,
                       ),
                       Row(
                         children: [
                           Container(
+                              padding: const EdgeInsets.only(
+                                left: 110,
+                              ),
                               child: Text(
                                 '$newTemp',
                                 style: GoogleFonts.montserrat(
                                     fontWeight: FontWeight.w600, fontSize: 32),
-                              ),
-                              padding: EdgeInsets.only(
-                                left: 110,
                               )),
-                          SizedBox(
+                          const SizedBox(
                             width: 35,
                           ),
                           Text('°C',
@@ -391,7 +390,7 @@ class _HealthState extends State<Health> {
                   )
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 25,
               ),
               Stack(
@@ -410,28 +409,28 @@ class _HealthState extends State<Health> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Container(
-                        padding: EdgeInsets.only(left: 92, top: 15),
+                        padding: const EdgeInsets.only(left: 92, top: 15),
                         child: Text(
                           'Percent Oxygen in Blood',
                           style: GoogleFonts.montserrat(
                               fontWeight: FontWeight.w400, fontSize: 18),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 5,
                       ),
                       Row(
                         children: [
                           Container(
+                              padding: const EdgeInsets.only(
+                                left: 110,
+                              ),
                               child: Text(
                                 '96',
                                 style: GoogleFonts.montserrat(
                                     fontSize: 32, fontWeight: FontWeight.w600),
-                              ),
-                              padding: EdgeInsets.only(
-                                left: 110,
                               )),
-                          SizedBox(
+                          const SizedBox(
                             width: 35,
                           ),
                           Text('%',

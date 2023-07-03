@@ -4,13 +4,12 @@ import 'package:get/get.dart';
 
 import '../utils/Color_constant.dart';
 import '../utils/validator.dart';
-import 'login.dart';
 import 'login2.dart';
 
 class SignUp extends StatelessWidget {
   SignUp({Key? key}) : super(key: key);
   final formkey = GlobalKey<FormState>();
-  bool _isProgress = false;
+  final bool _isProgress = false;
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +57,7 @@ class SignUp extends StatelessWidget {
                         color: Colors.white,
                       ),
                       labelText: 'First Name',
-                      labelStyle: TextStyle(color: Colors.white),
+                      labelStyle: const TextStyle(color: Colors.white),
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(30.0))),
                   validator: Validator.name,
@@ -79,7 +78,7 @@ class SignUp extends StatelessWidget {
                         color: Colors.white,
                       ),
                       labelText: 'Last Name',
-                      labelStyle: TextStyle(color: Colors.white),
+                      labelStyle: const TextStyle(color: Colors.white),
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(30.0))),
                   validator: Validator.name,
@@ -100,7 +99,7 @@ class SignUp extends StatelessWidget {
                           color: Colors.white,
                         ),
                         labelText: 'Email',
-                        labelStyle: TextStyle(color: Colors.white),
+                        labelStyle: const TextStyle(color: Colors.white),
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(30.0))),
                     validator: Validator.email,
@@ -136,7 +135,7 @@ class SignUp extends StatelessWidget {
                                       color: Colors.white,
                                     )),
                           labelText: 'Password',
-                          labelStyle: TextStyle(color: Colors.white),
+                          labelStyle: const TextStyle(color: Colors.white),
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(30.0))),
                       validator: Validator.password,
@@ -185,7 +184,7 @@ class SignUp extends StatelessWidget {
                       ),
                       TextButton(
                           onPressed: () {
-                            Get.to(() => LoginApp());
+                            Get.to(() => const LoginApp());
                           },
                           child: const Text("Login",
                               style:

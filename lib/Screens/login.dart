@@ -15,7 +15,7 @@ class LoginApp1 extends StatelessWidget {
   final formkey = GlobalKey<FormState>();
   late String email;
   late String password;
-  bool _isProgress = false;
+  final bool _isProgress = false;
   @override
   @override
   Widget build(BuildContext context) {
@@ -64,7 +64,7 @@ class LoginApp1 extends StatelessWidget {
                           color: Colors.white,
                         ),
                         labelText: 'Email',
-                        labelStyle: TextStyle(color: Colors.white),
+                        labelStyle: const TextStyle(color: Colors.white),
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(30.0))),
                     validator: Validator.email,
@@ -88,7 +88,7 @@ class LoginApp1 extends StatelessWidget {
                               color: Colors.white,
                             ),
                             labelText: 'password',
-                            labelStyle: TextStyle(color: Colors.white),
+                            labelStyle: const TextStyle(color: Colors.white),
                             suffixIcon: IconButton(
                                 onPressed: () {
                                   controller.visible();

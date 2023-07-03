@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:e_bike/Screens/login.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -8,7 +7,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../Nav Bar/Nav_bar.dart';
 import '../utils/Color_constant.dart';
-import 'Home.dart';
 import 'login2.dart';
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -24,14 +22,15 @@ class _SplashScreenState extends State<SplashScreen> {
     final token = prefs.getString("userID");
     if (token != null) {
       print('Token: $token');
-      Get.offAll(() => Nav());
+      Get.offAll(() => const Nav());
     } else {
-      Get.offAll(() => LoginApp());
+      Get.offAll(() => const LoginApp());
     }
   }
 
+  @override
   void initState() {
-    Timer(Duration(seconds: 4), (){
+    Timer(const Duration(seconds: 4), (){
 
       _init();
     });
@@ -46,8 +45,8 @@ class _SplashScreenState extends State<SplashScreen> {
       body: Container(
       decoration: BoxDecoration(
         gradient: LinearGradient(
-          begin: Alignment(0.5, 0),
-          end: Alignment(0.5, 1),
+          begin: const Alignment(0.5, 0),
+          end: const Alignment(0.5, 1),
           colors: [
           ColorConstant.blueGray900,
           ColorConstant.blue800,
@@ -57,8 +56,8 @@ class _SplashScreenState extends State<SplashScreen> {
           children:  [
 
             Center(child: SvgPicture.asset('images/img_shape.svg')),
-            SizedBox(height: 150,),
-            CircularProgressIndicator(
+            const SizedBox(height: 150,),
+            const CircularProgressIndicator(
               valueColor: AlwaysStoppedAnimation<Color>(Colors.blue),
             )
 

@@ -25,47 +25,47 @@ class forgot extends StatelessWidget {
       ),
       body: Column(
         children: [
-          Center(
+          const Center(
             child: Text(
               'Forgot Password ?',
               style: TextStyle(color: Colors.white, fontSize: 20),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
-          Icon(
+          const Icon(
             Icons.lock,
             size: 75,
             color: Colors.white,
           ),
-          Icon(
+          const Icon(
             Icons.password,
             size: 75,
             color: Colors.white,
           ),
-          SizedBox(
+          const SizedBox(
             height: 15,
           ),
           Container(
-              padding: EdgeInsets.only(right: 130),
-              child: Text(
+              padding: const EdgeInsets.only(right: 130),
+              child: const Text(
                 'Reset Your Password',
                 style: TextStyle(color: Colors.white, fontSize: 20),
               )),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
           Container(
-              padding: EdgeInsets.only(left: 35),
-              child: Text(
+              padding: const EdgeInsets.only(left: 35),
+              child: const Text(
                 'Enter your email address associated with your account',
                 style: TextStyle(color: Colors.white, fontSize: 17),
               )),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
-          Container(
+          SizedBox(
             width: 330,
             child: TextFormField(
               controller: authController.Emailcontroller,
@@ -81,17 +81,17 @@ class forgot extends StatelessWidget {
                   ),
                   labelText: 'Email',
                   hintText: 'Enter Your Email',
-                  hintStyle: TextStyle(color: Colors.grey),
-                  labelStyle: TextStyle(color: Colors.white),
+                  hintStyle: const TextStyle(color: Colors.grey),
+                  labelStyle: const TextStyle(color: Colors.white),
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(30.0))),
               validator: Validator.email,
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
-          Container(
+          SizedBox(
             width: 330,
             child: TextButton(
               style: ButtonStyle(

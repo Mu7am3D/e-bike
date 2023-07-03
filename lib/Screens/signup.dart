@@ -9,7 +9,7 @@ import 'login.dart';
 class SignUp1 extends StatelessWidget {
   SignUp1({Key? key}) : super(key: key);
   final formkey = GlobalKey<FormState>();
-  bool _isProgress = false;
+  final bool _isProgress = false;
 
   @override
   Widget build(BuildContext context) {
@@ -66,7 +66,7 @@ class SignUp1 extends StatelessWidget {
                         color: Colors.white,
                       ),
                       labelText: 'Full Name',
-                      labelStyle: TextStyle(color: Colors.white),
+                      labelStyle: const TextStyle(color: Colors.white),
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(30.0))),
                   validator: Validator.name,
@@ -87,7 +87,7 @@ class SignUp1 extends StatelessWidget {
                           color: Colors.white,
                         ),
                         labelText: 'Email',
-                        labelStyle: TextStyle(color: Colors.white),
+                        labelStyle: const TextStyle(color: Colors.white),
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(30.0))),
                     validator: Validator.email,
@@ -123,7 +123,7 @@ class SignUp1 extends StatelessWidget {
                                       color: Colors.white,
                                     )),
                           labelText: 'Password',
-                          labelStyle: TextStyle(color: Colors.white),
+                          labelStyle: const TextStyle(color: Colors.white),
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(30.0))),
                       validator: Validator.password,

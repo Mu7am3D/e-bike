@@ -1,4 +1,3 @@
-import 'package:e_bike/Screens/signup.dart';
 import 'package:e_bike/Screens/signup2.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -9,7 +8,7 @@ import '../utils/validator.dart';
 import 'forgot password.dart';
 
 class LoginApp extends StatefulWidget {
-  LoginApp({Key? key}) : super(key: key);
+  const LoginApp({Key? key}) : super(key: key);
 
   @override
   State<LoginApp> createState() => _LoginAppState();
@@ -30,7 +29,7 @@ class _LoginAppState extends State<LoginApp> {
 
   late String password;
 
-  bool _isProgress = false;
+  final bool _isProgress = false;
 
   @override
   @override
@@ -80,7 +79,7 @@ class _LoginAppState extends State<LoginApp> {
                           color: Colors.white,
                         ),
                         labelText: 'Email',
-                        labelStyle: TextStyle(color: Colors.white),
+                        labelStyle: const TextStyle(color: Colors.white),
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(30.0))),
                     validator: Validator.email,
@@ -104,7 +103,7 @@ class _LoginAppState extends State<LoginApp> {
                               color: Colors.white,
                             ),
                             labelText: 'password',
-                            labelStyle: TextStyle(color: Colors.white),
+                            labelStyle: const TextStyle(color: Colors.white),
                             suffixIcon: IconButton(
                                 onPressed: () {
                                   controller.visible();
@@ -133,11 +132,11 @@ class _LoginAppState extends State<LoginApp> {
                             remember = val!;
                           });
                         }),
-                    Text(
+                    const Text(
                       'Remeber Me',
                       style: TextStyle(color: Colors.white),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 120,
                     ),
                     TextButton(

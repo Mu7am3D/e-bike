@@ -9,12 +9,14 @@ import '../utils/Color_constant.dart';
 import 'Account.dart';
 
 class Weather extends StatefulWidget {
+  const Weather({super.key});
+
   @override
   State<Weather> createState() => _WeatherState();
 }
 
 class _WeatherState extends State<Weather> {
-  GlobalKey<ScaffoldState> drawerkey = new GlobalKey<ScaffoldState>();
+  GlobalKey<ScaffoldState> drawerkey = GlobalKey<ScaffoldState>();
   bool isOn = false;
   static String API_KEY =
       '75d0e61e6f0a4089a5231157230902'; //Paste Your API Here
@@ -38,9 +40,7 @@ class _WeatherState extends State<Weather> {
   String currentWeatherStatus = '';
 
   //API Call
-  String searchWeatherAPI = "https://api.weatherapi.com/v1/forecast.json?key=" +
-      API_KEY +
-      "&days=7&q=";
+  String searchWeatherAPI = "https://api.weatherapi.com/v1/forecast.json?key=$API_KEY&days=7&q=";
 
   void fetchWeatherData(String searchText) async {
     try {
@@ -70,7 +70,7 @@ class _WeatherState extends State<Weather> {
         //updateWeather
         currentWeatherStatus = currentWeather["condition"]["text"];
         weatherIcon =
-            currentWeatherStatus.replaceAll(' ', '').toLowerCase() + ".png";
+            "${currentWeatherStatus.replaceAll(' ', '').toLowerCase()}.png";
         statusicon = currentWeather["condition"]["icon"];
         temperature = currentWeather["temp_c"].toInt();
         windSpeed = currentWeather["wind_kph"].toInt();
@@ -107,7 +107,7 @@ class _WeatherState extends State<Weather> {
                   onPressed: () {
                     drawerkey.currentState!.openDrawer();
                   },
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.settings,
                     color: Colors.white,
                     size: 30,
@@ -133,7 +133,7 @@ class _WeatherState extends State<Weather> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
-                    padding: EdgeInsets.only(left: 40, top: 50),
+                    padding: const EdgeInsets.only(left: 40, top: 50),
                     child: Text(
                       'Settings',
                       style: GoogleFonts.inter(
@@ -142,11 +142,11 @@ class _WeatherState extends State<Weather> {
                           color: Colors.white),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   Container(
-                    padding: EdgeInsets.only(left: 10),
+                    padding: const EdgeInsets.only(left: 10),
                     child: ListTile(
                       title: Text(
                         'Account',
@@ -160,7 +160,7 @@ class _WeatherState extends State<Weather> {
                         color: ColorConstant.gray00,
                       ),
                       onTap: () => Navigator.of(context).push(
-                          MaterialPageRoute(builder: (context) => Account())),
+                          MaterialPageRoute(builder: (context) => const Account())),
                     ),
                   ),
                   Divider(
@@ -168,7 +168,7 @@ class _WeatherState extends State<Weather> {
                     height: 1,
                   ),
                   Container(
-                    padding: EdgeInsets.only(left: 10, top: 15, bottom: 15),
+                    padding: const EdgeInsets.only(left: 10, top: 15, bottom: 15),
                     child: ListTile(
                       title: Text(
                         'Ride History',
@@ -188,11 +188,11 @@ class _WeatherState extends State<Weather> {
                     color: ColorConstant.graydiv,
                     height: 1,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   Container(
-                    padding: EdgeInsets.only(left: 10, bottom: 15),
+                    padding: const EdgeInsets.only(left: 10, bottom: 15),
                     child: ListTile(
                       title: Text(
                         'Language',
@@ -215,11 +215,11 @@ class _WeatherState extends State<Weather> {
                     color: ColorConstant.graydiv,
                     height: 1,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   Container(
-                    padding: EdgeInsets.only(left: 10, bottom: 15),
+                    padding: const EdgeInsets.only(left: 10, bottom: 15),
                     child: ListTile(
                       title: Text(
                         'Notification',
@@ -230,9 +230,9 @@ class _WeatherState extends State<Weather> {
                       ),
                       trailing: Switch(
                           value: isOn,
-                          onChanged: (_isOn) {
+                          onChanged: (isOn) {
                             setState(() {
-                              isOn = _isOn;
+                              isOn = isOn;
                             });
                           }),
                       onTap: () {
@@ -253,7 +253,7 @@ class _WeatherState extends State<Weather> {
               Stack(
                 children: [
                   Container(
-                    margin: EdgeInsets.only(left: 12, top: 15),
+                    margin: const EdgeInsets.only(left: 12, top: 15),
                     height: 190,
                     width: 366,
                     decoration: BoxDecoration(
@@ -261,37 +261,37 @@ class _WeatherState extends State<Weather> {
                         borderRadius: BorderRadius.circular(24)),
                   ),
                   Container(
-                    margin: EdgeInsets.only(top: 160, left: 12),
+                    margin: const EdgeInsets.only(top: 160, left: 12),
                     height: 53,
                     width: 366,
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(26)),
                     child: Center(
                         child: Text(
                       currentDate,
                       style: GoogleFonts.montserrat(
                           fontWeight: FontWeight.w400, fontSize: 18),
                     )),
-                    decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(26)),
                   ),
                   Container(
-                    padding: EdgeInsets.only(left: 35, top: 40),
+                    padding: const EdgeInsets.only(left: 35, top: 40),
                     child: Image.asset('images/cloudly.png'),
                   ),
                   Row(
                     children: [
                       Container(
-                          margin: EdgeInsets.only(left: 180, top: 65),
+                          margin: const EdgeInsets.only(left: 180, top: 65),
                           child: Text(
                             temperature.toString(),
                             style: GoogleFonts.montserrat(
                                 fontSize: 32, fontWeight: FontWeight.w400),
                           )),
-                      SizedBox(
+                      const SizedBox(
                         width: 10,
                       ),
                       Container(
-                        margin: EdgeInsets.only(top: 75),
+                        margin: const EdgeInsets.only(top: 75),
                         child: Text(
                           currentWeatherStatus,
                           style: GoogleFonts.montserrat(
@@ -301,7 +301,7 @@ class _WeatherState extends State<Weather> {
                     ],
                   ),
                   Container(
-                    padding: EdgeInsets.only(left: 180, top: 110),
+                    padding: const EdgeInsets.only(left: 180, top: 110),
                     child: Text(
                       'Cairo',
                       style: GoogleFonts.montserrat(
@@ -310,18 +310,23 @@ class _WeatherState extends State<Weather> {
                   )
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Stack(
                 children: [
                   Center(
                     child: Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(40),
+                          color: ColorConstant.weth),
+                      height: 280,
+                      width: 366,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           Container(
-                              padding: EdgeInsets.only(top: 20),
+                              padding: const EdgeInsets.only(top: 20),
                               child: Center(
                                 child: Text(
                                   'TODAY',
@@ -332,17 +337,12 @@ class _WeatherState extends State<Weather> {
                               )),
                         ],
                       ),
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(40),
-                          color: ColorConstant.weth),
-                      height: 280,
-                      width: 366,
                     ),
                   ),
                   Row(
                     children: [
                       Container(
-                        padding: EdgeInsets.only(left: 50, top: 70),
+                        padding: const EdgeInsets.only(left: 50, top: 70),
                         child: Column(
                           children: [
                             Image.asset('images/Wind.png'),
@@ -356,7 +356,7 @@ class _WeatherState extends State<Weather> {
                             ),
                             Container(
                               child: Text(
-                                '$windSpeed' + ' km/h',
+                                '$windSpeed' ' km/h',
                                 style: GoogleFonts.inter(
                                     fontSize: 15, fontWeight: FontWeight.w600),
                               ),
@@ -364,11 +364,11 @@ class _WeatherState extends State<Weather> {
                           ],
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 10,
                       ),
                       Container(
-                        padding: EdgeInsets.only(left: 50, top: 70),
+                        padding: const EdgeInsets.only(left: 50, top: 70),
                         child: Column(
                           children: [
                             Image.asset('images/Drop.png'),
@@ -382,7 +382,7 @@ class _WeatherState extends State<Weather> {
                             ),
                             Container(
                               child: Text(
-                                '$humidity' + ' %',
+                                '$humidity' ' %',
                                 style: GoogleFonts.inter(
                                     fontSize: 15, fontWeight: FontWeight.w600),
                               ),
@@ -390,11 +390,11 @@ class _WeatherState extends State<Weather> {
                           ],
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 10,
                       ),
                       Container(
-                          padding: EdgeInsets.only(left: 50, top: 70),
+                          padding: const EdgeInsets.only(left: 50, top: 70),
                           child: Column(
                             children: [
                               Image.asset('images/CloudRain.png'),
@@ -407,9 +407,9 @@ class _WeatherState extends State<Weather> {
                                 ),
                               ),
                               Container(
-                                padding: EdgeInsets.only(left: 5),
+                                padding: const EdgeInsets.only(left: 5),
                                 child: Text(
-                                  '$cloud' + ' %',
+                                  '$cloud' ' %',
                                   style: GoogleFonts.inter(
                                       fontSize: 15,
                                       fontWeight: FontWeight.w600),
@@ -420,11 +420,11 @@ class _WeatherState extends State<Weather> {
                     ],
                   ),
                   Container(
-                    padding: EdgeInsets.only(top: 100),
+                    padding: const EdgeInsets.only(top: 100),
                     child: Row(
                       children: [
                         Container(
-                          padding: EdgeInsets.only(left: 40, top: 70),
+                          padding: const EdgeInsets.only(left: 40, top: 70),
                           child: Column(
                             children: [
                               Image.asset('images/Sun.png'),
@@ -448,7 +448,7 @@ class _WeatherState extends State<Weather> {
                           ),
                         ),
                         Container(
-                          padding: EdgeInsets.only(left: 50, top: 70),
+                          padding: const EdgeInsets.only(left: 50, top: 70),
                           child: Column(
                             children: [
                               Image.asset('images/tempe.png'),
@@ -471,11 +471,11 @@ class _WeatherState extends State<Weather> {
                             ],
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 5,
                         ),
                         Container(
-                            padding: EdgeInsets.only(left: 50, top: 70),
+                            padding: const EdgeInsets.only(left: 50, top: 70),
                             child: Column(
                               children: [
                                 Image.asset('images/Sun.png'),
@@ -488,7 +488,7 @@ class _WeatherState extends State<Weather> {
                                   ),
                                 ),
                                 Container(
-                                  padding: EdgeInsets.only(left: 5),
+                                  padding: const EdgeInsets.only(left: 5),
                                   child: Text(
                                     sunset,
                                     style: GoogleFonts.inter(

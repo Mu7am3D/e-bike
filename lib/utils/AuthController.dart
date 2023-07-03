@@ -5,7 +5,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../Nav Bar/Nav_bar.dart';
-import '../Screens/login.dart';
 import '../Screens/login2.dart';
 
 class AuthController extends GetxController {
@@ -42,7 +41,7 @@ class AuthController extends GetxController {
         "profpic": " "
       });
       if (user != null) {
-        Get.to(() => Nav());
+        Get.to(() => const Nav());
         print(_auth.currentUser!.uid);
       } else {
         print('error');
@@ -66,7 +65,7 @@ class AuthController extends GetxController {
         SharedPreferences prefs = await SharedPreferences.getInstance();
         prefs.setString("userID", user.user!.uid);
         print(user.user!.uid);
-        Get.to(() => Nav());
+        Get.to(() => const Nav());
         print(_auth.currentUser!.uid);
       } else {
         print('error');
@@ -85,7 +84,7 @@ class AuthController extends GetxController {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.clear();
     _storeOnboardInfo();
-    Get.offAll(() => LoginApp());
+    Get.offAll(() => const LoginApp());
   }
 
   _storeOnboardInfo() async {
