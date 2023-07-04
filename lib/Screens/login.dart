@@ -13,8 +13,6 @@ class LoginApp1 extends StatelessWidget {
   var EmailController = TextEditingController();
   var PasswordController = TextEditingController();
   final formkey = GlobalKey<FormState>();
-  late String email;
-  late String password;
   final bool _isProgress = false;
   @override
   @override

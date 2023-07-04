@@ -3,14 +3,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../utils/Color_constant.dart';
 
-class Wallet extends StatefulWidget {
+class Wallet extends StatelessWidget {
   const Wallet({Key? key}) : super(key: key);
 
-  @override
-  State<Wallet> createState() => _WalletState();
-}
-
-class _WalletState extends State<Wallet> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(

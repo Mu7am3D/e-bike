@@ -6,14 +6,9 @@ import 'Payment.dart';
 import 'Profile.dart';
 import 'Wallet.dart';
 
-class Account extends StatefulWidget {
+class Account extends StatelessWidget {
   const Account({Key? key}) : super(key: key);
 
-  @override
-  State<Account> createState() => _AccountState();
-}
-
-class _AccountState extends State<Account> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(

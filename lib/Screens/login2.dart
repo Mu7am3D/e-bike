@@ -7,31 +7,11 @@ import '../utils/Color_constant.dart';
 import '../utils/validator.dart';
 import 'forgot password.dart';
 
-class LoginApp extends StatefulWidget {
-  const LoginApp({Key? key}) : super(key: key);
-
-  @override
-  State<LoginApp> createState() => _LoginAppState();
-}
-
-class _LoginAppState extends State<LoginApp> {
-  bool isvisible = false;
-
-  bool remember = false;
-
-  var EmailController = TextEditingController();
-
-  var PasswordController = TextEditingController();
-
+class LoginApp extends StatelessWidget {
+  LoginApp({Key? key}) : super(key: key);
   final formkey = GlobalKey<FormState>();
-
-  late String email;
-
-  late String password;
-
   final bool _isProgress = false;
 
-  @override
   @override
   Widget build(BuildContext context) {
     AuthController authController = AuthController();
@@ -127,14 +107,17 @@ class _LoginAppState extends State<LoginApp> {
                       )),
                   Row(
                     children: [
-                      Checkbox(
+                      GetBuilder<AuthController>(
+                        init: AuthController(),
+                        builder: (controller) => Checkbox(
                           checkColor: Colors.white,
-                          value: remember,
+                          value: controller.isremebered,
                           onChanged: (val) {
-                            setState(() {
-                              remember = val!;
-                            });
-                          }),
+                            controller.remember();
+                            print(controller.isremebered);
+                          },
+                        ),
+                      ),
                       const Text(
                         'Remeber Me',
                         style: TextStyle(color: Colors.white),

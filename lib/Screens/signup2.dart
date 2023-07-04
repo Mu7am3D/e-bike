@@ -186,7 +186,7 @@ class SignUp extends StatelessWidget {
                       ),
                       TextButton(
                           onPressed: () {
-                            Get.to(() => const LoginApp());
+                            Get.to(() => LoginApp());
                           },
                           child: Text("Login",
                               style: TextStyle(

@@ -24,7 +24,7 @@ class AuthController extends GetxController {
     update();
   }
 
-  void remeber() {
+  void remember() {
     isremebered = !isremebered;
     update();
   }
@@ -84,7 +84,7 @@ class AuthController extends GetxController {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.clear();
     _storeOnboardInfo();
-    Get.offAll(() => const LoginApp());
+    Get.offAll(() => LoginApp());
   }
 
   _storeOnboardInfo() async {

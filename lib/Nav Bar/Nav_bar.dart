@@ -1,11 +1,14 @@
+import 'package:e_bike/Screens/Health1.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../Screens/Health.dart';
 import '../Screens/Home.dart';
+import '../Screens/home1.dart';
 import '../Screens/Lock.dart';
 import '../Screens/Navigation.dart';
 import '../Screens/Weather_screen.dart';
+import '../Screens/WeatherView.dart';
 import '../utils/Color_constant.dart';
 
 class Nav extends StatefulWidget {
@@ -51,13 +54,13 @@ class _NavState extends State<Nav> {
   Widget pages() {
     switch (_item) {
       case 0:
-        return const Home();
+        return HomeView();
       case 1:
         return const Navigation();
       case 2:
-        return const WeatherScreen();
+        return WeatherView();
       case 3:
-        return const Health();
+        return healthView();
       case 4:
         return const Lock();
       default:
