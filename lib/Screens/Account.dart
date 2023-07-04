@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../utils/Color_constant.dart';
 import 'Payment.dart';
 import 'Profile.dart';
@@ -22,96 +22,96 @@ class _AccountState extends State<Account> {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        leading: IconButton(onPressed: () {
-          Navigator.pop(context);
-        }, icon: const Icon(Icons.arrow_back)),
+        leading: IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: const Icon(Icons.arrow_back)),
       ),
-          body: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-            Container(padding: const EdgeInsets.only(left: 40, top: 10),
-              child: Text(
-                'Account',
-                style: GoogleFonts.inter(
-                  fontSize: 24,
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            padding: EdgeInsets.only(left: 40.w, top: 10.h),
+            child: Text(
+              'Account',
+              style: GoogleFonts.inter(
+                  fontSize: 24.sp,
                   fontWeight: FontWeight.w800,
-                  color: Colors.white
-                ),
-              ),
+                  color: Colors.white),
             ),
-              const SizedBox(
-                height: 20,
-              ),Container(
-                padding: const EdgeInsets.only(left: 30,bottom: 10),
-                child: ListTile(
-                  title: Text(
-                    'Profile',
-                    style: GoogleFonts.inter(
-                      fontWeight: FontWeight.w400,
-                      fontSize: 24,
-                      color: Colors.white
-                    ),
-                  ),
-                  trailing: Icon(
-                    Icons.arrow_forward_ios,
-                    color: ColorConstant.gray00,
-                  ),
-                  onTap: () => Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => const Profile())),
-                ),
+          ),
+          SizedBox(
+            height: 20.h,
+          ),
+          Container(
+            padding: EdgeInsets.only(left: 30.w, bottom: 10.h),
+            child: ListTile(
+              title: Text(
+                'Profile',
+                style: GoogleFonts.inter(
+                    fontWeight: FontWeight.w400,
+                    fontSize: 24.sp,
+                    color: Colors.white),
               ),
-              Divider(
-                color: ColorConstant.graydiv,
-                height: 1,
+              trailing: Icon(
+                Icons.arrow_forward_ios,
+                color: ColorConstant.gray00,
               ),
-              Container(
-                padding: const EdgeInsets.only(left: 30,bottom: 20,top: 25),
-                child: ListTile(
-                  title: Text(
-                    'Payment',
-                    style: GoogleFonts.inter(
-                        fontWeight: FontWeight.w400,
-                        fontSize: 24,
-                        color: Colors.white
-                    ),
-                  ),
-                  trailing: Icon(
-                    Icons.arrow_forward_ios,
-                    color: ColorConstant.gray00,
-                  ),
-                  onTap: () => Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => const Payment())),
-                ),
+              onTap: () => Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => const Profile())),
+            ),
+          ),
+          Divider(
+            color: ColorConstant.graydiv,
+            height: 2.h,
+          ),
+          Container(
+            padding: EdgeInsets.only(left: 30.w, bottom: 20.h, top: 25.h),
+            child: ListTile(
+              title: Text(
+                'Payment',
+                style: GoogleFonts.inter(
+                    fontWeight: FontWeight.w400,
+                    fontSize: 24.sp,
+                    color: Colors.white),
               ),
-              Divider(
-                color: ColorConstant.graydiv,
-                height: 1,
+              trailing: Icon(
+                Icons.arrow_forward_ios,
+                color: ColorConstant.gray00,
               ),
-              Container(
-                padding: const EdgeInsets.only(left: 30,bottom: 20,top: 25),
-                child: ListTile(
-                  title: Text(
-                    'Wallet',
-                    style: GoogleFonts.inter(
-                        fontWeight: FontWeight.w400,
-                        fontSize: 24,
-                        color: Colors.white
-                    ),
-                  ),
-                  trailing: Icon(
-                    Icons.arrow_forward_ios,
-                    color: ColorConstant.gray00,
-                  ),
-                  onTap: () => Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => const Wallet())),
-                ),
+              onTap: () => Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => const Payment())),
+            ),
+          ),
+          Divider(
+            color: ColorConstant.graydiv,
+            height: 1.5.h,
+          ),
+          Container(
+            padding: EdgeInsets.only(left: 30.w, bottom: 20.h, top: 25.h),
+            child: ListTile(
+              title: Text(
+                'Wallet',
+                style: GoogleFonts.inter(
+                    fontWeight: FontWeight.w400,
+                    fontSize: 24.sp,
+                    color: Colors.white),
               ),
-              Divider(
-                color: ColorConstant.graydiv,
-                height: 2,
+              trailing: Icon(
+                Icons.arrow_forward_ios,
+                color: ColorConstant.gray00,
               ),
-
-          ],),
+              onTap: () => Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => const Wallet())),
+            ),
+          ),
+          Divider(
+            color: ColorConstant.graydiv,
+            height: 1.5.h,
+          ),
+        ],
+      ),
     ));
   }
 }

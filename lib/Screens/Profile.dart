@@ -3,7 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../utils/AuthController.dart';
 import '../utils/Color_constant.dart';
 
@@ -24,7 +24,6 @@ class _ProfileState extends State<Profile> {
   @override
   void initState() {
     super.initState();
-    loadUserData();
   }
 
   void loadUserData() {
@@ -59,43 +58,43 @@ class _ProfileState extends State<Profile> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            padding: const EdgeInsets.only(left: 40, top: 10),
+            padding: EdgeInsets.only(left: 40.w, top: 10.h),
             child: Text(
               'Profile',
               style: GoogleFonts.inter(
-                  fontSize: 24,
+                  fontSize: 24.sp,
                   fontWeight: FontWeight.w800,
                   color: Colors.white),
             ),
           ),
-          const SizedBox(
-            height: 10,
+          SizedBox(
+            height: 10.h,
           ),
           Center(
             child: Container(
               child: CircleAvatar(
                 backgroundColor: ColorConstant.blueGray900,
                 backgroundImage: const AssetImage('images/ppic.png'),
-                radius: 50,
+                radius: 50.sp,
               ),
             ),
           ),
           Container(
-            padding: const EdgeInsets.only(top: 15, bottom: 10, left: 30),
+            padding: EdgeInsets.only(top: 15.h, bottom: 10.h, left: 30.w),
             child: ListTile(
               title: Text(
                 'Name :',
                 style: GoogleFonts.montserrat(
                     fontWeight: FontWeight.w400,
-                    fontSize: 24,
+                    fontSize: 24.sp,
                     color: Colors.white),
               ),
               trailing: Container(
-                  padding: const EdgeInsets.only(right: 40),
+                  padding: EdgeInsets.only(right: 40.w),
                   child: Text(
                     name,
                     style: GoogleFonts.montserrat(
-                        fontSize: 21,
+                        fontSize: 21.sp,
                         fontWeight: FontWeight.w400,
                         color: Colors.white),
                   )),
@@ -104,49 +103,49 @@ class _ProfileState extends State<Profile> {
           ),
           Divider(
             color: ColorConstant.graydiv,
-            height: 1,
+            height: 1.h,
           ),
           Container(
-            padding: const EdgeInsets.only(top: 15, bottom: 10, left: 30),
+            padding: EdgeInsets.only(top: 15.h, bottom: 10.h, left: 30.w),
             child: ListTile(
               title: Text(
                 'E-mail :',
                 style: GoogleFonts.montserrat(
                     fontWeight: FontWeight.w400,
-                    fontSize: 24,
+                    fontSize: 24.sp,
                     color: Colors.white),
               ),
               trailing: Container(
-                  padding: const EdgeInsets.only(right: 35),
-                  child: Flexible(
-                    child: FittedBox(
-                      fit: BoxFit.contain,
-                      child: AutoSizeText(
-                        email,
-                        maxLines: 1,
-                        style: GoogleFonts.montserrat(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w400,
-                            color: Colors.white),
-                      ),
+                padding: EdgeInsets.only(right: 35.w),
+                child: Flexible(
+                  child: FittedBox(
+                    fit: BoxFit.contain,
+                    child: AutoSizeText(
+                      email,
+                      maxLines: 1,
+                      style: GoogleFonts.montserrat(
+                          fontSize: 16.sp,
+                          fontWeight: FontWeight.w400,
+                          color: Colors.white),
                     ),
                   ),
+                ),
               ),
               onTap: () {},
             ),
           ),
           Divider(
             color: ColorConstant.graydiv,
-            height: 2,
+            height: 1.h,
           ),
           Container(
-            padding: const EdgeInsets.only(left: 30, bottom: 10, top: 15),
+            padding: EdgeInsets.only(left: 30.w, bottom: 10.h, top: 15.h),
             child: ListTile(
               title: Text(
                 'Change Password',
                 style: GoogleFonts.montserrat(
                     fontWeight: FontWeight.w400,
-                    fontSize: 24,
+                    fontSize: 24.sp,
                     color: Colors.white),
               ),
               trailing: Icon(
@@ -158,7 +157,7 @@ class _ProfileState extends State<Profile> {
           ),
           Divider(
             color: ColorConstant.graydiv,
-            height: 2,
+            height: 1.h,
           ),
         ],
       ),

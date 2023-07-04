@@ -1,7 +1,7 @@
 import 'package:e_bike/Screens/signup.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../utils/AuthController.dart';
 import '../utils/Color_constant.dart';
 import '../utils/validator.dart';
@@ -27,34 +27,34 @@ class LoginApp1 extends StatelessWidget {
           Form(
               key: formkey,
               child: Column(children: [
-                const SizedBox(
-                  height: 75,
+                SizedBox(
+                  height: 75.h,
                 ),
-                const Image(
+                Image(
                   image: AssetImage(
                     'images/rider.png',
                   ),
-                  height: 100,
+                  height: 100.h,
                 ),
-                const SizedBox(
-                  height: 30,
+                SizedBox(
+                  height: 30.h,
                 ),
-                const Text(
+                Text(
                   "Login to your account",
                   style: TextStyle(
-                      fontSize: 30,
+                      fontSize: 30.sp,
                       fontWeight: FontWeight.bold,
                       color: Colors.white),
                 ),
-                const SizedBox(
-                  height: 30,
+                SizedBox(
+                  height: 30.h,
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(10.0),
+                  padding: EdgeInsets.all(10.sp),
                   child: TextFormField(
                     controller: authController.EmailController,
-                    style: const TextStyle(
-                      fontSize: 20,
+                    style: TextStyle(
+                      fontSize: 20.sp,
                       color: Colors.white,
                     ),
                     keyboardType: TextInputType.emailAddress,
@@ -66,24 +66,24 @@ class LoginApp1 extends StatelessWidget {
                         labelText: 'Email',
                         labelStyle: const TextStyle(color: Colors.white),
                         border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(30.0))),
+                            borderRadius: BorderRadius.circular(30.sp))),
                     validator: Validator.email,
                   ),
                 ),
                 Padding(
-                    padding: const EdgeInsets.all(10.0),
+                    padding: EdgeInsets.all(10.sp),
                     child: GetBuilder<AuthController>(
                       init: AuthController(),
                       builder: (controller) => TextFormField(
                         controller: authController.PasswordController,
-                        style: const TextStyle(
-                          fontSize: 20,
+                        style: TextStyle(
+                          fontSize: 20.sp,
                           color: Colors.white,
                         ),
                         keyboardType: TextInputType.visiblePassword,
                         obscureText: !controller.isvisible,
                         decoration: InputDecoration(
-                            prefixIcon: const Icon(
+                            prefixIcon: Icon(
                               Icons.lock,
                               color: Colors.white,
                             ),
@@ -103,7 +103,7 @@ class LoginApp1 extends StatelessWidget {
                                         color: Colors.white,
                                       )),
                             border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(30.0))),
+                                borderRadius: BorderRadius.circular(30.sp))),
                         validator: Validator.password,
                       ),
                     )),
@@ -116,37 +116,37 @@ class LoginApp1 extends StatelessWidget {
                             width: double.maxFinite,
                             child: Container(
                               decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(30),
+                                borderRadius: BorderRadius.circular(30.sp),
                                 color: Colors.red,
                               ),
-                              height: 50,
-                              margin: const EdgeInsets.symmetric(
-                                  horizontal: 10, vertical: 10),
+                              height: 50.h,
+                              margin: EdgeInsets.symmetric(
+                                  horizontal: 10.w, vertical: 10.h),
                               child: TextButton(
                                 onPressed: () async {
                                   if (formkey.currentState!.validate()) {
                                     authController.loginUser(context);
                                   }
                                 },
-                                child: const Text(
+                                child: Text(
                                   "Login",
                                   style: TextStyle(
                                       color: Colors.white,
-                                      fontSize: 25,
+                                      fontSize: 25.sp,
                                       fontWeight: FontWeight.bold),
                                 ),
                               ),
                             ),
                           ),
-                    const SizedBox(height: 20),
+                    SizedBox(height: 20.h),
                     Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
-                          const Text(
+                          Text(
                             "You do not have an account ?",
                             style: TextStyle(
                               color: Colors.white,
-                              fontSize: 20,
+                              fontSize: 20.sp,
                             ),
                           ),
                           TextButton(
@@ -156,9 +156,9 @@ class LoginApp1 extends StatelessWidget {
                                     MaterialPageRoute(
                                         builder: (context) => SignUp1()));
                               },
-                              child: const Text("Sign up",
+                              child: Text("Sign up",
                                   style: TextStyle(
-                                      color: Colors.red, fontSize: 20))),
+                                      color: Colors.red, fontSize: 20.sp))),
                         ])
                   ],
                 )),

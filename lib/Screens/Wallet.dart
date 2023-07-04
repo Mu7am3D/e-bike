@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../utils/Color_constant.dart';
 
 class Wallet extends StatefulWidget {
@@ -29,123 +29,165 @@ class _WalletState extends State<Wallet> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            padding: const EdgeInsets.only(left: 40, top: 5),
+            padding: EdgeInsets.only(left: 40.w, top: 5.h),
             child: Text(
               'Wallet',
               style: GoogleFonts.inter(
-                fontWeight: FontWeight.w800,
-                fontSize: 24,
-                color: Colors.white
-              ),
+                  fontWeight: FontWeight.w800,
+                  fontSize: 24.sp,
+                  color: Colors.white),
             ),
           ),
-          const SizedBox(
-            height: 25,
+          SizedBox(
+            height: 64.h,
           ),
           Stack(
             children: [
-              Container(
-                padding: const EdgeInsets.only(top: 10),
-                child: Image.asset('images/carddd.png'),
-              ),
-              Container(
-                padding: const EdgeInsets.only(top: 27, left: 20),
-                child: Image.asset('images/tst.png'),
-              ),
-              Container(
-                  padding: const EdgeInsets.only(top: 48, left: 210),
-                  child: Text(
-                    'Weekly Points',
-                    style: GoogleFonts.montserrat(
-                      fontSize: 20,
-                      fontWeight: FontWeight.w300,
-                      color: Colors.white
-                    ),
-                  )),
-              Container(
-                padding: const EdgeInsets.only(top: 85, left: 315),
-                child: Text(
-                  '200',
-                  style: GoogleFonts.montserrat(
-                    fontWeight: FontWeight.w600,
-                    fontSize: 20,
-                    color: Colors.white
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Container(
+                    margin: EdgeInsets.only(right: 20.w),
+                    width: 350.sp,
+                    height: 224.sp,
+                    decoration: BoxDecoration(
+                        color: ColorConstant.brownny,
+                        borderRadius: BorderRadius.circular(24.sp)),
                   ),
-                ),
+                ],
               ),
-              Container(margin: const EdgeInsets.only(left: 220,top: 190),
-                width: 131,
-                height: 40,
-                decoration: BoxDecoration(
-                    gradient: LinearGradient(colors: [
-                      ColorConstant.whiteA700.withOpacity(0.5),
-                      ColorConstant.whiteB700.withOpacity(0.5)
-                    ]),
-                    borderRadius: BorderRadius.circular(20),
-                    color: Colors.white),
-                child: TextButton(
-                    onPressed: () {},
-                    child: Text(
-                      'Transfer',
-                      style: GoogleFonts.montserrat(
-                        fontSize: 15,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.black
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Container(
+                      margin: EdgeInsets.only(
+                        right: 44.w,
+                        top: 24.h,
                       ),
-                    )),
+                      child: Text(
+                        'Weekly Points',
+                        style: GoogleFonts.montserrat(
+                            fontSize: 20.sp,
+                            fontWeight: FontWeight.w300,
+                            color: Colors.white),
+                      )),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Container(
+                    margin: EdgeInsets.only(
+                      right: 44.w,
+                      top: 59.h,
+                    ),
+                    child: Text(
+                      '200',
+                      style: GoogleFonts.montserrat(
+                          fontWeight: FontWeight.w600,
+                          fontSize: 20.sp,
+                          color: Colors.white),
+                    ),
+                  ),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Container(
+                    margin: EdgeInsets.only(right: 44.w, top: 160.h),
+                    width: 131.w,
+                    height: 40.h,
+                    decoration: BoxDecoration(
+                        gradient: LinearGradient(colors: [
+                          ColorConstant.whiteA700.withOpacity(0.5),
+                          ColorConstant.whiteB700.withOpacity(0.5)
+                        ]),
+                        borderRadius: BorderRadius.circular(20.sp),
+                        color: Colors.white),
+                    child: TextButton(
+                        onPressed: () {},
+                        child: Text(
+                          'Transfer',
+                          style: GoogleFonts.montserrat(
+                              fontSize: 15.sp,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.black),
+                        )),
+                  ),
+                ],
+              ),
+              Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Container(
+                        padding: EdgeInsets.only(right: 50.sp),
+                        width: 350.w,
+                        height: 224.h,
+                        child: Image.asset(
+                          'images/yarab.png',
+                          fit: BoxFit.fill,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
               )
             ],
           ),
           Container(
-            padding: const EdgeInsets.only(left: 25,bottom: 10),
+            padding: EdgeInsets.only(left: 27.w, top: 79.h),
             child: ListTile(
                 title: Text(
                   'Points :',
                   style: GoogleFonts.montserrat(
-                    fontWeight: FontWeight.w400,
-                    fontSize: 24,
-                    color: Colors.white
-                  ),
+                      fontWeight: FontWeight.w400,
+                      fontSize: 24.sp,
+                      color: Colors.white),
                 ),
-                trailing: Container(padding:const EdgeInsets.only(bottom: 10,right: 95) ,child: Text('241',style: GoogleFonts.montserrat(
-                  fontSize: 32,
-                  fontWeight: FontWeight.w600,
-                  color: Colors.white
-                ),
-                )
-                ),
-                onTap: () {}
-            ),
+                trailing: Container(
+                    padding: EdgeInsets.only(bottom: 5.h, right: 117.w),
+                    child: Text(
+                      '241',
+                      style: GoogleFonts.montserrat(
+                          fontSize: 32.sp,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.white),
+                    )),
+                onTap: () {}),
           ),
           Divider(
             color: ColorConstant.graydiv,
-            height: 1,
+            height: 1.25.h,
           ),
           Container(
-            padding: const EdgeInsets.only(left: 25,bottom: 10,top: 10),
+            padding: EdgeInsets.only(left: 27.w, bottom: 10.h, top: 10.h),
             child: ListTile(
                 title: Text(
                   'Balance :',
                   style: GoogleFonts.montserrat(
                       fontWeight: FontWeight.w400,
-                      fontSize: 24,
-                      color: Colors.white
-                  ),
+                      fontSize: 24.sp,
+                      color: Colors.white),
                 ),
-                trailing: Container(padding:const EdgeInsets.only(bottom: 10,right: 40) ,child: Text('\$ 10.50',style: GoogleFonts.montserrat(
-                    fontSize: 32,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.white
-                ),
-                )),
-                onTap: () {}
-            ),
+                trailing: Container(
+                    margin: EdgeInsets.only(bottom: 5.h, right: 64.w),
+                    child: Text(
+                      '\$ 10.50',
+                      style: GoogleFonts.montserrat(
+                          fontSize: 32.sp,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.white),
+                    )),
+                onTap: () {}),
           ),
           Divider(
             color: ColorConstant.graydiv,
-            height: 2,
+            height: 1.25.h,
           ),
-
         ],
       ),
     ));
