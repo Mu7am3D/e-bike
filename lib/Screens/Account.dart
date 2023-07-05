@@ -5,6 +5,7 @@ import '../utils/Color_constant.dart';
 import 'Payment.dart';
 import 'Profile.dart';
 import 'Wallet.dart';
+import '../Screens/ProfileView.dart';
 
 class Account extends StatelessWidget {
   const Account({Key? key}) : super(key: key);
@@ -53,8 +54,8 @@ class Account extends StatelessWidget {
                 Icons.arrow_forward_ios,
                 color: ColorConstant.gray00,
               ),
-              onTap: () => Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => const Profile())),
+              onTap: () => Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (context) => ProfileView())),
             ),
           ),
           Divider(
