@@ -9,7 +9,6 @@ import 'login2.dart';
 class SignUp extends StatelessWidget {
   SignUp({Key? key}) : super(key: key);
   static final formkey = GlobalKey<FormState>();
-  final bool _isProgress = false;
 
   @override
   Widget build(BuildContext context) {
@@ -146,33 +145,39 @@ class SignUp extends StatelessWidget {
               Center(
                   child: Column(
                 children: [
-                  _isProgress
-                      ? const CircularProgressIndicator()
-                      : SizedBox(
-                          width: double.maxFinite,
-                          child: Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(5.sp),
-                                color: Colors.blue,
-                              ),
-                              height: 50.h,
-                              margin: EdgeInsets.symmetric(
-                                  horizontal: 10.w, vertical: 10.h),
-                              child: TextButton(
-                                onPressed: () async {
-                                  if (formkey.currentState!.validate()) {
-                                    authController.createAccount(context);
-                                  }
-                                },
-                                child: Text(
-                                  "SignUp",
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 25.sp,
-                                      fontWeight: FontWeight.bold),
-                                  textAlign: TextAlign.center,
-                                ),
-                              ))),
+                  SizedBox(
+                      width: double.maxFinite,
+                      child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(5.sp),
+                            color: Colors.blue,
+                          ),
+                          height: 50.h,
+                          margin: EdgeInsets.symmetric(
+                              horizontal: 10.w, vertical: 10.h),
+                          child: GetBuilder<AuthController>(
+                              builder: (controller) => TextButton(
+                                  child: controller.isLoading
+                                      ? Center(
+                                          child: CircularProgressIndicator(
+                                          color: Colors.white,
+                                        ))
+                                      : Text(
+                                          "SignUp",
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 25.sp,
+                                              fontWeight: FontWeight.bold),
+                                          textAlign: TextAlign.center,
+                                        ),
+                                  onPressed: () async {
+                                    if (formkey.currentState!.validate()) {
+                                      controller.loading();
+                                      await authController
+                                          .createAccount(context);
+                                      controller.loading();
+                                    }
+                                  })))),
                   SizedBox(height: 20.h),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,

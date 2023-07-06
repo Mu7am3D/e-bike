@@ -18,6 +18,7 @@ class AuthController extends GetxController {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   bool isvisible = false;
   bool isremebered = false;
+  bool isLoading = false;
 
   void visible() {
     isvisible = !isvisible;
@@ -26,6 +27,11 @@ class AuthController extends GetxController {
 
   void remember() {
     isremebered = !isremebered;
+    update();
+  }
+
+  void loading() {
+    isLoading = !isLoading;
     update();
   }
 

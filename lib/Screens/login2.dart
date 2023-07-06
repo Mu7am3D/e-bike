@@ -2,15 +2,15 @@ import 'package:e_bike/Screens/signup2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import '../utils/AuthController.dart';
 import '../utils/Color_constant.dart';
 import '../utils/validator.dart';
 import 'forgot password.dart';
 
-class LoginApp extends StatelessWidget {
+class LoginApp extends GetView<AuthController> {
   LoginApp({Key? key}) : super(key: key);
   final formkey = GlobalKey<FormState>();
-  final bool _isProgress = false;
 
   @override
   Widget build(BuildContext context) {
@@ -140,34 +140,43 @@ class LoginApp extends StatelessWidget {
                   Center(
                       child: Column(
                     children: [
-                      _isProgress
-                          ? const CircularProgressIndicator()
-                          : SizedBox(
-                              width: double.maxFinite,
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(5.sp),
-                                  color: Colors.blue,
-                                ),
-                                height: 50.h,
-                                margin: EdgeInsets.symmetric(
-                                    horizontal: 10.w, vertical: 10.h),
-                                child: TextButton(
-                                  onPressed: () async {
-                                    if (formkey.currentState!.validate()) {
-                                      authController.loginUser(context);
-                                    }
-                                  },
-                                  child: Text(
-                                    "Login",
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 25.sp,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                ),
-                              ),
-                            ),
+                      SizedBox(
+                        width: double.maxFinite,
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(5.sp),
+                            color: Colors.blue,
+                          ),
+                          height: 50.h,
+                          margin: EdgeInsets.symmetric(
+                            horizontal: 10.w,
+                            vertical: 10.h,
+                          ),
+                          child: GetBuilder<AuthController>(
+                              builder: (controller) => TextButton(
+                                    child: controller.isLoading
+                                        ? Center(
+                                            child: CircularProgressIndicator(
+                                            color: Colors.white,
+                                          ))
+                                        : Text(
+                                            "Login",
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 25.sp,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                    onPressed: () async {
+                                      if (formkey.currentState!.validate()) {
+                                        controller.loading();
+                                        await authController.loginUser(context);
+                                        controller.loading();
+                                      }
+                                    },
+                                  )),
+                        ),
+                      ),
                       SizedBox(height: 20.h),
                       Row(
                           mainAxisAlignment: MainAxisAlignment.center,
