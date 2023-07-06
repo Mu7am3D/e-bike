@@ -1,3 +1,4 @@
+import 'package:e_bike/CustomWidget/drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -5,7 +6,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../utils/AuthController.dart';
 import '../utils/Color_constant.dart';
-import 'Account.dart';
 import '../Controller/Home_controller.dart';
 
 class HomeView extends GetView<HomeController> {
@@ -44,148 +44,8 @@ class HomeView extends GetView<HomeController> {
                 icon: SvgPicture.asset('images/img_globe.svg'))
           ],
         ),
-        drawer: Drawer(
+        drawer: AppDrawer(
           width: 290.w,
-          backgroundColor: ColorConstant.blueGray900,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                padding: EdgeInsets.only(left: 40.w, top: 50.h),
-                child: Text(
-                  'Settings',
-                  style: GoogleFonts.inter(
-                      fontWeight: FontWeight.w800,
-                      fontSize: 24.sp,
-                      color: Colors.white),
-                ),
-              ),
-              SizedBox(
-                height: 20.h,
-              ),
-              Container(
-                padding: EdgeInsets.only(left: 10.w),
-                child: ListTile(
-                  title: Text(
-                    'Account',
-                    style: GoogleFonts.inter(
-                        fontSize: 20.sp,
-                        fontWeight: FontWeight.w400,
-                        color: Colors.white),
-                  ),
-                  trailing: Icon(
-                    Icons.arrow_forward_ios,
-                    color: ColorConstant.gray00,
-                  ),
-                  onTap: () => Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => const Account())),
-                ),
-              ),
-              Divider(
-                color: ColorConstant.graydiv,
-                height: 1.h,
-              ),
-              Container(
-                padding: const EdgeInsets.only(left: 10, top: 15, bottom: 15),
-                child: ListTile(
-                  title: Text(
-                    'Ride History',
-                    style: GoogleFonts.inter(
-                        fontWeight: FontWeight.w400,
-                        fontSize: 20.sp,
-                        color: Colors.white),
-                  ),
-                  trailing: Icon(
-                    Icons.arrow_forward_ios,
-                    color: ColorConstant.gray00,
-                  ),
-                  onTap: () {},
-                ),
-              ),
-              Divider(
-                color: ColorConstant.graydiv,
-                height: 1.h,
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              Container(
-                padding: const EdgeInsets.only(left: 10, bottom: 15),
-                child: ListTile(
-                  title: Text(
-                    'Language',
-                    style: GoogleFonts.inter(
-                        fontWeight: FontWeight.w400,
-                        fontSize: 20.sp,
-                        color: Colors.white),
-                  ),
-                  trailing: Text(
-                    'English',
-                    style: GoogleFonts.inter(
-                        fontWeight: FontWeight.w400,
-                        fontSize: 20.sp,
-                        color: Colors.white),
-                  ),
-                  onTap: () {},
-                ),
-              ),
-              Divider(
-                color: ColorConstant.graydiv,
-                height: 0.5,
-              ),
-              SizedBox(
-                height: 10.h,
-              ),
-              Container(
-                padding: EdgeInsets.only(left: 10.w, bottom: 15.h),
-                child: GetBuilder<HomeController>(
-                  builder: (controller) => ListTile(
-                    title: Text(
-                      'Notification',
-                      style: GoogleFonts.inter(
-                        fontWeight: FontWeight.w400,
-                        fontSize: 20.sp,
-                        color: Colors.white,
-                      ),
-                    ),
-                    trailing: Switch(
-                      value: controller.switchControl,
-                      onChanged: (value) {
-                        controller.switchC();
-                      },
-                    ),
-                  ),
-                ),
-              ),
-              Divider(
-                color: ColorConstant.graydiv,
-                height: 2.h,
-              ),
-              Container(
-                padding: EdgeInsets.only(left: 10.w, top: 15.h, bottom: 15.h),
-                child: ListTile(
-                  title: Text(
-                    'Logout',
-                    style: GoogleFonts.inter(
-                        fontWeight: FontWeight.w400,
-                        fontSize: 20.sp,
-                        color: Colors.white),
-                  ),
-                  trailing: Icon(
-                    Icons.arrow_forward_ios,
-                    color: ColorConstant.gray00,
-                  ),
-                  onTap: () {
-                    authController.logoutUser();
-                  },
-                ),
-              ),
-              Divider(
-                color: ColorConstant.graydiv,
-                height: 1.5.h,
-              ),
-            ],
-          ),
         ),
         body: SingleChildScrollView(
           child: Column(
@@ -450,7 +310,7 @@ class HomeView extends GetView<HomeController> {
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(24.sp)),
                       margin: EdgeInsets.only(
-                        left: 10.sp,
+                        left: 10.w,
                       ),
                       height: 94.h,
                       width: 366.w),

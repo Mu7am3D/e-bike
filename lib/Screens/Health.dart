@@ -5,7 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../utils/AuthController.dart';
 import '../utils/Color_constant.dart';
-import 'Account.dart';
+import 'package:e_bike/CustomWidget/drawer.dart';
 
 class Health extends StatefulWidget {
   const Health({Key? key}) : super(key: key);
@@ -60,153 +60,8 @@ class _HealthState extends State<Health> {
                     icon: SvgPicture.asset('images/img_globe.svg'))
               ],
             ),
-            drawer: Drawer(
+            drawer: AppDrawer(
               width: 290.w,
-              backgroundColor: ColorConstant.blueGray900,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                    padding: EdgeInsets.only(left: 40.w, top: 50.h),
-                    child: Text(
-                      'Settings',
-                      style: GoogleFonts.inter(
-                          fontWeight: FontWeight.w800,
-                          fontSize: 24.sp,
-                          color: Colors.white),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 20.h,
-                  ),
-                  Container(
-                    padding: EdgeInsets.only(left: 10.w),
-                    child: ListTile(
-                      title: Text(
-                        'Account',
-                        style: GoogleFonts.inter(
-                            fontSize: 20.sp,
-                            fontWeight: FontWeight.w400,
-                            color: Colors.white),
-                      ),
-                      trailing: Icon(
-                        Icons.arrow_forward_ios,
-                        color: ColorConstant.gray00,
-                      ),
-                      onTap: () => Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => const Account())),
-                    ),
-                  ),
-                  Divider(
-                    color: ColorConstant.graydiv,
-                    height: 1.h,
-                  ),
-                  Container(
-                    padding:
-                        EdgeInsets.only(left: 10.w, top: 15.h, bottom: 15.h),
-                    child: ListTile(
-                      title: Text(
-                        'Ride History',
-                        style: GoogleFonts.inter(
-                            fontWeight: FontWeight.w400,
-                            fontSize: 20.sp,
-                            color: Colors.white),
-                      ),
-                      trailing: Icon(
-                        Icons.arrow_forward_ios,
-                        color: ColorConstant.gray00,
-                      ),
-                      onTap: () {},
-                    ),
-                  ),
-                  Divider(
-                    color: ColorConstant.graydiv,
-                    height: 1.h,
-                  ),
-                  SizedBox(
-                    height: 10.h,
-                  ),
-                  Container(
-                    padding: EdgeInsets.only(left: 10.w, bottom: 15.h),
-                    child: ListTile(
-                      title: Text(
-                        'Language',
-                        style: GoogleFonts.inter(
-                            fontWeight: FontWeight.w400,
-                            fontSize: 20.sp,
-                            color: Colors.white),
-                      ),
-                      trailing: Text(
-                        'English',
-                        style: GoogleFonts.inter(
-                            fontWeight: FontWeight.w400,
-                            fontSize: 20.sp,
-                            color: Colors.white),
-                      ),
-                      onTap: () {},
-                    ),
-                  ),
-                  Divider(
-                    color: ColorConstant.graydiv,
-                    height: 1.h,
-                  ),
-                  SizedBox(
-                    height: 10.h,
-                  ),
-                  Container(
-                    padding: EdgeInsets.only(left: 10.w, bottom: 15.h),
-                    child: ListTile(
-                      title: Text(
-                        'Notification',
-                        style: GoogleFonts.inter(
-                            fontWeight: FontWeight.w400,
-                            fontSize: 20.sp,
-                            color: Colors.white),
-                      ),
-                      trailing: Switch(
-                          value: isOn,
-                          onChanged: (isOn) {
-                            setState(() {
-                              isOn = isOn;
-                            });
-                          }),
-                      onTap: () {
-                        setState(() {
-                          isOn = !isOn;
-                        });
-                      },
-                    ),
-                  ),
-                  Divider(
-                    color: ColorConstant.graydiv,
-                    height: 2.h,
-                  ),
-                  Container(
-                    padding:
-                        EdgeInsets.only(left: 10.w, top: 15.h, bottom: 15.h),
-                    child: ListTile(
-                      title: Text(
-                        'Logout',
-                        style: GoogleFonts.inter(
-                            fontWeight: FontWeight.w400,
-                            fontSize: 20.sp,
-                            color: Colors.white),
-                      ),
-                      trailing: Icon(
-                        Icons.arrow_forward_ios,
-                        color: ColorConstant.gray00,
-                      ),
-                      onTap: () {
-                        authController.logoutUser();
-                      },
-                    ),
-                  ),
-                  Divider(
-                    color: ColorConstant.graydiv,
-                    height: 1.5.h,
-                  ),
-                ],
-              ),
             ),
             body: Column(children: [
               SizedBox(

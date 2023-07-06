@@ -35,6 +35,7 @@ class ColorConstant {
   static Color black90028 = fromHex('#28000000');
 
   static Color blueGray900 = fromHex('#092242');
+  static const blueGrayy900 = Color(0xFF092242);
 
   static Color brownny = fromHex('#6B3E00');
 

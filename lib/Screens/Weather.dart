@@ -1,3 +1,4 @@
+import 'package:e_bike/CustomWidget/drawer.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:flutter_svg/svg.dart';
@@ -6,7 +7,6 @@ import 'package:intl/intl.dart';
 import 'package:http/http.dart' as http;
 
 import '../utils/Color_constant.dart';
-import 'Account.dart';
 
 class Weather extends StatefulWidget {
   const Weather({super.key});
@@ -40,7 +40,8 @@ class _WeatherState extends State<Weather> {
   String currentWeatherStatus = '';
 
   //API Call
-  String searchWeatherAPI = "https://api.weatherapi.com/v1/forecast.json?key=$API_KEY&days=7&q=";
+  String searchWeatherAPI =
+      "https://api.weatherapi.com/v1/forecast.json?key=$API_KEY&days=7&q=";
 
   void fetchWeatherData(String searchText) async {
     try {
@@ -126,128 +127,8 @@ class _WeatherState extends State<Weather> {
                     icon: SvgPicture.asset('images/img_globe.svg'))
               ],
             ),
-            drawer: Drawer(
+            drawer: AppDrawer(
               width: 290,
-              backgroundColor: ColorConstant.blueGray900,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                    padding: const EdgeInsets.only(left: 40, top: 50),
-                    child: Text(
-                      'Settings',
-                      style: GoogleFonts.inter(
-                          fontWeight: FontWeight.w800,
-                          fontSize: 24,
-                          color: Colors.white),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Container(
-                    padding: const EdgeInsets.only(left: 10),
-                    child: ListTile(
-                      title: Text(
-                        'Account',
-                        style: GoogleFonts.inter(
-                            fontSize: 20,
-                            fontWeight: FontWeight.w400,
-                            color: Colors.white),
-                      ),
-                      trailing: Icon(
-                        Icons.arrow_forward_ios,
-                        color: ColorConstant.gray00,
-                      ),
-                      onTap: () => Navigator.of(context).push(
-                          MaterialPageRoute(builder: (context) => const Account())),
-                    ),
-                  ),
-                  Divider(
-                    color: ColorConstant.graydiv,
-                    height: 1,
-                  ),
-                  Container(
-                    padding: const EdgeInsets.only(left: 10, top: 15, bottom: 15),
-                    child: ListTile(
-                      title: Text(
-                        'Ride History',
-                        style: GoogleFonts.inter(
-                            fontWeight: FontWeight.w400,
-                            fontSize: 20,
-                            color: Colors.white),
-                      ),
-                      trailing: Icon(
-                        Icons.arrow_forward_ios,
-                        color: ColorConstant.gray00,
-                      ),
-                      onTap: () {},
-                    ),
-                  ),
-                  Divider(
-                    color: ColorConstant.graydiv,
-                    height: 1,
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Container(
-                    padding: const EdgeInsets.only(left: 10, bottom: 15),
-                    child: ListTile(
-                      title: Text(
-                        'Language',
-                        style: GoogleFonts.inter(
-                            fontWeight: FontWeight.w400,
-                            fontSize: 20,
-                            color: Colors.white),
-                      ),
-                      trailing: Text(
-                        'English',
-                        style: GoogleFonts.inter(
-                            fontWeight: FontWeight.w400,
-                            fontSize: 20,
-                            color: Colors.white),
-                      ),
-                      onTap: () {},
-                    ),
-                  ),
-                  Divider(
-                    color: ColorConstant.graydiv,
-                    height: 1,
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Container(
-                    padding: const EdgeInsets.only(left: 10, bottom: 15),
-                    child: ListTile(
-                      title: Text(
-                        'Notification',
-                        style: GoogleFonts.inter(
-                            fontWeight: FontWeight.w400,
-                            fontSize: 20,
-                            color: Colors.white),
-                      ),
-                      trailing: Switch(
-                          value: isOn,
-                          onChanged: (isOn) {
-                            setState(() {
-                              isOn = isOn;
-                            });
-                          }),
-                      onTap: () {
-                        setState(() {
-                          isOn = !isOn;
-                        });
-                      },
-                    ),
-                  ),
-                  Divider(
-                    color: ColorConstant.graydiv,
-                    height: 2,
-                  ),
-                ],
-              ),
             ),
             body: Column(children: [
               Stack(

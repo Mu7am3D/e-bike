@@ -1,10 +1,10 @@
+import 'package:e_bike/CustomWidget/drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../utils/Color_constant.dart';
-import 'Account.dart';
 import '../Controller/Weather_controller.dart';
 
 class WeatherView extends GetView<WeatherController> {
@@ -44,126 +44,8 @@ class WeatherView extends GetView<WeatherController> {
                     icon: SvgPicture.asset('images/img_globe.svg'))
               ],
             ),
-            drawer: Drawer(
+            drawer: AppDrawer(
               width: 290.w,
-              backgroundColor: ColorConstant.blueGray900,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                    padding: EdgeInsets.only(left: 40.w, top: 50.h),
-                    child: Text(
-                      'Settings',
-                      style: GoogleFonts.inter(
-                          fontWeight: FontWeight.w800,
-                          fontSize: 24.sp,
-                          color: Colors.white),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 20.h,
-                  ),
-                  Container(
-                    padding: EdgeInsets.only(left: 10.w),
-                    child: ListTile(
-                      title: Text(
-                        'Account',
-                        style: GoogleFonts.inter(
-                            fontSize: 20.sp,
-                            fontWeight: FontWeight.w400,
-                            color: Colors.white),
-                      ),
-                      trailing: Icon(
-                        Icons.arrow_forward_ios,
-                        color: ColorConstant.gray00,
-                      ),
-                      onTap: () => Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => const Account())),
-                    ),
-                  ),
-                  Divider(
-                    color: ColorConstant.graydiv,
-                    height: 1.h,
-                  ),
-                  Container(
-                    padding:
-                        EdgeInsets.only(left: 10.w, top: 15.h, bottom: 15.h),
-                    child: ListTile(
-                      title: Text(
-                        'Ride History',
-                        style: GoogleFonts.inter(
-                            fontWeight: FontWeight.w400,
-                            fontSize: 20.sp,
-                            color: Colors.white),
-                      ),
-                      trailing: Icon(
-                        Icons.arrow_forward_ios,
-                        color: ColorConstant.gray00,
-                      ),
-                      onTap: () {},
-                    ),
-                  ),
-                  Divider(
-                    color: ColorConstant.graydiv,
-                    height: 1.h,
-                  ),
-                  SizedBox(
-                    height: 10.h,
-                  ),
-                  Container(
-                    padding: EdgeInsets.only(left: 10.w, bottom: 15.h),
-                    child: ListTile(
-                      title: Text(
-                        'Language',
-                        style: GoogleFonts.inter(
-                            fontWeight: FontWeight.w400,
-                            fontSize: 20.sp,
-                            color: Colors.white),
-                      ),
-                      trailing: Text(
-                        'English',
-                        style: GoogleFonts.inter(
-                            fontWeight: FontWeight.w400,
-                            fontSize: 20.sp,
-                            color: Colors.white),
-                      ),
-                      onTap: () {},
-                    ),
-                  ),
-                  Divider(
-                    color: ColorConstant.graydiv,
-                    height: 1.h,
-                  ),
-                  SizedBox(
-                    height: 10.h,
-                  ),
-                  Container(
-                    padding: EdgeInsets.only(left: 10.w, bottom: 15.h),
-                    child: GetBuilder<WeatherController>(
-                      builder: (controller) => ListTile(
-                        title: Text(
-                          'Notification',
-                          style: GoogleFonts.inter(
-                            fontWeight: FontWeight.w400,
-                            fontSize: 20.sp,
-                            color: Colors.white,
-                          ),
-                        ),
-                        trailing: Switch(
-                          value: controller.isOn,
-                          onChanged: (value) {
-                            controller.toggle();
-                          },
-                        ),
-                      ),
-                    ),
-                  ),
-                  Divider(
-                    color: ColorConstant.graydiv,
-                    height: 2.h,
-                  ),
-                ],
-              ),
             ),
             body: SingleChildScrollView(
               child: Column(children: [
@@ -235,7 +117,7 @@ class WeatherView extends GetView<WeatherController> {
                   ],
                 ),
                 SizedBox(
-                  height: 20.h,
+                  height: 36.h,
                 ),
                 Stack(
                   children: [
@@ -244,13 +126,13 @@ class WeatherView extends GetView<WeatherController> {
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(40.sp),
                             color: ColorConstant.weth),
-                        height: 280.h,
+                        height: 301.h,
                         width: 366.w,
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Container(
-                                padding: EdgeInsets.only(top: 20.h),
+                                padding: EdgeInsets.only(top: 27.37.h),
                                 child: Center(
                                   child: Text(
                                     'TODAY',
@@ -264,9 +146,10 @@ class WeatherView extends GetView<WeatherController> {
                       ),
                     ),
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Container(
-                          padding: EdgeInsets.only(left: 50.w, top: 70.h),
+                          padding: EdgeInsets.only(top: 82.95.h),
                           child: Column(
                             children: [
                               Image.asset('images/Wind.png'),
@@ -294,7 +177,7 @@ class WeatherView extends GetView<WeatherController> {
                           width: 10.w,
                         ),
                         Container(
-                          padding: EdgeInsets.only(left: 50.w, top: 70.h),
+                          padding: EdgeInsets.only(left: 62.w, top: 82.95.h),
                           child: Column(
                             children: [
                               Image.asset('images/Drop.png'),
@@ -318,11 +201,8 @@ class WeatherView extends GetView<WeatherController> {
                             ],
                           ),
                         ),
-                        SizedBox(
-                          width: 10.w,
-                        ),
                         Container(
-                            padding: EdgeInsets.only(left: 50.w, top: 70.h),
+                            padding: EdgeInsets.only(left: 62.w, top: 82.95.h),
                             child: Column(
                               children: [
                                 Image.asset('images/CloudRain.png'),
@@ -349,17 +229,18 @@ class WeatherView extends GetView<WeatherController> {
                       ],
                     ),
                     Container(
-                      padding: EdgeInsets.only(top: 100.h),
+                      padding: EdgeInsets.only(top: 105.h),
                       child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Container(
-                            padding: EdgeInsets.only(left: 49.w, top: 70.h),
+                            padding: EdgeInsets.only(top: 82.95.h),
                             child: Column(
                               children: [
                                 Image.asset('images/Sun.png'),
                                 Container(
                                   child: Text(
-                                    'SUN RISE',
+                                    'SUNRISE',
                                     style: GoogleFonts.inter(
                                         fontWeight: FontWeight.w500,
                                         fontSize: 17.55.sp),
@@ -378,7 +259,7 @@ class WeatherView extends GetView<WeatherController> {
                             ),
                           ),
                           Container(
-                            padding: EdgeInsets.only(left: 60.w, top: 70.h),
+                            padding: EdgeInsets.only(left: 65.w, top: 82.95.h),
                             child: Column(
                               children: [
                                 Image.asset('images/tempe.png'),
@@ -406,7 +287,8 @@ class WeatherView extends GetView<WeatherController> {
                             width: 5.w,
                           ),
                           Container(
-                              padding: EdgeInsets.only(left: 50.w, top: 70.h),
+                              padding:
+                                  EdgeInsets.only(left: 52.w, top: 82.95.h),
                               child: Column(
                                 children: [
                                   Image.asset('images/Sun.png'),
