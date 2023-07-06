@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../utils/Color_constant.dart';
-import 'Payment.dart';
 import 'Wallet.dart';
 import '../Screens/ProfileView.dart';
 
@@ -60,28 +59,6 @@ class Account extends StatelessWidget {
           Divider(
             color: ColorConstant.graydiv,
             height: 2.h,
-          ),
-          Container(
-            padding: EdgeInsets.only(left: 30.w, bottom: 20.h, top: 25.h),
-            child: ListTile(
-              title: Text(
-                'Payment',
-                style: GoogleFonts.inter(
-                    fontWeight: FontWeight.w400,
-                    fontSize: 24.sp,
-                    color: Colors.white),
-              ),
-              trailing: Icon(
-                Icons.arrow_forward_ios,
-                color: ColorConstant.gray00,
-              ),
-              onTap: () => Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => const Payment())),
-            ),
-          ),
-          Divider(
-            color: ColorConstant.graydiv,
-            height: 1.5.h,
           ),
           Container(
             padding: EdgeInsets.only(left: 30.w, bottom: 20.h, top: 25.h),
