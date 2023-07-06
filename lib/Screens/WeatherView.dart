@@ -145,70 +145,19 @@ class WeatherView extends GetView<WeatherController> {
                         ),
                       ),
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Container(
-                          padding: EdgeInsets.only(top: 82.95.h),
-                          child: Column(
-                            children: [
-                              Image.asset('images/Wind.png'),
-                              Container(
-                                child: Text(
-                                  'HAZE',
-                                  style: GoogleFonts.inter(
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 17.55.sp),
-                                ),
-                              ),
-                              GetBuilder<WeatherController>(
-                                  builder: (controller) => Container(
-                                        child: Text(
-                                          '${controller.weatherModel.windSpeed} km/h',
-                                          style: GoogleFonts.inter(
-                                              fontSize: 19.23.sp,
-                                              fontWeight: FontWeight.w600),
-                                        ),
-                                      )),
-                            ],
-                          ),
-                        ),
-                        SizedBox(
-                          width: 10.w,
-                        ),
-                        Container(
-                          padding: EdgeInsets.only(left: 62.w, top: 82.95.h),
-                          child: Column(
-                            children: [
-                              Image.asset('images/Drop.png'),
-                              Container(
-                                child: Text(
-                                  'DROP',
-                                  style: GoogleFonts.inter(
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 17.55.sp),
-                                ),
-                              ),
-                              GetBuilder<WeatherController>(
-                                  builder: (controller) => Container(
-                                        child: Text(
-                                          '${controller.weatherModel.humidity}%',
-                                          style: GoogleFonts.inter(
-                                              fontSize: 19.23.sp,
-                                              fontWeight: FontWeight.w600),
-                                        ),
-                                      )),
-                            ],
-                          ),
-                        ),
-                        Container(
-                            padding: EdgeInsets.only(left: 62.w, top: 82.95.h),
+                    Container(
+                      margin: EdgeInsets.only(right: 5.w),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Container(
+                            padding: EdgeInsets.only(left: 5.w, top: 82.95.h),
                             child: Column(
                               children: [
-                                Image.asset('images/CloudRain.png'),
+                                Image.asset('images/Wind.png'),
                                 Container(
                                   child: Text(
-                                    'CLOUD',
+                                    'HAZE',
                                     style: GoogleFonts.inter(
                                         fontWeight: FontWeight.w500,
                                         fontSize: 17.55.sp),
@@ -216,17 +165,72 @@ class WeatherView extends GetView<WeatherController> {
                                 ),
                                 GetBuilder<WeatherController>(
                                     builder: (controller) => Container(
-                                          padding: EdgeInsets.only(left: 5.w),
                                           child: Text(
-                                            '${controller.weatherModel.cloud}%',
+                                            '${controller.weatherModel.windSpeed} km/h',
                                             style: GoogleFonts.inter(
                                                 fontSize: 19.23.sp,
                                                 fontWeight: FontWeight.w600),
                                           ),
-                                        ))
+                                        )),
                               ],
-                            ))
-                      ],
+                            ),
+                          ),
+                          SizedBox(
+                            width: 10.w,
+                          ),
+                          Container(
+                            padding: EdgeInsets.only(left: 62.w, top: 82.95.h),
+                            child: Column(
+                              children: [
+                                Image.asset('images/Drop.png'),
+                                Container(
+                                  child: Text(
+                                    'DROP',
+                                    style: GoogleFonts.inter(
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 17.55.sp),
+                                  ),
+                                ),
+                                GetBuilder<WeatherController>(
+                                    builder: (controller) => Container(
+                                          child: Text(
+                                            '${controller.weatherModel.humidity}%',
+                                            style: GoogleFonts.inter(
+                                                fontSize: 19.23.sp,
+                                                fontWeight: FontWeight.w600),
+                                          ),
+                                        )),
+                              ],
+                            ),
+                          ),
+                          Container(
+                              padding:
+                                  EdgeInsets.only(left: 62.w, top: 82.95.h),
+                              child: Column(
+                                children: [
+                                  Image.asset('images/CloudRain.png'),
+                                  Container(
+                                    child: Text(
+                                      'CLOUD',
+                                      style: GoogleFonts.inter(
+                                          fontWeight: FontWeight.w500,
+                                          fontSize: 17.55.sp),
+                                    ),
+                                  ),
+                                  GetBuilder<WeatherController>(
+                                      builder: (controller) => Container(
+                                            padding: EdgeInsets.only(left: 5.w),
+                                            child: Text(
+                                              '${controller.weatherModel.cloud}%',
+                                              style: GoogleFonts.inter(
+                                                  fontSize: 19.23.sp,
+                                                  fontWeight: FontWeight.w600),
+                                            ),
+                                          ))
+                                ],
+                              ))
+                        ],
+                      ),
                     ),
                     Container(
                       padding: EdgeInsets.only(top: 105.h),
@@ -259,7 +263,7 @@ class WeatherView extends GetView<WeatherController> {
                             ),
                           ),
                           Container(
-                            padding: EdgeInsets.only(left: 65.w, top: 82.95.h),
+                            padding: EdgeInsets.only(left: 70.w, top: 82.95.h),
                             child: Column(
                               children: [
                                 Image.asset('images/tempe.png'),
