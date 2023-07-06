@@ -53,12 +53,15 @@ class AppDrawer extends StatelessWidget {
                   MaterialPageRoute(builder: (context) => const Account())),
             ),
           ),
+          SizedBox(
+            height: 23.h,
+          ),
           Divider(
             color: ColorConstant.graydiv,
-            height: 1.h,
+            height: 0.h,
           ),
           Container(
-            padding: const EdgeInsets.only(left: 10, top: 15, bottom: 15),
+            padding: EdgeInsets.only(left: 10.w, top: 15.h, bottom: 15.h),
             child: ListTile(
               title: Text(
                 'Ride History',
@@ -78,11 +81,11 @@ class AppDrawer extends StatelessWidget {
             color: ColorConstant.graydiv,
             height: 1.h,
           ),
-          const SizedBox(
-            height: 10,
+          SizedBox(
+            height: 10.h,
           ),
           Container(
-            padding: const EdgeInsets.only(left: 10, bottom: 15),
+            padding: EdgeInsets.only(left: 10.w, bottom: 15.h),
             child: ListTile(
               title: Text(
                 'Language',
@@ -103,7 +106,7 @@ class AppDrawer extends StatelessWidget {
           ),
           Divider(
             color: ColorConstant.graydiv,
-            height: 0.5,
+            height: 0.h,
           ),
           SizedBox(
             height: 10.h,
@@ -131,7 +134,7 @@ class AppDrawer extends StatelessWidget {
           ),
           Divider(
             color: ColorConstant.graydiv,
-            height: 2.h,
+            height: 0.h,
           ),
           Container(
             padding: EdgeInsets.only(left: 10.w, top: 15.h, bottom: 15.h),

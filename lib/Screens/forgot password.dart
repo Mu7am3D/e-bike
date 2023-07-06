@@ -5,8 +5,8 @@ import '../utils/Color_constant.dart';
 import '../utils/validator.dart';
 
 class forgot extends StatelessWidget {
+  static final formkey = GlobalKey<FormState>();
   forgot({Key? key}) : super(key: key);
-  var EmailController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     AuthController authController = AuthController();
@@ -68,30 +68,32 @@ class forgot extends StatelessWidget {
                   )),
             ],
           ),
-          const SizedBox(
-            height: 20,
+          SizedBox(
+            height: 20.h,
           ),
           SizedBox(
             width: 330.w,
-            child: TextFormField(
-              controller: authController.Emailcontroller,
-              style: TextStyle(
-                fontSize: 20.sp,
-                color: Colors.white,
+            child: Form(
+              key: formkey,
+              child: TextFormField(
+                controller: authController.Emailcontroller,
+                style: TextStyle(
+                  fontSize: 20.sp,
+                  color: Colors.white,
+                ),
+                keyboardType: TextInputType.emailAddress,
+                decoration: InputDecoration(
+                    prefixIcon: const Icon(
+                      Icons.email,
+                      color: Colors.white,
+                    ),
+                    labelText: 'Enter Your Email',
+                    hintStyle: const TextStyle(color: Colors.grey),
+                    labelStyle: const TextStyle(color: Colors.white),
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10.sp))),
+                validator: Validator.email,
               ),
-              keyboardType: TextInputType.emailAddress,
-              decoration: InputDecoration(
-                  prefixIcon: const Icon(
-                    Icons.email,
-                    color: Colors.white,
-                  ),
-                  labelText: 'Email',
-                  hintText: 'Enter Your Email',
-                  hintStyle: const TextStyle(color: Colors.grey),
-                  labelStyle: const TextStyle(color: Colors.white),
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10.sp))),
-              validator: Validator.email,
             ),
           ),
           SizedBox(
@@ -102,8 +104,40 @@ class forgot extends StatelessWidget {
             child: TextButton(
               style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all(Colors.blue)),
-              onPressed: () {
-                authController.loginUser(context);
+              onPressed: () async {
+                if (formkey.currentState!.validate()) {
+                  showDialog(
+                      context: context,
+                      builder: (context) => AlertDialog(
+                            backgroundColor: ColorConstant.blackgray,
+                            shape: RoundedRectangleBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(20.sp))),
+                            actions: [
+                              TextButton(
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                  },
+                                  child: Center(
+                                      child: Text(
+                                    "Ok",
+                                    style: TextStyle(fontSize: 24.sp),
+                                  )))
+                            ],
+                            title: Text(
+                              "Email Sent",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  color: Colors.white, fontSize: 32.sp),
+                            ),
+                            content: Text(
+                              "${authController.Emailcontroller.text}\n\nIf you have an account, you will receive an email to reset your password. ",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  color: Color(0xFFACACAC), fontSize: 20.sp),
+                            ),
+                          ));
+                }
               },
               child: Text(
                 "Send",
