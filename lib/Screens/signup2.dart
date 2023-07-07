@@ -7,7 +7,7 @@ import '../utils/validator.dart';
 import 'login2.dart';
 
 class SignUp extends StatelessWidget {
-  SignUp({Key? key}) : super(key: key);
+  const SignUp({Key? key}) : super(key: key);
   static final formkey = GlobalKey<FormState>();
 
   @override
@@ -60,7 +60,7 @@ class SignUp extends StatelessWidget {
                       labelText: 'First Name',
                       labelStyle: const TextStyle(color: Colors.white),
                       border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10))),
+                          borderRadius: BorderRadius.circular(10.sp))),
                   validator: Validator.name,
                 ),
               ),
@@ -158,7 +158,7 @@ class SignUp extends StatelessWidget {
                           child: GetBuilder<AuthController>(
                               builder: (controller) => TextButton(
                                   child: controller.isLoading
-                                      ? Center(
+                                      ? const Center(
                                           child: CircularProgressIndicator(
                                           color: Colors.white,
                                         ))

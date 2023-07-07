@@ -9,8 +9,9 @@ import '../utils/Color_constant.dart';
 import '../Controller/Home_controller.dart';
 
 class HomeView extends GetView<HomeController> {
-  AuthController authController = AuthController();
-  GlobalKey<ScaffoldState> drawerkey = GlobalKey<ScaffoldState>();
+  HomeView({Key? key}) : super(key: key);
+  final AuthController authController = AuthController();
+  final GlobalKey<ScaffoldState> drawerkey = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
     Get.put(HomeController());
@@ -226,7 +227,9 @@ class HomeView extends GetView<HomeController> {
                             width: 20.w,
                           ),
                           Text(
-                              "${controller.smoke != null && controller.smoke > 200 ? 'smoke detected' : 'No smoke'}",
+                              controller.smoke != null && controller.smoke > 200
+                                  ? 'smoke detected'
+                                  : 'No smoke',
                               style: GoogleFonts.montserrat(
                                   fontWeight: FontWeight.w600, fontSize: 18.sp))
                         ],

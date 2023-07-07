@@ -8,10 +8,10 @@ import 'package:e_bike/CustomWidget/drawer.dart';
 import 'package:get/get.dart';
 import '../Controller/Health_controller.dart';
 
-class healthView extends GetView<HealthController> {
-  healthView({Key? key}) : super(key: key);
-  AuthController authController = AuthController();
-  GlobalKey<ScaffoldState> drawerkey = GlobalKey<ScaffoldState>();
+class HealthView extends GetView<HealthController> {
+  HealthView({Key? key}) : super(key: key);
+  final AuthController authController = AuthController();
+  final GlobalKey<ScaffoldState> drawerkey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +46,7 @@ class healthView extends GetView<HealthController> {
                     icon: SvgPicture.asset('images/img_globe.svg'))
               ],
             ),
-            drawer: AppDrawer(width:290.w),
+            drawer: AppDrawer(width: 290.w),
             body: Column(children: [
               SizedBox(
                 height: 10.h,

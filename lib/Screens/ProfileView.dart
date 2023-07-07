@@ -8,7 +8,7 @@ import '../Controller/Profile_controller.dart';
 
 class ProfileView extends GetView<ProfileController> {
   ProfileView({Key? key}) : super(key: key);
-  AuthController authController = AuthController();
+  final AuthController authController = AuthController();
   @override
   Widget build(BuildContext context) {
     Get.put(ProfileController());

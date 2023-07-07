@@ -2,11 +2,10 @@ import 'package:e_bike/Screens/signup2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import '../utils/AuthController.dart';
 import '../utils/Color_constant.dart';
 import '../utils/validator.dart';
-import 'forgot password.dart';
+import 'Forgot password.dart';
 
 class LoginApp extends GetView<AuthController> {
   LoginApp({Key? key}) : super(key: key);
@@ -27,7 +26,7 @@ class LoginApp extends GetView<AuthController> {
                     height: 60.h,
                   ),
                   Image(
-                    image: AssetImage(
+                    image: const AssetImage(
                       'images/rider.png',
                     ),
                     height: 100.h,
@@ -60,7 +59,7 @@ class LoginApp extends GetView<AuthController> {
                             color: Colors.white,
                           ),
                           labelText: 'Email',
-                          labelStyle: TextStyle(
+                          labelStyle: const TextStyle(
                             color: Colors.white,
                           ),
                           border: OutlineInputBorder(
@@ -155,7 +154,7 @@ class LoginApp extends GetView<AuthController> {
                           child: GetBuilder<AuthController>(
                               builder: (controller) => TextButton(
                                     child: controller.isLoading
-                                        ? Center(
+                                        ? const Center(
                                             child: CircularProgressIndicator(
                                             color: Colors.white,
                                           ))
