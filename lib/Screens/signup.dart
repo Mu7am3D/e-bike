@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../utils/Color_constant.dart';
 import '../utils/validator.dart';
-import 'login2.dart';
+import 'login.dart';
 
 class SignUp extends StatelessWidget {
   const SignUp({Key? key}) : super(key: key);

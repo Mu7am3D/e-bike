@@ -1,8 +1,8 @@
-import 'package:e_bike/Screens/Health1.dart';
+import 'package:e_bike/Screens/health.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import '../Screens/home1.dart';
-import '../Screens/Lock.dart';
+import '../Screens/home.dart';
+import '../Screens/lock.dart';
 import '../Screens/Navigation.dart';
 import '../Screens/WeatherView.dart';
 import '../utils/Color_constant.dart';

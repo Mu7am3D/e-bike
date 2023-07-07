@@ -4,9 +4,9 @@ import '../utils/AuthController.dart';
 import '../utils/Color_constant.dart';
 import '../utils/validator.dart';
 
-class forgot extends StatelessWidget {
+class Forgot extends StatelessWidget {
   static final formkey = GlobalKey<FormState>();
-  forgot({Key? key}) : super(key: key);
+  const Forgot({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     AuthController authController = AuthController();
@@ -134,7 +134,8 @@ class forgot extends StatelessWidget {
                               "${authController.Emailcontroller.text}\n\nIf you have an account, you will receive an email to reset your password. ",
                               textAlign: TextAlign.center,
                               style: TextStyle(
-                                  color: Color(0xFFACACAC), fontSize: 20.sp),
+                                  color: const Color(0xFFACACAC),
+                                  fontSize: 20.sp),
                             ),
                           ));
                 }

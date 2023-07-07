@@ -5,7 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../Nav Bar/Nav_bar.dart';
-import '../Screens/login2.dart';
+import '../Screens/login.dart';
 
 class AuthController extends GetxController {
   final TextEditingController Emailcontroller = TextEditingController();

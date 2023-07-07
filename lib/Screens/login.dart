@@ -1,11 +1,11 @@
-import 'package:e_bike/Screens/signup2.dart';
+import 'package:e_bike/Screens/forgotPassword.dart';
+import 'package:e_bike/Screens/signup.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import '../utils/AuthController.dart';
 import '../utils/Color_constant.dart';
 import '../utils/validator.dart';
-import 'Forgot password.dart';
 
 class LoginApp extends GetView<AuthController> {
   LoginApp({Key? key}) : super(key: key);
@@ -129,7 +129,7 @@ class LoginApp extends GetView<AuthController> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => forgot()));
+                                    builder: (context) => const Forgot()));
                           },
                           child: Text("Forgot Password?",
                               style: TextStyle(

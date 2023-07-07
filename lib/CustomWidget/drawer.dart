@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../Controller/Home_controller.dart';
 import '../utils/Color_constant.dart';
-import '../Screens/Account.dart';
+import '../Screens/account.dart';
 import '../utils/AuthController.dart';
 import 'package:get/get.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AppDrawer extends StatelessWidget {
-  AuthController authController = AuthController();
+  final AuthController authController = AuthController();
   final double width;
   final Color backgroundColor;
   AppDrawer(
