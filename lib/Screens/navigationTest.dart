@@ -15,14 +15,14 @@ import 'package:material_floating_search_bar_2/material_floating_search_bar_2.da
 
 import 'package:uuid/uuid.dart';
 
-class MapScreen extends StatefulWidget {
-  const MapScreen({Key? key}) : super(key: key);
+class MapScreen1 extends StatefulWidget {
+  const MapScreen1({Key? key}) : super(key: key);
 
   @override
-  _MapScreenState createState() => _MapScreenState();
+  _MapScreen1State createState() => _MapScreen1State();
 }
 
-class _MapScreenState extends State<MapScreen> {
+class _MapScreen1State extends State<MapScreen1> {
   List<PlaceSuggestion> places = [];
   FloatingSearchBarController controller = FloatingSearchBarController();
   static Position? position;
