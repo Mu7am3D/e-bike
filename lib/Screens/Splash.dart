@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../Nav Bar/Nav_bar.dart';
-import '../utils/Color_constant.dart';
+import '../Constants/Color_constant.dart';
 import 'login.dart';
 
 class SplashScreen extends StatefulWidget {

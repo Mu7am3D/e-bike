@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../utils/Color_constant.dart';
+import '../Constants/Color_constant.dart';
 import 'Wallet.dart';
 import '../Screens/ProfileView.dart';
 

@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../utils/AuthController.dart';
-import '../utils/Color_constant.dart';
+import '../Constants/Color_constant.dart';
 import '../Controller/Profile_controller.dart';
 
 class ProfileView extends GetView<ProfileController> {

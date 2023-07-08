@@ -5,7 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../utils/AuthController.dart';
-import '../utils/Color_constant.dart';
+import '../Constants/Color_constant.dart';
 import '../Controller/Home_controller.dart';
 
 class HomeView extends GetView<HomeController> {
@@ -52,7 +52,7 @@ class HomeView extends GetView<HomeController> {
           child: Column(
             children: [
               SizedBox(
-                height: 10.h,
+                height: 22.h,
               ),
               Stack(
                 children: [
@@ -114,7 +114,7 @@ class HomeView extends GetView<HomeController> {
                 ],
               ),
               SizedBox(
-                height: 10.h,
+                height: 22.h,
               ),
               Stack(
                 children: [
@@ -183,7 +183,7 @@ class HomeView extends GetView<HomeController> {
                 ],
               ),
               SizedBox(
-                height: 10.h,
+                height: 22.h,
               ),
               Stack(
                 children: [
@@ -248,8 +248,9 @@ class HomeView extends GetView<HomeController> {
                 ],
               ),
               SizedBox(
-                height: 10.h,
+                height: 22.h,
               ),
+              /*
               Stack(
                 children: [
                   Container(
@@ -306,6 +307,7 @@ class HomeView extends GetView<HomeController> {
               SizedBox(
                 height: 10.h,
               ),
+              */
               Stack(
                 children: [
                   Container(

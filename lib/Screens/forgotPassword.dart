@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../utils/AuthController.dart';
-import '../utils/Color_constant.dart';
+import '../Constants/Color_constant.dart';
 import '../utils/validator.dart';
 
 class Forgot extends StatelessWidget {
