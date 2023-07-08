@@ -3,7 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../utils/AuthController.dart';
-import '../utils/Color_constant.dart';
+import '../Constants/Color_constant.dart';
 import 'package:e_bike/CustomWidget/drawer.dart';
 import 'package:get/get.dart';
 import '../Controller/Health_controller.dart';
@@ -79,16 +79,16 @@ class HealthView extends GetView<HealthController> {
                       ),
                       Row(
                         children: [
-                          Container(
+                          Obx(() => Container(
                               padding: EdgeInsets.only(
                                 left: 110.w,
                               ),
                               child: Text(
-                                '98',
+                                '${controller.heartRate}',
                                 style: GoogleFonts.montserrat(
                                     fontWeight: FontWeight.w600,
                                     fontSize: 32.sp),
-                              )),
+                              ))),
                           SizedBox(
                             width: 35.w,
                           ),
@@ -141,16 +141,16 @@ class HealthView extends GetView<HealthController> {
                       ),
                       Row(
                         children: [
-                          Container(
+                          Obx(() => Container(
                               padding: EdgeInsets.only(
                                 left: 110.w,
                               ),
                               child: Text(
-                                '102/72',
+                                '${controller.bloodPressure}',
                                 style: GoogleFonts.montserrat(
                                     fontSize: 32.sp,
                                     fontWeight: FontWeight.w600),
-                              )),
+                              ))),
                           const SizedBox(
                             width: 15,
                           ),
@@ -265,16 +265,16 @@ class HealthView extends GetView<HealthController> {
                       ),
                       Row(
                         children: [
-                          Container(
+                          Obx(() => Container(
                               padding: EdgeInsets.only(
                                 left: 110.w,
                               ),
                               child: Text(
-                                '96',
+                                '${controller.bloodOx}',
                                 style: GoogleFonts.montserrat(
                                     fontSize: 32.sp,
                                     fontWeight: FontWeight.w600),
-                              )),
+                              ))),
                           SizedBox(
                             width: 35.w,
                           ),
