@@ -49,8 +49,7 @@ class AppDrawer extends StatelessWidget {
                 Icons.arrow_forward_ios,
                 color: ColorConstant.gray00,
               ),
-              onTap: () => Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => const Account())),
+              onTap: () => Get.to(() => Account()),
             ),
           ),
           SizedBox(
@@ -59,6 +58,7 @@ class AppDrawer extends StatelessWidget {
           Divider(
             color: ColorConstant.graydiv,
             height: 0.h,
+            thickness: 1.h,
           ),
           Container(
             padding: EdgeInsets.only(left: 10.w, top: 15.h, bottom: 15.h),
@@ -80,6 +80,7 @@ class AppDrawer extends StatelessWidget {
           Divider(
             color: ColorConstant.graydiv,
             height: 0.h,
+            thickness: 1.h,
           ),
           SizedBox(
             height: 10.h,
@@ -108,6 +109,7 @@ class AppDrawer extends StatelessWidget {
           Divider(
             color: ColorConstant.graydiv,
             height: 0.h,
+            thickness: 1.h,
           ),
           Container(
             padding: EdgeInsets.only(left: 10.w, top: 15.h, bottom: 15.h),
@@ -131,6 +133,7 @@ class AppDrawer extends StatelessWidget {
           Divider(
             color: ColorConstant.graydiv,
             height: 0.h,
+            thickness: 1.h,
           ),
         ],
       ),

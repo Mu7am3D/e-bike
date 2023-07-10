@@ -4,7 +4,6 @@ import 'package:e_bike/data/models/place.dart';
 import 'package:e_bike/data/models/place_directions.dart';
 import 'package:e_bike/data/repository/maps_repo.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:meta/meta.dart';
 
 part 'maps_state.dart';

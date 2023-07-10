@@ -16,6 +16,8 @@ class ColorConstant {
 
   static Color gray5087 = fromHex('#87fffbfb');
 
+  static Color warning = fromHex('#968686');
+
   static Color gray10 = fromHex('#968686');
 
   static const Color blue = Color(0xff0666EB);
