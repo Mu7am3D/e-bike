@@ -1,6 +1,7 @@
 import 'package:e_bike/data/models/Place_suggestion.dart';
 import 'package:e_bike/data/models/place.dart';
 import 'package:e_bike/data/webservices/places_webservices.dart';
+import 'package:e_bike/data/models/place_directions.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class MapsRepository {
@@ -23,5 +24,13 @@ class MapsRepository {
         await placesWebservices.getPlaceLocation(placeId, sessionToken);
     // var readyPlace = Place.fromJson(place);
     return Place.fromJson(place);
+  }
+
+  Future<PlaceDirections> getDirections(
+      LatLng origin, LatLng destination) async {
+    final directions =
+        await placesWebservices.getDirections(origin, destination);
+
+    return PlaceDirections.fromJson(directions);
   }
 }

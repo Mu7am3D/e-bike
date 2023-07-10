@@ -1,28 +1,33 @@
 import 'dart:async';
-
+import 'package:e_bike/Controller/Home_controller.dart';
+import 'package:e_bike/data/models/place_directions.dart';
 import 'package:e_bike/Constants/Color_constant.dart';
 import 'package:e_bike/CustomWidget/drawer.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:e_bike/presentation/widgets/distance_and_time.dart';
 import 'package:e_bike/business_logic/cubit/maps/maps_cubit.dart';
 import 'package:e_bike/data/models/Place_suggestion.dart';
 import 'package:e_bike/data/models/place.dart';
 import 'package:e_bike/helpers/location_helper.dart';
 import 'package:e_bike/presentation/widgets/place_item.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:material_floating_search_bar_2/material_floating_search_bar_2.dart';
 
 import 'package:uuid/uuid.dart';
 
 class MapScreen1 extends StatefulWidget {
-  const MapScreen1({Key? key}) : super(key: key);
-
+  MapScreen1({Key? key}) : super(key: key);
   @override
   _MapScreen1State createState() => _MapScreen1State();
 }
 
 class _MapScreen1State extends State<MapScreen1> {
+  final HomeController homeController = Get.find();
   List<PlaceSuggestion> places = [];
   FloatingSearchBarController controller = FloatingSearchBarController();
   static Position? position;
@@ -36,6 +41,7 @@ class _MapScreen1State extends State<MapScreen1> {
   );
 
   // these variables for getPlaceLocation
+
   Set<Marker> markers = Set();
   late PlaceSuggestion placeSuggestion;
   late Place selectedPlace;
@@ -56,23 +62,67 @@ class _MapScreen1State extends State<MapScreen1> {
   }
 
   // these variables for getDirections
-
+  PlaceDirections? placeDirections;
   var progressIndicator = false;
   late List<LatLng> polylinePoints;
   var isSearchedPlaceMarkerClicked = false;
   var isTimeAndDistanceVisible = false;
   late String time;
   late String distance;
-
+  double totalDistance = 0.0;
   @override
   initState() {
     super.initState();
     getMyCurrentLocation();
+    trackDistance();
   }
 
   Future<void> getMyCurrentLocation() async {
     position = await LocationHelper.getCurrentLocation().whenComplete(() {
       setState(() {});
+    });
+  }
+
+  void savepoints(String userId, String pointsWallet) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String key = 'PointsWallet_$userId';
+    prefs.setString(key, pointsWallet);
+  }
+
+  void saveTotalDistance(String userId, String distance) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String key = 'totalDistance_$userId';
+    prefs.setString(key, distance);
+  }
+
+  void trackDistance() {
+    double accumulatedDistance = 0;
+
+    Geolocator.getPositionStream().listen((Position newPosition) {
+      if (position != null) {
+        double distance = Geolocator.distanceBetween(
+          position!.latitude,
+          position!.longitude,
+          newPosition.latitude,
+          newPosition.longitude,
+        );
+        accumulatedDistance += distance;
+
+        if (accumulatedDistance >= 2) {
+          homeController.updateTotallDistance(
+            homeController.totalDistance.value + accumulatedDistance,
+          );
+
+          accumulatedDistance = 0;
+          print(
+              'Total Distance: ${homeController.totalDistance.value.toInt().toString()} meters');
+          String userId = FirebaseAuth.instance.currentUser!.uid;
+          saveTotalDistance(
+              userId, homeController.totalDistance.toInt().toString());
+        }
+      }
+
+      position = newPosition;
     });
   }
 
@@ -87,6 +137,16 @@ class _MapScreen1State extends State<MapScreen1> {
       onMapCreated: (GoogleMapController controller) {
         _mapController.complete(controller);
       },
+      polylines: placeDirections != null
+          ? {
+              Polyline(
+                polylineId: const PolylineId('my_polyline'),
+                color: Colors.black,
+                width: 2,
+                points: polylinePoints,
+              ),
+            }
+          : {},
     );
   }
 
@@ -139,23 +199,39 @@ class _MapScreen1State extends State<MapScreen1> {
         ),
       ],
       builder: (context, transition) {
-        return Column(
-          children: [
-            ClipRRect(
-              borderRadius: BorderRadius.circular(8),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  buildSuggestionsBloc(),
-                  buildSelectedPlaceLocationBloc(),
-                ],
-              ),
-            ),
-          ],
+        return ClipRRect(
+          borderRadius: BorderRadius.circular(8),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              buildSuggestionsBloc(),
+              buildSelectedPlaceLocationBloc(),
+              buildDiretionsBloc(),
+            ],
+          ),
         );
       },
     );
+  }
+
+  Widget buildDiretionsBloc() {
+    return BlocListener<MapsCubit, MapsState>(
+      listener: (context, state) {
+        if (state is DirectionsLoaded) {
+          placeDirections = (state).placeDirections;
+
+          getPolylinePoints();
+        }
+      },
+      child: Container(),
+    );
+  }
+
+  void getPolylinePoints() {
+    polylinePoints = placeDirections!.polylinePoints
+        .map((e) => LatLng(e.latitude, e.longitude))
+        .toList();
   }
 
   Widget buildSelectedPlaceLocationBloc() {
@@ -165,9 +241,18 @@ class _MapScreen1State extends State<MapScreen1> {
           selectedPlace = (state).place;
 
           goToMySearchedForLocation();
+          getDirections();
         }
       },
       child: Container(),
+    );
+  }
+
+  void getDirections() {
+    BlocProvider.of<MapsCubit>(context).emitPlaceDirections(
+      LatLng(position!.latitude, position!.longitude),
+      LatLng(selectedPlace.result.geometry.location.lat,
+          selectedPlace.result.geometry.location.lng),
     );
   }
 
@@ -290,6 +375,12 @@ class _MapScreen1State extends State<MapScreen1> {
                   ),
                 ),
           buildFloatingSearchBar(),
+          isSearchedPlaceMarkerClicked
+              ? DistanceAndTime(
+                  isTimeAndDistanceVisible: isTimeAndDistanceVisible,
+                  placeDirections: placeDirections,
+                )
+              : Container(),
         ],
       ),
       floatingActionButton: Container(

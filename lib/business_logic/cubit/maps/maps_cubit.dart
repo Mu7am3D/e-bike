@@ -1,7 +1,9 @@
 import 'package:bloc/bloc.dart';
 import 'package:e_bike/data/models/Place_suggestion.dart';
 import 'package:e_bike/data/models/place.dart';
+import 'package:e_bike/data/models/place_directions.dart';
 import 'package:e_bike/data/repository/maps_repo.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:meta/meta.dart';
 
@@ -21,6 +23,12 @@ class MapsCubit extends Cubit<MapsState> {
   void emitPlaceLocation(String placeId, String sessionToken) {
     mapsRepository.getPlaceLocation(placeId, sessionToken).then((place) {
       emit(PlaceLocationLoaded(place));
+    });
+  }
+
+  void emitPlaceDirections(LatLng origin, LatLng destination) {
+    mapsRepository.getDirections(origin, destination).then((directions) {
+      emit(DirectionsLoaded(directions));
     });
   }
 }

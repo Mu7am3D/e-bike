@@ -1,9 +1,10 @@
 import 'dart:async';
-
+import 'package:e_bike/data/models/place_directions.dart';
 import 'package:e_bike/Constants/Color_constant.dart';
 import 'package:e_bike/CustomWidget/drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:e_bike/presentation/widgets/distance_and_time.dart';
 import 'package:e_bike/business_logic/cubit/maps/maps_cubit.dart';
 import 'package:e_bike/data/models/Place_suggestion.dart';
 import 'package:e_bike/data/models/place.dart';
@@ -36,6 +37,7 @@ class _MapScreenState extends State<MapScreen> {
   );
 
   // these variables for getPlaceLocation
+
   Set<Marker> markers = Set();
   late PlaceSuggestion placeSuggestion;
   late Place selectedPlace;
@@ -56,7 +58,7 @@ class _MapScreenState extends State<MapScreen> {
   }
 
   // these variables for getDirections
-
+  PlaceDirections? placeDirections;
   var progressIndicator = false;
   late List<LatLng> polylinePoints;
   var isSearchedPlaceMarkerClicked = false;
@@ -87,6 +89,16 @@ class _MapScreenState extends State<MapScreen> {
       onMapCreated: (GoogleMapController controller) {
         _mapController.complete(controller);
       },
+      polylines: placeDirections != null
+          ? {
+              Polyline(
+                polylineId: const PolylineId('my_polyline'),
+                color: Colors.black,
+                width: 2,
+                points: polylinePoints,
+              ),
+            }
+          : {},
     );
   }
 
@@ -139,23 +151,39 @@ class _MapScreenState extends State<MapScreen> {
         ),
       ],
       builder: (context, transition) {
-        return Column(
-          children: [
-            ClipRRect(
-              borderRadius: BorderRadius.circular(8),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  buildSuggestionsBloc(),
-                  buildSelectedPlaceLocationBloc(),
-                ],
-              ),
-            ),
-          ],
+        return ClipRRect(
+          borderRadius: BorderRadius.circular(8),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              buildSuggestionsBloc(),
+              buildSelectedPlaceLocationBloc(),
+              buildDiretionsBloc(),
+            ],
+          ),
         );
       },
     );
+  }
+
+  Widget buildDiretionsBloc() {
+    return BlocListener<MapsCubit, MapsState>(
+      listener: (context, state) {
+        if (state is DirectionsLoaded) {
+          placeDirections = (state).placeDirections;
+
+          getPolylinePoints();
+        }
+      },
+      child: Container(),
+    );
+  }
+
+  void getPolylinePoints() {
+    polylinePoints = placeDirections!.polylinePoints
+        .map((e) => LatLng(e.latitude, e.longitude))
+        .toList();
   }
 
   Widget buildSelectedPlaceLocationBloc() {
@@ -165,9 +193,18 @@ class _MapScreenState extends State<MapScreen> {
           selectedPlace = (state).place;
 
           goToMySearchedForLocation();
+          getDirections();
         }
       },
       child: Container(),
+    );
+  }
+
+  void getDirections() {
+    BlocProvider.of<MapsCubit>(context).emitPlaceDirections(
+      LatLng(position!.latitude, position!.longitude),
+      LatLng(selectedPlace.result.geometry.location.lat,
+          selectedPlace.result.geometry.location.lng),
     );
   }
 
@@ -290,6 +327,12 @@ class _MapScreenState extends State<MapScreen> {
                   ),
                 ),
           buildFloatingSearchBar(),
+          isSearchedPlaceMarkerClicked
+              ? DistanceAndTime(
+                  isTimeAndDistanceVisible: isTimeAndDistanceVisible,
+                  placeDirections: placeDirections,
+                )
+              : Container(),
         ],
       ),
       floatingActionButton: Container(

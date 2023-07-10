@@ -1,5 +1,4 @@
 import 'package:e_bike/Screens/health.dart';
-import 'package:e_bike/Screens/Navigation.dart';
 import 'package:e_bike/Screens/NavigationTest.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -77,7 +76,7 @@ class _NavState extends State<Nav> {
       case 1:
         return BlocProvider.value(
           value: mapsCubit,
-          child: MapScreen(),
+          child: MapScreen1(),
         );
       case 2:
         return WeatherView();
