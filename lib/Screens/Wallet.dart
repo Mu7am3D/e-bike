@@ -1,13 +1,19 @@
+import 'package:e_bike/Controller/Profile_controller.dart';
+import 'package:e_bike/Controller/Wallet_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../Constants/Color_constant.dart';
 
-class Wallet extends StatelessWidget {
-  const Wallet({Key? key}) : super(key: key);
-
+class Wallet extends GetView<WalletController> {
+  final User? currentUser = FirebaseAuth.instance.currentUser;
+  Wallet({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    final String userId2 = currentUser?.uid ?? '';
+    Get.put(WalletController(userId2));
     return SafeArea(
         child: Scaffold(
       backgroundColor: ColorConstant.blueGray900,
@@ -51,6 +57,25 @@ class Wallet extends StatelessWidget {
                   ),
                 ],
               ),
+              Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Container(
+                        padding: EdgeInsets.only(right: 50.sp),
+                        width: 350.w,
+                        height: 224.h,
+                        child: Image.asset(
+                          'images/yarab.png',
+                          fit: BoxFit.fill,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
@@ -76,13 +101,14 @@ class Wallet extends StatelessWidget {
                       right: 44.w,
                       top: 59.h,
                     ),
-                    child: Text(
-                      '200',
-                      style: GoogleFonts.montserrat(
-                          fontWeight: FontWeight.w600,
-                          fontSize: 20.sp,
-                          color: Colors.white),
-                    ),
+                    child: GetBuilder<WalletController>(
+                        builder: (controller) => Text(
+                              '${controller.points}',
+                              style: GoogleFonts.montserrat(
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 20.sp,
+                                  color: Colors.white),
+                            )),
                   ),
                 ],
               ),
@@ -100,88 +126,96 @@ class Wallet extends StatelessWidget {
                         ]),
                         borderRadius: BorderRadius.circular(20.sp),
                         color: Colors.white),
-                    child: TextButton(
-                        onPressed: () {},
-                        child: Text(
-                          'Transfer',
-                          style: GoogleFonts.montserrat(
-                              fontSize: 15.sp,
-                              fontWeight: FontWeight.w600,
-                              color: Colors.black),
-                        )),
+                    child: GetBuilder<WalletController>(
+                        builder: (contnroller) => TextButton(
+                            onPressed: () {
+                              controller.transfer();
+                              controller.point;
+                              print("done");
+                            },
+                            child: Text(
+                              'Transfer',
+                              style: GoogleFonts.montserrat(
+                                  fontSize: 15.sp,
+                                  fontWeight: FontWeight.w600,
+                                  color: Colors.black),
+                            ))),
                   ),
                 ],
               ),
-              Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                      Container(
-                        padding: EdgeInsets.only(right: 50.sp),
-                        width: 350.w,
-                        height: 224.h,
-                        child: Image.asset(
-                          'images/yarab.png',
-                          fit: BoxFit.fill,
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              )
             ],
           ),
           Container(
             padding: EdgeInsets.only(left: 27.w, top: 79.h),
-            child: ListTile(
-                title: Text(
-                  'Points :',
-                  style: GoogleFonts.montserrat(
-                      fontWeight: FontWeight.w400,
-                      fontSize: 24.sp,
-                      color: Colors.white),
-                ),
-                trailing: Container(
-                    padding: EdgeInsets.only(bottom: 5.h, right: 117.w),
-                    child: Text(
-                      '241',
+            child: Column(
+              children: [
+                Row(
+                  children: [
+                    Text(
+                      'Points :',
                       style: GoogleFonts.montserrat(
-                          fontSize: 32.sp,
-                          fontWeight: FontWeight.w600,
+                          fontWeight: FontWeight.w400,
+                          fontSize: 24.sp,
                           color: Colors.white),
-                    )),
-                onTap: () {}),
+                    ),
+                    SizedBox(
+                      width: 120.w,
+                    ),
+                    GetX<WalletController>(
+                        builder: (controller) => Text(
+                              "${controller.point.toInt()}",
+                              style: GoogleFonts.montserrat(
+                                  fontSize: 32.sp,
+                                  fontWeight: FontWeight.w600,
+                                  color: Colors.white),
+                            ))
+                  ],
+                ),
+                SizedBox(
+                  height: 22.h,
+                ),
+              ],
+            ),
           ),
           Divider(
             color: ColorConstant.graydiv,
-            height: 1.25.h,
+            height: 0.h,
+            thickness: 1,
           ),
           Container(
-            padding: EdgeInsets.only(left: 27.w, bottom: 10.h, top: 10.h),
-            child: ListTile(
-                title: Text(
+            padding: EdgeInsets.only(left: 27.w, top: 48.h),
+            child: Row(
+              children: [
+                Text(
                   'Balance :',
                   style: GoogleFonts.montserrat(
                       fontWeight: FontWeight.w400,
                       fontSize: 24.sp,
                       color: Colors.white),
                 ),
-                trailing: Container(
-                    margin: EdgeInsets.only(bottom: 5.h, right: 64.w),
-                    child: Text(
-                      '\$ 10.50',
-                      style: GoogleFonts.montserrat(
-                          fontSize: 32.sp,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.white),
-                    )),
-                onTap: () {}),
+                SizedBox(
+                  width: 100.w,
+                ),
+                Container(
+                    margin: EdgeInsets.only(bottom: 1.h, right: 64.w),
+                    child: GetBuilder<WalletController>(
+                        builder: (controller) => Text(
+                              '\$ ${controller.balance.toString()}',
+                              style: GoogleFonts.montserrat(
+                                  fontSize: 32.sp,
+                                  fontWeight: FontWeight.w600,
+                                  color: Colors.white),
+                            )))
+              ],
+            ),
+          ),
+          SizedBox(
+            height: 36.h,
           ),
           Divider(
             color: ColorConstant.graydiv,
-            height: 1.25.h,
+            height: 0,
+            thickness: 1,
           ),
         ],
       ),

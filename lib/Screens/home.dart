@@ -1,6 +1,7 @@
 import 'package:e_bike/CustomWidget/drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -9,12 +10,16 @@ import '../Constants/Color_constant.dart';
 import '../Controller/Home_controller.dart';
 
 class HomeView extends GetView<HomeController> {
+  final User? currentUser = FirebaseAuth.instance.currentUser;
   HomeView({Key? key}) : super(key: key);
   final AuthController authController = AuthController();
   final GlobalKey<ScaffoldState> drawerkey = GlobalKey<ScaffoldState>();
+
   @override
   Widget build(BuildContext context) {
-    Get.put(HomeController());
+    final String userId = currentUser?.uid ?? '';
+    final HomeController controller = Get.put(HomeController(userId));
+
     return SafeArea(
       child: Scaffold(
         key: drawerkey,
@@ -86,12 +91,15 @@ class HomeView extends GetView<HomeController> {
                               padding: EdgeInsets.only(
                                 left: 90.w,
                               ),
-                              child: Text(
-                                '3752',
-                                style: GoogleFonts.montserrat(
-                                    fontSize: 32.sp,
-                                    fontWeight: FontWeight.w600),
-                              )),
+                              child: GetX<HomeController>(
+                                  builder: (controller) => Text(
+                                        controller.totalDistance.value
+                                            .toInt()
+                                            .toString(),
+                                        style: GoogleFonts.montserrat(
+                                            fontSize: 32.sp,
+                                            fontWeight: FontWeight.w600),
+                                      ))),
                           const SizedBox(
                             width: 10,
                           ),

@@ -1,5 +1,7 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class HomeController extends GetxController {
   final DatabaseReference _dbref = FirebaseDatabase.instance.ref();
@@ -7,19 +9,27 @@ class HomeController extends GetxController {
   var smoke = RxInt(0);
   var status = RxString('');
   var isOn = false;
+  final String userId;
+
+  HomeController(this.userId);
   var switchControl = false;
+  var totalDistance = 0.0.obs;
 
   @override
   void onInit() {
     super.onInit();
     tamperatureChange();
     smokeChange();
-    flameSens();
+    retrieveTotalDistance();
   }
 
   void switchC() {
     switchControl = !switchControl;
     update();
+  }
+
+  void updateTotallDistance(double distance) {
+    totalDistance.value = distance;
   }
 
   void updateValue() {
@@ -45,12 +55,11 @@ class HomeController extends GetxController {
     });
   }
 
-  void flameSens() {
-    _dbref.child('Flame sensor').child('Status').onValue.listen((event) {
-      final data = event.snapshot.value;
-      print('Status: $data');
-      status.value = data.toString();
-      update();
-    });
+  Future<void> retrieveTotalDistance() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? distance = prefs.getString('totalDistance_$userId');
+    if (distance != null) {
+      totalDistance.value = double.parse(distance);
+    }
   }
 }
