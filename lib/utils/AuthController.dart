@@ -17,8 +17,9 @@ class AuthController extends GetxController {
   final TextEditingController lNamecontroller = TextEditingController();
   final FirebaseAuth _auth = FirebaseAuth.instance;
   bool isvisible = false;
-  bool isremebered = false;
+  bool rememberMe = false;
   bool isLoading = false;
+  late String newPassword;
 
   void visible() {
     isvisible = !isvisible;
@@ -26,8 +27,20 @@ class AuthController extends GetxController {
   }
 
   void remember() {
-    isremebered = !isremebered;
+    rememberMe = !rememberMe;
     update();
+  }
+
+  Future<void> checkRememberMe() async {
+    final prefs = await SharedPreferences.getInstance();
+    final rememberMeValue = prefs.getBool('rememberMe') ?? false;
+    rememberMe = rememberMeValue;
+  }
+
+  Future<void> setRememberMe(bool value) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool('rememberMe', value);
+    rememberMe = value;
   }
 
   void loading() {
@@ -90,7 +103,7 @@ class AuthController extends GetxController {
   Future<void> logoutUser() async {
     await _auth.signOut();
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setBool("KeepLoggedIn", false);
+    prefs.setBool("rememberMe", false);
     _storeOnboardInfo();
     Get.offAll(() => LoginApp());
   }
@@ -112,6 +125,19 @@ class AuthController extends GetxController {
           .sendPasswordResetEmail(email: Emailcontroller.text);
     } on FirebaseAuthException catch (e) {
       print(e);
+    }
+  }
+
+  Future<void> changePassword(String newPassword) async {
+    try {
+      await _auth.currentUser!.updatePassword(newPassword);
+      print('Password changed successfully');
+      logoutUser();
+      showSnackBar(Get.context!, "Password changed successfully");
+      Get.offAll(() => LoginApp());
+    } catch (e) {
+      print('Failed to change password: $e');
+      showSnackBar(Get.context!, "Failed to change password");
     }
   }
 }

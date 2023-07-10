@@ -7,16 +7,17 @@ import '../utils/AuthController.dart';
 import '../Constants/Color_constant.dart';
 import '../utils/validator.dart';
 
+AuthController _authController = AuthController();
+
 class LoginApp extends GetView<AuthController> {
   LoginApp({Key? key}) : super(key: key);
   final formkey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
-    AuthController authController = AuthController();
     return Scaffold(
         backgroundColor: ColorConstant.blueGray900,
-        resizeToAvoidBottomInset: false,
+        resizeToAvoidBottomInset: true,
         body: SingleChildScrollView(
           child: Column(children: [
             Form(
@@ -47,7 +48,7 @@ class LoginApp extends GetView<AuthController> {
                   Padding(
                     padding: const EdgeInsets.all(10.0),
                     child: TextFormField(
-                      controller: authController.EmailController,
+                      controller: _authController.EmailController,
                       style: TextStyle(
                         fontSize: 20.sp,
                         color: Colors.white,
@@ -72,7 +73,7 @@ class LoginApp extends GetView<AuthController> {
                       child: GetBuilder<AuthController>(
                         init: AuthController(),
                         builder: (controller) => TextFormField(
-                          controller: authController.PasswordController,
+                          controller: _authController.PasswordController,
                           style: TextStyle(
                             fontSize: 20.sp,
                             color: Colors.white,
@@ -107,16 +108,15 @@ class LoginApp extends GetView<AuthController> {
                   Row(
                     children: [
                       GetBuilder<AuthController>(
-                        init: AuthController(),
-                        builder: (controller) => Checkbox(
-                          checkColor: Colors.white,
-                          value: controller.isremebered,
-                          onChanged: (val) {
-                            controller.remember();
-                            print(controller.isremebered);
-                          },
-                        ),
-                      ),
+                          builder: (controller) => Checkbox(
+                                checkColor: Colors.white,
+                                value: controller.rememberMe,
+                                onChanged: (val) {
+                                  controller.setRememberMe(val!);
+                                  controller.remember();
+                                  print(controller.rememberMe);
+                                },
+                              )),
                       const Text(
                         'Remeber Me',
                         style: TextStyle(color: Colors.white),
@@ -126,10 +126,7 @@ class LoginApp extends GetView<AuthController> {
                       ),
                       TextButton(
                           onPressed: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => const Forgot()));
+                            Get.to(() => Forgot());
                           },
                           child: Text("Forgot Password?",
                               style: TextStyle(
@@ -169,7 +166,8 @@ class LoginApp extends GetView<AuthController> {
                                     onPressed: () async {
                                       if (formkey.currentState!.validate()) {
                                         controller.loading();
-                                        await authController.loginUser(context);
+                                        await _authController
+                                            .loginUser(context);
                                         controller.loading();
                                       }
                                     },
@@ -189,10 +187,7 @@ class LoginApp extends GetView<AuthController> {
                             ),
                             TextButton(
                                 onPressed: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) => SignUp()));
+                                  Get.to(() => SignUp());
                                 },
                                 child: Text("Sign up",
                                     style: TextStyle(
