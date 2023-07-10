@@ -27,12 +27,10 @@ class SignUp extends StatelessWidget {
             )),
       ),
       body: SingleChildScrollView(
-        padding: EdgeInsets.all(16.h)
-            .copyWith(bottom: MediaQuery.of(context).viewInsets.bottom),
         child: Form(
           key: formkey,
           child: Column(
-            children: <Widget>[
+            children: [
               Text(
                 "Create an account",
                 style: TextStyle(

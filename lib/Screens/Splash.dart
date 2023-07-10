@@ -18,7 +18,7 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
   @override
-  _init() async {
+  init() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     final token = prefs.getString("userID");
     if (token != null) {
@@ -27,12 +27,18 @@ class _SplashScreenState extends State<SplashScreen> {
     } else {
       Get.offAll(() => LoginApp());
     }
+    /* if (token != null && token != "") {
+      print('Token: $token');
+      Get.offAll(() => const Nav());
+    } else {
+      Get.offAll(() => LoginApp());
+    }*/
   }
 
   @override
   void initState() {
     Timer(const Duration(seconds: 4), () {
-      _init();
+      init();
     });
 
     super.initState();

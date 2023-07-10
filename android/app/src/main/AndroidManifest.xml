@@ -2,12 +2,13 @@
     package="com.eBike.e_bike">
      <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
      <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <application
         android:label="e_bike"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <meta-data android:name="com.google.android.geo.API_KEY"
-        android:value="AIzaSyD3riTIaqreq7M6nugItE-zSz5RMGQRSHU"/>
+        android:value="AIzaSyC6xuDTeryrVqsC294sfOqwic9fINLneFA"/>
         <activity
             android:name=".MainActivity"
             android:exported="true"

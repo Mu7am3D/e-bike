@@ -74,8 +74,8 @@ class Account extends StatelessWidget {
                 Icons.arrow_forward_ios,
                 color: ColorConstant.gray00,
               ),
-              onTap: () => Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => const Wallet())),
+              onTap: () => Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (context) => Wallet())),
             ),
           ),
           Divider(
