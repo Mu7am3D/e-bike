@@ -44,7 +44,9 @@ class AuthController extends GetxController {
         "Email": Emailcontroller.text,
         "First Name": fNamecontroller.text,
         "Last Name": lNamecontroller.text,
-        "profpic": " "
+        "Points": 0,
+        "Balance": 0,
+        "Profpic": " "
       });
       if (user != null) {
         Get.to(() => const Nav());
@@ -88,7 +90,7 @@ class AuthController extends GetxController {
   Future<void> logoutUser() async {
     await _auth.signOut();
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.clear();
+    prefs.setBool("KeepLoggedIn", false);
     _storeOnboardInfo();
     Get.offAll(() => LoginApp());
   }
@@ -102,5 +104,14 @@ class AuthController extends GetxController {
   void showSnackBar(BuildContext context, String message) {
     ScaffoldMessenger.of(context)
         .showSnackBar(SnackBar(content: Text(message)));
+  }
+
+  Future<void> passwordReset() async {
+    try {
+      await FirebaseAuth.instance
+          .sendPasswordResetEmail(email: Emailcontroller.text);
+    } on FirebaseAuthException catch (e) {
+      print(e);
+    }
   }
 }

@@ -7,6 +7,7 @@ import '../utils/validator.dart';
 class Forgot extends StatelessWidget {
   static final formkey = GlobalKey<FormState>();
   const Forgot({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     AuthController authController = AuthController();
@@ -106,6 +107,7 @@ class Forgot extends StatelessWidget {
                   backgroundColor: MaterialStateProperty.all(Colors.blue)),
               onPressed: () async {
                 if (formkey.currentState!.validate()) {
+                  authController.passwordReset();
                   showDialog(
                       context: context,
                       builder: (context) => AlertDialog(
