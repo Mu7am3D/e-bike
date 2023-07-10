@@ -4,44 +4,39 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
+import '../utils/AuthController.dart';
 import '../Nav Bar/Nav_bar.dart';
 import '../Constants/Color_constant.dart';
 import 'login.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
-
   @override
   State<SplashScreen> createState() => _SplashScreenState();
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-  @override
-  init() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    final token = prefs.getString("userID");
-    if (token != null) {
-      print('Token: $token');
-      Get.offAll(() => const Nav());
-    } else {
-      Get.offAll(() => LoginApp());
-    }
-    /* if (token != null && token != "") {
-      print('Token: $token');
-      Get.offAll(() => const Nav());
-    } else {
-      Get.offAll(() => LoginApp());
-    }*/
-  }
+  final AuthController _authController = Get.put(AuthController());
 
   @override
   void initState() {
     Timer(const Duration(seconds: 4), () {
-      init();
+      checkRememberMeAndNavigate();
     });
 
     super.initState();
+  }
+
+  Future<void> checkRememberMeAndNavigate() async {
+    await _authController.checkRememberMe();
+
+    if (_authController.rememberMe) {
+      // User is remembered, navigate to the home page
+      Get.offAll(() => Nav());
+    } else {
+      // User is not remembered, navigate to the login page
+      Get.offAll(() => LoginApp());
+    }
   }
 
   @override
