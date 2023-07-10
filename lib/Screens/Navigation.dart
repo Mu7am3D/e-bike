@@ -311,29 +311,32 @@ class _MapScreenState extends State<MapScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       drawer: AppDrawer(
         width: 290,
       ),
-      body: Stack(
-        fit: StackFit.expand,
-        children: [
-          position != null
-              ? buildMap()
-              : Center(
-                  child: Container(
-                    child: CircularProgressIndicator(
-                      color: ColorConstant.blue,
+      body: SingleChildScrollView(
+        child: Stack(
+          fit: StackFit.expand,
+          children: [
+            position != null
+                ? buildMap()
+                : Center(
+                    child: Container(
+                      child: CircularProgressIndicator(
+                        color: ColorConstant.blue,
+                      ),
                     ),
                   ),
-                ),
-          buildFloatingSearchBar(),
-          isSearchedPlaceMarkerClicked
-              ? DistanceAndTime(
-                  isTimeAndDistanceVisible: isTimeAndDistanceVisible,
-                  placeDirections: placeDirections,
-                )
-              : Container(),
-        ],
+            buildFloatingSearchBar(),
+            isSearchedPlaceMarkerClicked
+                ? DistanceAndTime(
+                    isTimeAndDistanceVisible: isTimeAndDistanceVisible,
+                    placeDirections: placeDirections,
+                  )
+                : Container(),
+          ],
+        ),
       ),
       floatingActionButton: Container(
         margin: EdgeInsets.fromLTRB(0, 0, 8, 30),

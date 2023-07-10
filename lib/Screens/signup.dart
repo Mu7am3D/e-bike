@@ -6,13 +6,14 @@ import '../Constants/Color_constant.dart';
 import '../utils/validator.dart';
 import 'login.dart';
 
+AuthController _authController = AuthController();
+
 class SignUp extends StatelessWidget {
-  const SignUp({Key? key}) : super(key: key);
+  SignUp({Key? key}) : super(key: key);
   static final formkey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
-    AuthController authController = AuthController();
     return Scaffold(
       backgroundColor: ColorConstant.blueGray900,
       resizeToAvoidBottomInset: true,
@@ -20,7 +21,7 @@ class SignUp extends StatelessWidget {
         backgroundColor: Colors.transparent,
         elevation: 0,
         leading: IconButton(
-            onPressed: () => Navigator.pop(context),
+            onPressed: () => Get.back(),
             icon: const Icon(
               Icons.arrow_back,
               color: Colors.blue,
@@ -44,7 +45,7 @@ class SignUp extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.all(10),
                 child: TextFormField(
-                  controller: authController.fNamecontroller,
+                  controller: _authController.fNamecontroller,
                   style: TextStyle(
                     fontSize: 20.sp,
                     color: Colors.white,
@@ -65,7 +66,7 @@ class SignUp extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.all(10.sp),
                 child: TextFormField(
-                  controller: authController.lNamecontroller,
+                  controller: _authController.lNamecontroller,
                   style: TextStyle(
                     fontSize: 20.sp,
                     color: Colors.white,
@@ -86,7 +87,7 @@ class SignUp extends StatelessWidget {
               Padding(
                   padding: EdgeInsets.all(10.sp),
                   child: TextFormField(
-                    controller: authController.Emailcontroller,
+                    controller: _authController.Emailcontroller,
                     style: TextStyle(
                       fontSize: 20.sp,
                       color: Colors.white,
@@ -108,7 +109,7 @@ class SignUp extends StatelessWidget {
                   child: GetBuilder<AuthController>(
                     init: AuthController(),
                     builder: (controller) => TextFormField(
-                      controller: authController.Passwordcontroller,
+                      controller: _authController.Passwordcontroller,
                       obscureText: !controller.isvisible,
                       style: TextStyle(
                         fontSize: 20.sp,
@@ -171,7 +172,7 @@ class SignUp extends StatelessWidget {
                                   onPressed: () async {
                                     if (formkey.currentState!.validate()) {
                                       controller.loading();
-                                      await authController
+                                      await _authController
                                           .createAccount(context);
                                       controller.loading();
                                     }
