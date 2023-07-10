@@ -4,6 +4,7 @@ import '../Models/Weather_model.dart';
 
 class WeatherController extends GetxController {
   var isOn = false;
+  RxBool isLoading = false.obs;
   var location = 'Cairo'; //Default location
   var weatherModel = WeatherModel(
     location: '',
@@ -27,12 +28,20 @@ class WeatherController extends GetxController {
 
   @override
   void onInit() {
-    fetchWeatherData(location);
     super.onInit();
+    fetchWeatherData(location);
+    startLoading();
   }
 
   void toggle() {
     isOn = !isOn;
     update();
+  }
+
+  void startLoading() {
+    isLoading.value = true;
+    Future.delayed(Duration(seconds: 2), () {
+      isLoading.value = false;
+    });
   }
 }

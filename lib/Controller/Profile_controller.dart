@@ -7,11 +7,20 @@ class ProfileController extends GetxController {
   final _auth = FirebaseAuth.instance;
   var email = 'loading...';
   var name = 'loading...';
+  RxBool isLoading = false.obs;
 
   @override
   void onInit() {
     super.onInit();
     loadUserData();
+    startLoading();
+  }
+
+  void startLoading() {
+    isLoading.value = true;
+    Future.delayed(Duration(seconds: 2), () {
+      isLoading.value = false;
+    });
   }
 
   void loadUserData() {
