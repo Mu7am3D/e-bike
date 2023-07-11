@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import '../utils/AuthController.dart';
 import '../Nav Bar/Nav_bar.dart';
 import '../Constants/Color_constant.dart';
@@ -20,7 +19,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   void initState() {
-    Timer(const Duration(seconds: 4), () {
+    Timer(const Duration(seconds: 2), () {
       checkRememberMeAndNavigate();
     });
 

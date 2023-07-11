@@ -83,7 +83,8 @@ class ProfileView extends GetView<ProfileController> {
                   ),
                   Divider(
                     color: ColorConstant.graydiv,
-                    height: 1.h,
+                    height: 0.h,
+                    thickness: 1.h,
                   ),
                   Container(
                     padding:
@@ -116,7 +117,8 @@ class ProfileView extends GetView<ProfileController> {
                   ),
                   Divider(
                     color: ColorConstant.graydiv,
-                    height: 1.h,
+                    height: 0.h,
+                    thickness: 1.h,
                   ),
                   Container(
                     padding:
@@ -223,7 +225,8 @@ class ProfileView extends GetView<ProfileController> {
                   ),
                   Divider(
                     color: ColorConstant.graydiv,
-                    height: 1.h,
+                    height: 0.h,
+                    thickness: 1.h,
                   ),
                 ],
               ),
