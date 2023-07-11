@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:e_bike/Controller/Home_controller.dart';
 import 'package:e_bike/data/models/place_directions.dart';
 import 'package:e_bike/Constants/Color_constant.dart';
@@ -27,6 +28,8 @@ class MapScreen1 extends StatefulWidget {
 }
 
 class _MapScreen1State extends State<MapScreen1> {
+  final firestore = FirebaseFirestore.instance;
+  final _auth = FirebaseAuth.instance;
   final HomeController homeController = Get.find();
   List<PlaceSuggestion> places = [];
   FloatingSearchBarController controller = FloatingSearchBarController();
@@ -69,7 +72,7 @@ class _MapScreen1State extends State<MapScreen1> {
   var isTimeAndDistanceVisible = false;
   late String time;
   late String distance;
-  double totalDistance = 0.0;
+  Rx totalDistance = 0.0.obs;
   @override
   initState() {
     super.initState();
@@ -77,22 +80,23 @@ class _MapScreen1State extends State<MapScreen1> {
     trackDistance();
   }
 
+  void saveTotalDistance(int updatedDistance) {
+    FirebaseFirestore.instance
+        .collection("users")
+        .doc(_auth.currentUser!.uid)
+        .update({
+          "Distance": FieldValue.increment(updatedDistance),
+        })
+        .then((_) =>
+            print('Additional distance saved to Firestore: $updatedDistance'))
+        .catchError(
+            (error) => print('Failed to save additional distance: $error'));
+  }
+
   Future<void> getMyCurrentLocation() async {
     position = await LocationHelper.getCurrentLocation().whenComplete(() {
       setState(() {});
     });
-  }
-
-  void savepoints(String userId, String pointsWallet) async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    String key = 'PointsWallet_$userId';
-    prefs.setString(key, pointsWallet);
-  }
-
-  void saveTotalDistance(String userId, String distance) async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    String key = 'totalDistance_$userId';
-    prefs.setString(key, distance);
   }
 
   void trackDistance() {
@@ -108,22 +112,29 @@ class _MapScreen1State extends State<MapScreen1> {
         );
         accumulatedDistance += distance;
 
-        if (accumulatedDistance >= 2) {
-          homeController.updateTotallDistance(
-            homeController.totalDistance.value + accumulatedDistance,
-          );
-
+        if (accumulatedDistance >= 4) {
+          saveAccumulatedDistanceToFirestore(accumulatedDistance);
           accumulatedDistance = 0;
-          print(
-              'Total Distance: ${homeController.totalDistance.value.toInt().toString()} meters');
-          String userId = FirebaseAuth.instance.currentUser!.uid;
-          saveTotalDistance(
-              userId, homeController.totalDistance.toInt().toString());
         }
       }
 
       position = newPosition;
     });
+  }
+
+  void saveAccumulatedDistanceToFirestore(double distance) {
+    final int updatedDistance = distance.floor();
+
+    FirebaseFirestore.instance
+        .collection("users")
+        .doc(_auth.currentUser!.uid)
+        .update({
+          "Distance": FieldValue.increment(updatedDistance),
+        })
+        .then((_) =>
+            print('Accumulated distance saved to Firestore: $updatedDistance'))
+        .catchError(
+            (error) => print('Failed to save accumulated distance: $error'));
   }
 
   Widget buildMap() {

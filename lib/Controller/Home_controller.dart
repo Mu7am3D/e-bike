@@ -1,11 +1,14 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:e_bike/Constants/Color_constant.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class HomeController extends GetxController {
+  final firestore = FirebaseFirestore.instance;
+  final _auth = FirebaseAuth.instance;
   final DatabaseReference _dbref = FirebaseDatabase.instance.ref();
   var newTemp = RxInt(0);
   var smoke = RxInt(0);
@@ -17,15 +20,16 @@ class HomeController extends GetxController {
 
   HomeController(this.userId);
   var switchControl = false;
-  var totalDistance = 0.0.obs;
+  var totalDistance = RxDouble(0);
+  var SaveDistance = RxDouble(0);
 
   @override
   void onInit() {
     super.onInit();
     tamperatureChange();
     smokeChange();
-    retrieveTotalDistance();
     checkBatteryTemp();
+    loadDistance();
     startLoading();
   }
 
@@ -39,10 +43,6 @@ class HomeController extends GetxController {
     Future.delayed(Duration(seconds: 2), () {
       isLoading.value = false;
     });
-  }
-
-  void updateTotallDistance(double distance) {
-    totalDistance.value = distance;
   }
 
   void updateValue() {
@@ -68,12 +68,16 @@ class HomeController extends GetxController {
     });
   }
 
-  Future<void> retrieveTotalDistance() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    String? distance = prefs.getString('totalDistance_$userId');
-    if (distance != null) {
-      totalDistance.value = double.parse(distance);
-    }
+  void loadDistance() {
+    firestore
+        .collection("users")
+        .doc(_auth.currentUser!.uid)
+        .snapshots() // Listen for real-time changes
+        .listen((snapshot) {
+      final int distance = snapshot.data()!['Distance'];
+      totalDistance.value = distance.toDouble();
+      update(); // Notify GetBuilder that the data has changed
+    });
   }
 
   void checkBatteryTemp() {
