@@ -57,9 +57,8 @@ class AuthController extends GetxController {
         "Email": Emailcontroller.text,
         "First Name": fNamecontroller.text,
         "Last Name": lNamecontroller.text,
-        "Points": 0,
+        "Distance": 0,
         "Balance": 0,
-        "Profpic": " "
       });
       if (user != null) {
         Get.to(() => const Nav());
