@@ -1,7 +1,3 @@
-const loginScreen = '/login-screen';
-const homeView = '/home-view';
-const otpScreen = '/otp-screen';
-const mapScreen = '/map-screen';
 const googleAPIKey = 'AIzaSyC6xuDTeryrVqsC294sfOqwic9fINLneFA';
 const suggestionsBaseUrl =
     'https://maps.googleapis.com/maps/api/place/autocomplete/json';

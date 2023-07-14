@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 
 class WalletController extends GetxController {
   final firestore = FirebaseFirestore.instance;
@@ -16,6 +17,11 @@ class WalletController extends GetxController {
     startLoading();
   }
 
+  void showSnackBar(BuildContext context, String message) {
+    ScaffoldMessenger.of(context)
+        .showSnackBar(SnackBar(content: Text(message)));
+  }
+
   void loadPointsBalance() {
     firestore
         .collection("users")
@@ -29,21 +35,22 @@ class WalletController extends GetxController {
   }
 
   void transfer() {
-    final int distanceToPointsRatio = 1000;
-    final int pointsEarned = (points ~/ distanceToPointsRatio) * 5;
+    const int pointsToBalanceRatio = 10; // each 10 m or points equal 5$
+    final int balanceEarned = (points ~/ pointsToBalanceRatio) * 5;
 
     int remainingDistance =
-        points % distanceToPointsRatio; // Calculate remaining distance
+        points % pointsToBalanceRatio; // Calculate remaining distance
 
     // Update Firestore document with new values
     firestore.collection("users").doc(_auth.currentUser!.uid).update({
       'Distance': remainingDistance,
-      'Balance': FieldValue.increment(pointsEarned),
+      'Balance': FieldValue.increment(balanceEarned),
     }).then((_) {
       points = remainingDistance;
+      showSnackBar(Get.context!, "Transfered successfully");
       update();
     }).catchError((error) {
-      print("Error transferring distance to points: $error");
+      showSnackBar(Get.context!, "Failed to transfer the points to balance");
     });
   }
 
