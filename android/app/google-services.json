@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "563126584857",
+    "firebase_url": "https://e-bike-da7e8-default-rtdb.firebaseio.com",
     "project_id": "e-bike-da7e8",
     "storage_bucket": "e-bike-da7e8.appspot.com"
   },
@@ -13,6 +14,14 @@
         }
       },
       "oauth_client": [
+        {
+          "client_id": "563126584857-g3is9op3us0d47h2k6gtaus1ea799lsa.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.eBike.e_bike",
+            "certificate_hash": "dcc2aad63f261e977d1141c86334c668ca3246a6"
+          }
+        },
         {
           "client_id": "563126584857-i1avla8vblamt9o43ur32210cqqbd92t.apps.googleusercontent.com",
           "client_type": 3
