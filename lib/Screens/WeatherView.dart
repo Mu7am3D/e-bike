@@ -113,14 +113,14 @@ class WeatherView extends GetView<WeatherController> {
                                   )),
                         ],
                       ),
-                      Container(
-                        padding: EdgeInsets.only(left: 180.w, top: 110.h),
-                        child: Text(
-                          'Minya el Qamh',
-                          style: GoogleFonts.montserrat(
-                              fontWeight: FontWeight.w400, fontSize: 18.sp),
-                        ),
-                      )
+                      Obx(() => Container(
+                            padding: EdgeInsets.only(left: 180.w, top: 110.h),
+                            child: Text(
+                              controller.location.value,
+                              style: GoogleFonts.montserrat(
+                                  fontWeight: FontWeight.w400, fontSize: 18.sp),
+                            ),
+                          ))
                     ],
                   ),
                   SizedBox(
