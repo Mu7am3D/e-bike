@@ -1,10 +1,10 @@
+import 'package:e_bike/Screens/Navigation.dart';
 import 'package:e_bike/Screens/health.dart';
 import 'package:e_bike/Screens/NavigationTest.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../Screens/home.dart';
-import '../Screens/lock.dart';
 import '../Screens/WeatherView.dart';
 import '../Constants/Color_constant.dart';
 import 'package:e_bike/business_logic/cubit/maps/maps_cubit.dart';
@@ -62,7 +62,7 @@ class _NavState extends State<Nav> {
           ),
           BottomNavigationBarItem(
             icon: SvgPicture.asset('images/lock.svg'),
-            label: 'Lock',
+            label: 'Bike',
           ),
         ],
       ),
@@ -83,7 +83,7 @@ class _NavState extends State<Nav> {
       case 3:
         return HealthView();
       case 4:
-        return const Lock();
+        return MapScreen();
       default:
         return Container();
     }

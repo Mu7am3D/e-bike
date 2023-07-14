@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../utils/AuthController.dart';
+import '../Services/authServices.dart';
 import '../Constants/Color_constant.dart';
 import 'package:e_bike/CustomWidget/drawer.dart';
 import 'package:get/get.dart';
@@ -11,7 +11,7 @@ import '../Controller/Health_controller.dart';
 
 class HealthView extends GetView<HealthController> {
   HealthView({Key? key}) : super(key: key);
-  final AuthController authController = AuthController();
+  final AuthController authController = Get.put(AuthController());
   final GlobalKey<ScaffoldState> drawerkey = GlobalKey<ScaffoldState>();
 
   @override

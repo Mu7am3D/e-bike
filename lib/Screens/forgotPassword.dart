@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../utils/AuthController.dart';
+import '../Services/authServices.dart';
 import '../Constants/Color_constant.dart';
-import '../utils/validator.dart';
+import '../helpers/validator.dart';
 import 'package:get/get.dart';
 
-AuthController _authController = AuthController();
+AuthController _authController = Get.put(AuthController());
 
 class Forgot extends StatelessWidget {
   static final formkey = GlobalKey<FormState>();

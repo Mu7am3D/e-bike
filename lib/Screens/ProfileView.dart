@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../utils/AuthController.dart';
+import '../Services/authServices.dart';
 import '../Constants/Color_constant.dart';
 import '../Controller/Profile_controller.dart';
-import '../utils/validator.dart';
+import '../helpers/validator.dart';
 
 class ProfileView extends GetView<ProfileController> {
-  AuthController _authController = AuthController();
+  final AuthController _authController = Get.put(AuthController());
   ProfileView({Key? key}) : super(key: key);
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   @override
@@ -27,7 +27,7 @@ class ProfileView extends GetView<ProfileController> {
               elevation: 0,
               leading: IconButton(
                   onPressed: () {
-                    Navigator.pop(context);
+                    Get.back();
                   },
                   icon: const Icon(Icons.arrow_back)),
             ),
@@ -95,7 +95,7 @@ class ProfileView extends GetView<ProfileController> {
                                 'E-mail :',
                                 style: GoogleFonts.montserrat(
                                     fontWeight: FontWeight.w400,
-                                    fontSize: 24.sp,
+                                    fontSize: 21.sp,
                                     color: Colors.white),
                               ),
                               trailing: Container(
@@ -213,7 +213,7 @@ class ProfileView extends GetView<ProfileController> {
                                           color: Colors.white, fontSize: 20.sp),
                                     ),
                                     content: Text(
-                                      "Enter 6 charachter at least",
+                                      "Enter 6 charachters at least",
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
                                           color: Colors.white, fontSize: 20.sp),

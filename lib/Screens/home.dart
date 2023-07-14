@@ -6,7 +6,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../utils/AuthController.dart';
+import '../Services/authServices.dart';
 import '../Constants/Color_constant.dart';
 import '../Controller/Home_controller.dart';
 

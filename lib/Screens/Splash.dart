@@ -1,10 +1,10 @@
 import 'dart:async';
 
+import 'package:e_bike/Nav%20Bar/Nav_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import '../utils/AuthController.dart';
-import '../Nav Bar/Nav_bar.dart';
+import '../Services/authServices.dart';
 import '../Constants/Color_constant.dart';
 import 'login.dart';
 

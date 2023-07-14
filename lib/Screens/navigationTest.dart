@@ -13,7 +13,6 @@ import 'package:e_bike/data/models/Place_suggestion.dart';
 import 'package:e_bike/data/models/place.dart';
 import 'package:e_bike/helpers/location_helper.dart';
 import 'package:e_bike/presentation/widgets/place_item.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -78,6 +77,11 @@ class _MapScreen1State extends State<MapScreen1> {
     super.initState();
     getMyCurrentLocation();
     trackDistance();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
   }
 
   void saveTotalDistance(int updatedDistance) {
