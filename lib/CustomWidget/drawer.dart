@@ -1,9 +1,9 @@
+import 'package:e_bike/Screens/drawerScreens/account.dart';
+import 'package:e_bike/Services/authServices.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../Controller/Home_controller.dart';
 import '../Constants/Color_constant.dart';
-import '../Screens/account.dart';
-import '../utils/AuthController.dart';
 import 'package:get/get.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
