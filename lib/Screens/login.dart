@@ -3,15 +3,14 @@ import 'package:e_bike/Screens/signup.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import '../utils/AuthController.dart';
+import '../Services/authServices.dart';
 import '../Constants/Color_constant.dart';
-import '../utils/validator.dart';
+import '../helpers/validator.dart';
 
 AuthController _authController = AuthController();
 
 class LoginApp extends GetView<AuthController> {
-  LoginApp({Key? key}) : super(key: key);
-  final formkey = GlobalKey<FormState>();
+  final _formkey1 = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +20,7 @@ class LoginApp extends GetView<AuthController> {
         body: SingleChildScrollView(
           child: Column(children: [
             Form(
-                key: formkey,
+                key: _formkey1,
                 child: Column(children: [
                   SizedBox(
                     height: 60.h,
@@ -164,7 +163,7 @@ class LoginApp extends GetView<AuthController> {
                                             ),
                                           ),
                                     onPressed: () async {
-                                      if (formkey.currentState!.validate()) {
+                                      if (_formkey1.currentState!.validate()) {
                                         controller.loading();
                                         await _authController
                                             .loginUser(context);

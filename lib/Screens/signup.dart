@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
-import '../utils/AuthController.dart';
+import '../Services/authServices.dart';
 import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../Constants/Color_constant.dart';
-import '../utils/validator.dart';
+import '../helpers/validator.dart';
 import 'login.dart';
 
-AuthController _authController = AuthController();
+AuthController _authController = Get.put(AuthController());
 
 class SignUp extends StatelessWidget {
+  static final formkey2 = GlobalKey<FormState>();
   SignUp({Key? key}) : super(key: key);
-  static final formkey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +29,7 @@ class SignUp extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         child: Form(
-          key: formkey,
+          key: formkey2,
           child: Column(
             children: [
               Text(
@@ -170,7 +170,7 @@ class SignUp extends StatelessWidget {
                                           textAlign: TextAlign.center,
                                         ),
                                   onPressed: () async {
-                                    if (formkey.currentState!.validate()) {
+                                    if (formkey2.currentState!.validate()) {
                                       controller.loading();
                                       await _authController
                                           .createAccount(context);
@@ -190,7 +190,7 @@ class SignUp extends StatelessWidget {
                       ),
                       TextButton(
                           onPressed: () {
-                            Get.to(() => LoginApp());
+                            Get.off(() => LoginApp());
                           },
                           child: Text("Login",
                               style: TextStyle(
