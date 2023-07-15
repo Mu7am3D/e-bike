@@ -22,12 +22,13 @@ class HealthController extends GetxController {
     bP();
     checkTemperature();
     checkHeartRate();
+    checkPercenOx();
     startLoading();
   }
 
   void checkTemperature() {
     ever(newTemp, (value) {
-      if (value != null && (value as int) > 38) {
+      if (value != null && (value as int) > 37) {
         showTemperatureBottomSheet();
       }
     });
@@ -44,6 +45,14 @@ class HealthController extends GetxController {
     ever(heartRate, (value) {
       if (value != null && (value as int < 60 || value > 100)) {
         showHeartRateBottomSheet();
+      }
+    });
+  }
+
+  void checkPercenOx() {
+    ever(bloodOx, (value) {
+      if (value != null && (value as int < 93)) {
+        showPercentOxBottomSheet();
       }
     });
   }
@@ -79,6 +88,74 @@ class HealthController extends GetxController {
                   children: [
                     Container(
                       child: Text("High Heart Rate"),
+                    ),
+                    SizedBox(
+                      height: 10.h,
+                    ),
+                    Container(
+                      child: Text(
+                        "Need To Stop Riding",
+                        style: TextStyle(fontSize: 14.sp),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ),
+            Container(
+              padding: EdgeInsets.only(left: 27.w, top: 30.h),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "Warning",
+                    style: TextStyle(fontSize: 20.sp),
+                  )
+                ],
+              ),
+            )
+          ],
+        ),
+      ),
+      backgroundColor: ColorConstant.warning,
+      elevation: 4.0,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(16),
+      ),
+    );
+  }
+
+  void showPercentOxBottomSheet() {
+    Get.bottomSheet(
+      Container(
+        height: 221.h,
+        child: Stack(
+          children: [
+            Center(
+                child: Container(
+              decoration: BoxDecoration(
+                color: Colors.red,
+                borderRadius: BorderRadius.circular(16),
+              ),
+              width: 355.w,
+              height: 70.h,
+              child: Row(children: [
+                Container(
+                    padding: EdgeInsets.only(left: 25.h),
+                    child: Icon(Icons.warning_amber_rounded)),
+                SizedBox(
+                  width: 20.w,
+                ),
+              ]),
+            )),
+            Center(
+              child: Container(
+                padding: EdgeInsets.only(top: 88.h, right: 120.w),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      child: Text("Low Ox Perncentage"),
                     ),
                     SizedBox(
                       height: 10.h,

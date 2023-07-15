@@ -31,6 +31,7 @@ class HomeController extends GetxController {
     checkBatteryTemp();
     loadDistance();
     startLoading();
+    checkSmoke();
   }
 
   void switchC() {
@@ -68,6 +69,82 @@ class HomeController extends GetxController {
     });
   }
 
+  void checkSmoke() {
+    ever(smoke, (value) {
+      if (value != null && (value as int > 200)) {
+        showSmokeBottomSheet();
+      }
+    });
+  }
+
+  void showSmokeBottomSheet() {
+    Get.bottomSheet(
+      Container(
+        height: 221.h,
+        child: Stack(
+          children: [
+            Center(
+                child: Container(
+              decoration: BoxDecoration(
+                color: Colors.red,
+                borderRadius: BorderRadius.circular(16),
+              ),
+              width: 355.w,
+              height: 70.h,
+              child: Row(children: [
+                Container(
+                    padding: EdgeInsets.only(left: 25.h),
+                    child: Icon(Icons.warning_amber_rounded)),
+                SizedBox(
+                  width: 20.w,
+                ),
+              ]),
+            )),
+            Center(
+              child: Container(
+                padding: EdgeInsets.only(top: 88.h, right: 120.w),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      child: Text("Smoke Detected"),
+                    ),
+                    SizedBox(
+                      height: 10.h,
+                    ),
+                    Container(
+                      child: Text(
+                        "Need To check the bike",
+                        style: TextStyle(fontSize: 14.sp),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ),
+            Container(
+              padding: EdgeInsets.only(left: 27.w, top: 30.h),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "Warning",
+                    style: TextStyle(fontSize: 20.sp),
+                  )
+                ],
+              ),
+            )
+          ],
+        ),
+      ),
+      backgroundColor: ColorConstant.warning,
+      elevation: 4.0,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(16),
+      ),
+    );
+  }
+
   void loadDistance() {
     firestore
         .collection("users")
@@ -82,7 +159,7 @@ class HomeController extends GetxController {
 
   void checkBatteryTemp() {
     ever(newTemp, (value) {
-      if (value != null && (value as int > 100)) {
+      if (value != null && (value as int > 70)) {
         showHeartRateBottomSheet();
       }
     });
